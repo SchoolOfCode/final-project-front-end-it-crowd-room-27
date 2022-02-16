@@ -12,58 +12,28 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        {/* <LogInButton /> */}
+        {/* <SignInButton /> */}
+        
+        <>
+        <button className={styles.log}> Log In</button>
+        <button className={styles.sign}> Sign Up</button>
+        </>
+        
+        <div className={styles.logo}><span>Logo</span></div>
+        <h1 className={styles.title}>Welcome to iGive!</h1>
+        <p className={styles.article}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ac neque a lacus convallis cursus. Aenean aliquam orci sit amet lectus sagittis, quis porta enim elementum. Duis a ultrices purus, nec rhoncus purus. Curabitur consequat vulputate mi, quis viverra justo auctor quis. Curabitur congue eu metus dapibus luctus.</p>
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+        {/* <ReadMoreButton /> */}
+        <button className={styles.read}> Read More ...</button>
+        <h3 className={styles.useDescription}>How to use iGive:</h3>
+        
+        <iframe className={styles.video} width="440" height="315" src="https://www.youtube.com/embed/dnKFSafaJOo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+
+      
     </div>
   )
 }
