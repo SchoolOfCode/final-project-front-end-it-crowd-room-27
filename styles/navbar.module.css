@@ -12,6 +12,7 @@
 	font-size: 1.5em;
 	box-shadow: 1px 10px 20px black;
 	font-family: "Montserrat", sans-serif;
+	z-index: 2;
 }
 
 .menuItem {
