@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&display=swap");
+
 /* =-=-==-=--=-=-==-=--=-=-=-=-=-=-=-=-=-=COLORS=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 :root {
 	--background: #f6fbf2;
@@ -13,7 +15,7 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: "Montserrat", sans-serif;
-	background-color: var(--background);
+	/* background-color: var(--background); */
 }
 
 a {
@@ -26,4 +28,5 @@ a {
 	padding: 0;
 	margin: 0;
 	font-family: "Montserrat", sans-serif;
+	/* background-color: var(--background); */
 }

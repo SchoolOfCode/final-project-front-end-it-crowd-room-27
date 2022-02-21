@@ -1,7 +1,13 @@
 import React from "react";
 import styles from "../../styles/card.module.css";
+import PickUpModal from "../PickUpModal";
 
 function Card() {
+	const boldText = {
+		fontWeight: "900",
+	};
+
+	const [modalShow, setModalShow] = React.useState(false);
 	return (
 		<div className={styles.cardContainer}>
 			<div className={styles.cardLeft}>
@@ -15,8 +21,8 @@ function Card() {
 			</div>
 			<div className={styles.cardRight}>
 				<div className={styles.cardRightTop}>
-					<div className={styles.username}>
-						<h3>Joe Bloggs</h3>
+					<div className={styles.username} style={boldText}>
+						<h5>Joe Bloggs</h5>
 						<div className={styles.stars}>
 							<span className={`fa fa-star ${styles.checked}`}></span>
 							<span className={`fa fa-star ${styles.checked}`}></span>
@@ -29,23 +35,36 @@ function Card() {
 						<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"></img>
 					</div>
 
-					<h3 className={styles.itemName}>Casserole: 4 meals </h3>
-					<h4 className={styles.expiry}>Expiry Date:</h4>
+					<h5 className={styles.itemName}>Casserole 4 meals </h5>
+					<h6 className={styles.expiry}>Expires:</h6>
 				</div>
 
 				<div className={styles.cardRightMiddle}>
-					<h4 className={styles.description}>Description:</h4>
 					<p className={styles.descriptionText}>
-						Item Description Item Description Item Description Item Description
-						Item Description Item Description Item Description Item Description
-						Item Description Item Description Item Description Item Description
-						Item Description Item Description Item Description Item Description
-						Item Description Item Description
+						Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+						dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
+						ac consectetur ac, vestibulum at eros.
 					</p>
 				</div>
 				<div className={styles.cardRightBottom}>
-					<h4>Location:</h4>
-					<button className={styles.btn}>Details</button>
+					<h5>Location: </h5>
+					<p>Birmingham</p>
+
+					<button
+						variant="primary"
+						onClick={() => setModalShow(true)}
+						className={styles.btn}
+					>
+						Details
+					</button>
+
+					<PickUpModal
+						text="Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+					dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+					consectetur ac, vestibulum at eros.Cras mattis consectetur purus sit amet fermentum. "
+						show={modalShow}
+						onHide={() => setModalShow(false)}
+					/>
 				</div>
 			</div>
 		</div>
