@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/register.module.css";
 import Button from "../Components/Button/index.js";
+import Head from "next/head";
 
 function Register() {
 	return (
@@ -19,7 +20,6 @@ function Register() {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-
 			<Navbar />
 			<div className={styles.container}>
 				<h1>Fill in your details below...</h1>
@@ -50,6 +50,7 @@ function Register() {
 							className={styles.textField}
 							placeholder="Enter your email..."
 						></textarea>
+						<input type="file"></input>
 					</form>
 					<Button text="Submit" />
 				</div>
@@ -59,3 +60,5 @@ function Register() {
 }
 
 export default Register;
+
+//max chars for item description is 180

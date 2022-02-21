@@ -17,24 +17,16 @@ function Navbar() {
 			<div className={styles.menu}>
 				<ul>
 					<li className={styles.menuItem}>
-						<Link href="/">
-							<a>Login</a>
-						</Link>
+						<Link href="/">Login</Link>
 					</li>
 					<li className={styles.menuItem}>
-						<Link href="/about">
-							<a>About</a>
-						</Link>
+						<Link href="/about">About</Link>
 					</li>
 					<li className={styles.menuItem}>
-						<Link href="/listings">
-							<a>Home</a>
-						</Link>
+						<Link href="/listings">Home</Link>
 					</li>
 					<li className={styles.menuItem}>
-						<Link href="/blog">
-							<a>Blog</a>
-						</Link>
+						<Link href="/blog">Blog</Link>
 					</li>
 				</ul>
 			</div>

@@ -20,6 +20,9 @@
 	cursor: pointer;
 	margin: 5em;
 	font-size: 1em;
+	list-style: none;
+	text-decoration: none;
+	color: white;
 }
 
 .userImg img {

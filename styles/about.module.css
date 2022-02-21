@@ -1,0 +1,26 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	color: var(--text);
+	margin: 2em;
+}
+
+.box1,
+.box2,
+.box3 {
+	width: 33.3%;
+	height: 50%;
+	background-color: var(--card);
+	box-shadow: 1px 7px 75px black;
+	margin: 0;
+	padding: 2em;
+}
+
+.box2 {
+	align-self: flex-end;
+}
+.box3 {
+	align-self: center;
+	transform: translateX(-7em);
+}

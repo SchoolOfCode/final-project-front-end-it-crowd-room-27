@@ -1,6 +1,5 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import styles from "../../styles/pickUpModal.module.css";
 
 function PickUpModal(props) {
@@ -21,9 +20,9 @@ function PickUpModal(props) {
 				<p>{props.text}</p>
 			</Modal.Body>
 			<Modal.Footer className={styles.footer}>
-				<Button onClick={props.onHide} className={styles.btn}>
+				<button onClick={props.onHide} className={styles.btn}>
 					Close
-				</Button>
+				</button>
 			</Modal.Footer>
 		</Modal>
 	);
