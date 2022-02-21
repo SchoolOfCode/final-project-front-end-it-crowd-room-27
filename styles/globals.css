@@ -1,18 +1,19 @@
+/* =-=-==-=--=-=-==-=--=-=-=-=-=-=-=-=-=-=COLORS=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+:root {
+	--background: #f6fbf2;
+	--navbar: #4e505d;
+	--text: #4e505d;
+	--button: #2dc9be;
+	--card: #ffedcb;
+}
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+
 html,
 body {
 	padding: 0;
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	font-family: "Montserrat", sans-serif;
 	background-color: var(--background);
-}
-
-:root {
-	--background: #f6fbf2;
-	--navbar: #4e505d;
-	--darktext: #4e505d;
-	--button: #2dc9be;
-	--card: #ffedcb;
 }
 
 a {
@@ -22,4 +23,7 @@ a {
 
 * {
 	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-family: "Montserrat", sans-serif;
 }

@@ -1,0 +1,13 @@
+.container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 90vh;
+	background-color: var(--background);
+}
+
+.form {
+	height: 80%;
+	width: 90%;
+	background-color: var(--card);
+}
