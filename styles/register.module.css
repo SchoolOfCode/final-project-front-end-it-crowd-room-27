@@ -2,12 +2,41 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 90vh;
+	height: 100vh;
 	background-color: var(--background);
+	box-sizing: border-box;
+	max-height: 100%;
+	max-width: 100vw;
+	align-items: center;
+	border: 2px solid;
+	justify-content: center;
+	background-repeat: repeat;
+	background-size: contain;
 }
 
 .form {
 	height: 80%;
-	width: 90%;
+	width: 60%;
+	margin: auto;
 	background-color: var(--card);
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	box-sizing: border-box;
+	color: white;
+}
+
+.textField {
+	display: block;
+	width: 30em;
+	height: 2em;
+	font-size: 1.5em;
+	border-radius: 7px;
+	color: var(--text);
+}
+
+.label {
+	font-size: 2em;
+	color: var(--text);
 }

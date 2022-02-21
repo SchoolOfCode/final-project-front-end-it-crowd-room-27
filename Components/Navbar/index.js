@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "../../../styles/navbar.module.css";
+import styles from "../../styles/navbar.module.css";
 import Link from "next/link";
-import Logo from "../../../assets/logo-main.png";
+import Logo from "../../assets/logo-main.png";
 import Image from "next/image";
 
 function Navbar() {
@@ -16,22 +16,22 @@ function Navbar() {
 			</div>
 			<div className={styles.menu}>
 				<ul>
-					<li className={styles.menuList}>
+					<li className={styles.menuItem}>
 						<Link href="/">
 							<a>Login</a>
 						</Link>
 					</li>
-					<li className={styles.menuList}>
+					<li className={styles.menuItem}>
 						<Link href="/about">
 							<a>About</a>
 						</Link>
 					</li>
-					<li className={styles.menuList}>
+					<li className={styles.menuItem}>
 						<Link href="/listings">
 							<a>Home</a>
 						</Link>
 					</li>
-					<li className={styles.menuList}>
+					<li className={styles.menuItem}>
 						<Link href="/blog">
 							<a>Blog</a>
 						</Link>

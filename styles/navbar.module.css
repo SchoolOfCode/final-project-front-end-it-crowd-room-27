@@ -14,19 +14,11 @@
 	font-family: "Montserrat", sans-serif;
 }
 
-.menu {
-	border: 2px solid white;
-	margin: auto;
-	width: 1000px;
-}
-.menuList {
-	display: flex;
+.menuItem {
 	display: inline;
 	cursor: pointer;
-	margin-right: 2em;
-	justify-content: space-between;
+	margin: 5em;
 	font-size: 1em;
-	flex-direction: row;
 }
 
 .userImg img {
@@ -34,7 +26,4 @@
 	height: 3.5em;
 	width: 3.5em;
 	object-fit: cover;
-	list-style: none;
-	margin-right: 30px;
-	transform: translate(2.5em);
 }

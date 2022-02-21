@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Card from "../Components/Card/index";
-import Navbar from "../Components/Card/Navbar";
+import Navbar from "../Components/Navbar/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 export default function Home() {
 	return (
@@ -20,7 +20,6 @@ export default function Home() {
 				></link>
 			</Head>
 			<Navbar />
-
 			<Card />
 		</div>
 	);

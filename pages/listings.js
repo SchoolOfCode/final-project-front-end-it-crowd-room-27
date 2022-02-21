@@ -1,8 +1,8 @@
 import React from "react";
 import Card from "../Components/Card/index";
-import Navbar from "../Components/Card/Navbar/index.js";
+import Navbar from "../Components/Navbar/index.js";
 
-function listingsPage() {
+function Listings() {
 	return (
 		<div>
 			<Navbar />
@@ -11,4 +11,4 @@ function listingsPage() {
 	);
 }
 
-export default listingsPage;
+export default Listings;
