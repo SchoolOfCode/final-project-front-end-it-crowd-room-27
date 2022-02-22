@@ -3,8 +3,45 @@ import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/register.module.css";
 import Button from "../Components/Button/index.js";
 import Head from "next/head";
+import { useState } from "react";
 
 function Register() {
+	//capture the value of each form input in an object called data (refer to handleChange function)
+	const [data, setData] = useState({
+		first_name: "",
+		last_name: "",
+		address: "",
+		email: "",
+		image: "",
+	});
+
+	//formData basically packages our form into an object of key value pairs,
+	//we then set the body of the fetch request to be this formData object.
+	const handleSubmit = () => {
+		const formData = new FormData();
+		formData.append("first_name", data.first_name);
+		formData.append("last_name", data.last_name);
+		formData.append("address", data.address);
+		formData.append("email", data.email);
+		formData.append("image", data.image);
+
+		const data = await fetch(`${API_URL}/users`, {
+			method: "POST",
+			body: formData,
+			"Content-type": "application/json",
+		});
+	};
+
+	//if the user is at the image upload part, make sure to get image from user's local storage
+	//at any other part of the form, use the value from what they type in to the input box
+	//create shallow copy of data so far
+	// [input] is taken from the value of each input field
+
+	const handleChange = (e) => {
+		const value = "image" ? e.target.files[0] : e.target.value;
+		setData({ ...data, [input]: value });
+	};
+
 	return (
 		<>
 			<Head>
@@ -29,30 +66,40 @@ function Register() {
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your first name..."
+							value={firstName}
 						></textarea>
 						<label className={styles.label}>Last Name</label>
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your last name..."
+							value={lastName}
 						></textarea>
 						<label className={styles.label}>Address</label>
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your address..."
+							value={address}
 						></textarea>
-						<label className={styles.label}>Contact Number</label>
+						{/* <label className={styles.label}>Contact Number</label>
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your contact number..."
-						></textarea>
+							value={contactNumber}
+						></textarea> */}
 						<label className={styles.label}>Email</label>
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your email..."
+							value={email}
+							onChange={(e) => handleChange()}
 						></textarea>
-						<input type="file"></input>
+						<input
+							type="file"
+							onChange={(e) => handleChange()}
+							value={image}
+						></input>
 					</form>
-					<Button text="Submit" />
+					<Button handleSubmit={handleSubmit} text="Submit" />
 				</div>
 			</div>
 		</>
