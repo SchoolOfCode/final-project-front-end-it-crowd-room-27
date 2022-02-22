@@ -1,0 +1,11 @@
+.container {
+	/* border: 2px red solid; */
+	width: 20%;
+	margin: 2em;
+	color: var(--text);
+}
+
+.input {
+	width: 100%;
+	height: 2.5em;
+}
