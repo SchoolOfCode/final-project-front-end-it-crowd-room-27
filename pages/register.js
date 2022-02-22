@@ -5,6 +5,8 @@ import Button from "../Components/Button/index.js";
 import Head from "next/head";
 import { useState } from "react";
 
+import { API_URL } from "../config.js";
+
 function Register() {
 	//capture the value of each form input in an object called data (refer to handleChange function)
 	const [data, setData] = useState({
