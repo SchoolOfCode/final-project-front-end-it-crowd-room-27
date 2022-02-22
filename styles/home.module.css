@@ -1,0 +1,174 @@
+.container {
+	font-family: "Montserrat", sans-serif;
+	padding: 0 2rem;
+}
+/* *.container {
+    border: 1px solid red;
+  } */
+.main {
+	height: 100vh;
+	padding: 2rem 0;
+	/* flex: 1; */
+	display: grid;
+	/* flex-direction: column; */
+	/* justify-content: center; */
+	/* align-items: center; */
+	/* width: 100vw; */
+	grid-template:
+		1fr 1fr
+		/
+		1fr 1fr;
+	grid-template-areas:
+		"topp topp"
+		"midle botom";
+	border: 1px solid red;
+}
+.log {
+	grid-area: log;
+	border: 1px solid red;
+}
+.sign {
+	grid-area: sign;
+	text-align: right;
+	/* font-size: .7em; */
+	border: 1px solid red;
+}
+.logo {
+	grid-area: logo;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	border: 1px solid red;
+	text-align: center;
+	margin: 0 auto;
+}
+.title {
+	/* grid-area: title; */
+	text-align: center;
+	margin: 1em 0 1em 0;
+	padding: 0;
+	border: 1px solid red;
+}
+.arttitle {
+	grid-area: arttitle;
+	text-align: center;
+	/* padding-top: 1em; */
+	border: 1px solid red;
+}
+.article {
+	grid-area: article;
+	border: 1px solid red;
+}
+.read {
+	grid-area: read;
+	cursor: pointer;
+	width: 30%;
+	border: 1px solid red;
+}
+.useDescription {
+	/* padding: 1em 0 1em 0; */
+	grid-area: des;
+	text-align: center;
+	border: 1px solid red;
+}
+.video {
+	grid-area: video;
+	border: 1px solid red;
+	margin: 0 10%;
+	width: 80%;
+	height: 80%;
+}
+.top {
+	grid-area: topp;
+	display: flex;
+}
+.midle {
+	grid-area: midle;
+}
+.bottom {
+	grid-area: botom;
+}
+/* -=-=-=-= Mobile version of website -=-=-=- */
+@media (max-width: 600px) {
+	.container {
+		width: 100%;
+	}
+
+	.main {
+		/* 8 rows 5cols */
+		grid-template: 1fr 1fr 1fr/ 100%;
+		grid-template-areas:
+			" topp "
+			" midle "
+			" botom ";
+		width: 100%;
+		flex-direction: column;
+		/* border: 1px solid red; */
+	}
+	.log {
+		grid-area: log;
+	}
+	/* .sign {
+      grid-area: sign;
+      text-align: right;
+    } */
+	.logo {
+		grid-area: logo;
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		border: 1px solid red;
+		text-align: center;
+		margin: 0 auto;
+	}
+	.title {
+		grid-area: title;
+		text-align: center;
+		margin: 1em 0 1em 0;
+	}
+	.arttitle {
+		grid-area: arttitle;
+		text-align: center;
+		padding-top: 3em;
+	}
+	.article {
+		grid-area: article;
+	}
+	.read {
+		grid-area: read;
+		cursor: pointer;
+		width: 30%;
+	}
+	.useDescription {
+		padding: 1em 0 1em 0;
+		grid-area: des;
+		text-align: center;
+	}
+	.video {
+		grid-area: video;
+		width: 100%;
+		height: 100%;
+		align-items: center;
+	}
+	.top {
+		grid-area: topp;
+		flex-direction: column;
+		display: grid;
+		grid-template:
+			30px 100px 80px 100px
+			/
+			25% 50% 25%;
+		grid-template-areas:
+			". . log"
+			". logo ."
+			". . ."
+			" title title title";
+	}
+
+	.midle {
+		grid-area: midle;
+	}
+	.bottom {
+		grid-area: botom;
+	}
+}
