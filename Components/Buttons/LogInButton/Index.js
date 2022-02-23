@@ -2,9 +2,8 @@ import React from 'react';
 
 function LogInButton() {
   return (
-    <div>
-      <button> Log in</button>
-    </div>
+    
+      <button><a href="/api/auth/login" style={{color: "black"}}>LogIn</a></button>
   );
 }
 

@@ -4,6 +4,10 @@ import Link from "next/link";
 import Logo from "../../assets/logo-main.png";
 import Image from "next/image";
 
+// const StyledLink = styled.a`
+//   color: red;
+// `
+
 function Navbar() {
    return (
       <div className={styles.container}>
