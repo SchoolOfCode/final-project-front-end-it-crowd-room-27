@@ -68,19 +68,19 @@ function Register() {
             <textarea
               className={styles.textField}
               placeholder="Enter your first name..."
-              value={first_name}
+              // value={first_name}
             ></textarea>
             <label className={styles.label}>Last Name</label>
             <textarea
               className={styles.textField}
               placeholder="Enter your last name..."
-              value={last_name}
+              // value={last_name}
             ></textarea>
             <label className={styles.label}>Address</label>
             <textarea
               className={styles.textField}
               placeholder="Enter your address..."
-              value={address}
+              // value={address}
             ></textarea>
             {/* <label className={styles.label}>Contact Number</label>
 						<textarea
@@ -92,13 +92,13 @@ function Register() {
             <textarea
               className={styles.textField}
               placeholder="Enter your email..."
-              value={email}
+              // value={email}
               onChange={(e) => handleChange()}
             ></textarea>
             <input
               type="file"
               onChange={(e) => handleChange()}
-              value={image}
+              // value={image}
             ></input>
           </form>
           <Button handleSubmit={handleSubmit} text="Submit" />
