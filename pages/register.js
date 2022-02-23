@@ -68,13 +68,13 @@ function Register() {
             <textarea
               className={styles.textField}
               placeholder="Enter your first name..."
-              value={firstName}
+              value={first_name}
             ></textarea>
             <label className={styles.label}>Last Name</label>
             <textarea
               className={styles.textField}
               placeholder="Enter your last name..."
-              value={lastName}
+              value={last_name}
             ></textarea>
             <label className={styles.label}>Address</label>
             <textarea
