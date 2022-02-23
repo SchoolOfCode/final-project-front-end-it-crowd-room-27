@@ -5,43 +5,48 @@ import Button from "../Components/Button/index.js";
 import Head from "next/head";
 import { useState } from "react";
 
-import { API_URL } from "../config.js";
-
 function Register() {
-	//capture the value of each form input in an object called data (refer to handleChange function)
-	const [data, setData] = useState({
-		first_name: "",
-		last_name: "",
-		address: "",
-		email: "",
-		image: "",
-	});
+	//capture form data
+	const [previewSource, setPreviewSource] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [address, setAddress] = useState("");
+	const [email, setEmail] = useState("");
+	const [lastName, setLastName] = useState("");
 
-	//formData basically packages our form into an object of key value pairs,
-	//we then set the body of the fetch request to be this formData object.
-	const handleSubmit = () => {
-		const formData = new FormData();
-		formData.append("first_name", data.first_name);
-		formData.append("last_name", data.last_name);
-		formData.append("address", data.address);
-		formData.append("email", data.email);
-		formData.append("image", data.image);
-
-		const data = await fetch(`${API_URL}/users`, {
-			method: "POST",
-			body: formData,
-			"Content-type": "application/json",
-		});
+	//an object which will represent the form data to send to the server (req.body)
+	const body = {
+		first_name: firstName,
+		last_name: lastName,
+		email: email,
+		address: address,
+		is_active: true,
+		image: previewSource,
+		user_bio: "",
 	};
 
-	//if the user is at the image upload part, make sure to get image from user's local storage
-	//at any other part of the form, use the value from what they type in to the input box
-	//create shallow copy of data so far
-	// [input] is taken from the value of each input field
+	//when the user selects an image from their desktop, preview it in the browser
+	const handleFileInputChange = (e) => {
+		const file = e.target.files[0];
+		previewFile(file);
+	};
 
-	const handleChange = (e) => {
-		const value = "image" ? e.target.files[0] : e.target.value;
-		setData({ ...data, [input]: value });
+	//convert to base64encoded image using new FileReader API
+	const previewFile = (file) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
+
+		reader.onloadend = () => {
+			setPreviewSource(reader.result);
+		};
+	};
+
+	//stringify the body object defined above and send as req.body to server
+	const handleSubmit = async () => {
+		await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
+			method: "POST",
+			body: JSON.stringify(body),
+			headers: { "Content-Type": "application/json" },
+		});
 	};
 
 	return (
@@ -63,24 +68,33 @@ function Register() {
 			<div className={styles.container}>
 				<h1>Fill in your details below...</h1>
 				<div className={styles.form}>
-					<form>
+					<form encType="multipart/form-data" method="post" action="/users">
 						<label className={styles.label}>First Name</label>
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your first name..."
+							name="first_name"
+							type="text"
 							value={firstName}
+							onChange={(e) => setFirstName(e.target.value)}
 						></textarea>
 						<label className={styles.label}>Last Name</label>
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your last name..."
+							name="last_name"
+							type="text"
 							value={lastName}
+							onChange={(e) => setLastName(e.target.value)}
 						></textarea>
 						<label className={styles.label}>Address</label>
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your address..."
+							name="address"
+							type="text"
 							value={address}
+							onChange={(e) => setAddress(e.target.value)}
 						></textarea>
 						{/* <label className={styles.label}>Contact Number</label>
 						<textarea
@@ -92,15 +106,17 @@ function Register() {
 						<textarea
 							className={styles.textField}
 							placeholder="Enter your email..."
+							name="email"
+							type="text"
 							value={email}
-							onChange={(e) => handleChange()}
+							onChange={(e) => setEmail(e.target.value)}
 						></textarea>
-						<input
-							type="file"
-							onChange={(e) => handleChange()}
-							value={image}
-						></input>
+						<input type="file" onChange={handleFileInputChange}></input>
 					</form>
+					{/* 'Inline If with Logical && Operator' (to conditionally render preview) */}
+					{previewSource && (
+						<img src={previewSource} style={{ height: "300px" }}></img>
+					)}
 					<Button handleSubmit={handleSubmit} text="Submit" />
 				</div>
 			</div>
