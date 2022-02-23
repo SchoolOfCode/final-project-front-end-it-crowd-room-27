@@ -14,3 +14,7 @@
 	background-color: blueviolet;
 	box-shadow: 1px 5px 20px green;
 }
+
+.read_more_button {
+	border: 1px solid red;
+}
