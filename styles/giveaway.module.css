@@ -1,0 +1,46 @@
+.container {
+   color: var(--text);
+   margin-top: 3em;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   height: 100vh;
+   background-color: var(--background);
+   box-sizing: border-box;
+   max-height: 100%;
+   max-width: 100vw;
+}
+
+.form {
+   height: 80%;
+   width: 60%;
+   margin: auto;
+   background-color: var(--card);
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
+   box-sizing: border-box;
+   color: white;
+   border-radius: 30px;
+   box-shadow: 1px 75px 100px darkgray;
+}
+
+.textField {
+   margin: 1em;
+   display: flex;
+   align-items: center;
+   justify-content: baseline;
+   width: 30em;
+   height: 2em;
+   font-size: 1.2em;
+   border-radius: 7px;
+   color: var(--text);
+}
+
+.label {
+   margin: 1em;
+   font-size: 1.5em;
+   color: var(--text);
+}

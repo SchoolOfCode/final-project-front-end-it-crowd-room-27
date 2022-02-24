@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
+import styles from '../../../styles/button.module.css';
 
 function LogInButton() {
   return (
-    <div>
-      <button> Log in</button>
-    </div>
+    <p className={styles.log_button}>
+      <a href="/api/auth/login" style={{ color: "black" }}>
+        LogIn
+      </a>
+    </p>
   );
 }
 
 export default LogInButton;
-
