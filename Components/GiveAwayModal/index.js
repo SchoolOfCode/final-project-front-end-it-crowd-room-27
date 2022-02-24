@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import styles from "../../styles/giveAwayModal.module.css";
 import GiveItemSubmitButton from "../Buttons/GiveItemSubmitButton/index";
 
-
 function GiveAwayModal(props) {
   return (
     <Modal
@@ -17,7 +16,7 @@ function GiveAwayModal(props) {
       </Modal.Header>
       <Modal.Body className={styles.body}></Modal.Body>
       <Modal.Footer className={styles.footer}>
-        <GiveItemSubmitButton />
+        <button>Submit</button>
       </Modal.Footer>
     </Modal>
   );
