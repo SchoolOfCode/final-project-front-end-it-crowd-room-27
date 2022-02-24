@@ -2,6 +2,8 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import styles from "../../styles/giveAwayModal.module.css";
 import GiveItemSubmitButton from "../Buttons/GiveItemSubmitButton/index";
+
+
 function GiveAwayModal(props) {
   return (
     <Modal
