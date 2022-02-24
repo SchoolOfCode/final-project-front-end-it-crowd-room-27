@@ -47,39 +47,39 @@ function profile() {
           </div>
         </div>
         <div className={`${styles.flexItems} ${styles.flexItem2}`}>
-          <div className={styles.form}>
-            <form>
-              <label className={styles.label}>First Name</label>
-              <textarea
-                className={styles.textField}
-                placeholder="Enter your first name..."
-              ></textarea>
-              <label className={styles.label}>Last Name</label>
-              <textarea
-                className={styles.textField}
-                placeholder="Enter your last name..."
-              ></textarea>
-              <label className={styles.label}>Address</label>
-              <textarea
-                className={styles.textField}
-                placeholder="Enter your address..."
-              ></textarea>
-              <label className={styles.label}>Contact Number</label>
-              <textarea
-                className={styles.textField}
-                placeholder="Enter your contact number..."
-              ></textarea>
-              <label className={styles.label}>Email</label>
-              <textarea
-                className={styles.textField}
-                placeholder="Enter your email..."
-              ></textarea>
-              <input type="file"></input>
-            </form>
-            <Button text="Submit" />
-          </div>
+          <form>
+            <div className={styles.box1}>
+              <label className={styles.profileTitle}>Name</label>
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="Boris Johnson"
+              ></input>
+              <label className={styles.profileTitle}>Address</label>
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="10 Downing Street, London"
+              ></input>
+              <label className={styles.profileTitle}>Email</label>
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="Boris@gmail.com"
+              ></input>
+              <label className={styles.profileTitle}>Number</label>
+              <input
+                className={styles.input}
+                type="number"
+                placeholder="07476052989"
+              ></input>
+            </div>
+            <div className={styles.box2}></div>
+          </form>
         </div>
+
         <div className={`${styles.flexItems} ${styles.flexItem3}`}>
+          <Card />
           <Card />
           <Card />
           <Card />
