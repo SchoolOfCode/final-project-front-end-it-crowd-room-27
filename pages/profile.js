@@ -36,47 +36,47 @@ function profile() {
                 <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               </a>
             </Link>
-          </div>
-          <span className={`fa fa-camera ${styles.camera}`}></span>
-          <div className={styles.stars}>
-            <span className={`fa fa-star ${styles.checked}`}></span>
-            <span className={`fa fa-star ${styles.checked}`}></span>
-            <span className={`fa fa-star ${styles.checked}`}></span>
-            <span className={`fa fa-star ${styles.checked}`}></span>
-            <span class="fa fa-star"></span>
-          </div>
-        </div>
-        <div className={`${styles.flexItems} ${styles.flexItem2}`}>
-          <form>
-            <div className={styles.box1}>
-              <label className={styles.profileTitle}>Name</label>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Boris Johnson"
-              ></input>
-              <label className={styles.profileTitle}>Address</label>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="10 Downing Street, London"
-              ></input>
-              <label className={styles.profileTitle}>Email</label>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Boris@gmail.com"
-              ></input>
-              <label className={styles.profileTitle}>Number</label>
-              <input
-                className={styles.input}
-                type="number"
-                placeholder="07476052989"
-              ></input>
+            <span className={`fa fa-camera ${styles.camera}`}></span>
+            <div className={styles.stars}>
+              <span className={`fa fa-star ${styles.checked}`}></span>
+              <span className={`fa fa-star ${styles.checked}`}></span>
+              <span className={`fa fa-star ${styles.checked}`}></span>
+              <span className={`fa fa-star ${styles.checked}`}></span>
+              <span class="fa fa-star"></span>
             </div>
-            <div className={styles.box2}></div>
-          </form>
+          </div>
         </div>
+
+        <div className={`${styles.flexItems} ${styles.flexItem2}`}>
+          <div className={styles.profileInfoBox}>
+            <div className={styles.block1}>
+              <h4 className={styles.profileTitle}>Name</h4>
+              <h5 className={styles.infoLine}>Boris Johnson</h5>
+            </div>
+            <div className={styles.block2}>
+              <h4 className={styles.profileTitle}>Address</h4>
+              <h5 className={styles.infoLine}>10 Downing Street, London</h5>
+            </div>
+            <div className={styles.block3}>
+              <h4 className={styles.profileTitle}>Email</h4>
+              <h5 className={styles.infoLine}>Boris@gmail.com</h5>
+            </div>
+            <div className={styles.block4}>
+              <h4 className={styles.profileTitle}>Number</h4>
+              <h5 className={styles.infoLine}>07467893993</h5>
+            </div>
+            <button className={styles.editBtn}>Edit</button>
+          </div>
+        </div>
+        <div className={`${styles.flexItems} ${styles.flexItem4}`}>
+          <h4 className={styles.profileTitle}>Bio</h4>
+        </div>
+        <div className={styles.btnSection}>
+          <button className={styles.giveBtn}>Give Item</button>
+          <button className={styles.searchBtn}>Search Item</button>
+        </div>
+
+        <h2 className={styles.title}>My Listing</h2>
 
         <div className={`${styles.flexItems} ${styles.flexItem3}`}>
           <Card />
