@@ -14,18 +14,20 @@ import Head from "next/head";
 // map over the array  and for each render </card> with database details dynamically updated
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
-// export const getStaticProps = async () => {
-//    const res = await fetch(`https://it-crowd-project.herokuapp.com/api/items`);
+export const getStaticProps = async () => {
+  const res = await fetch(
+    `https://it-crowd-project.herokuapp.com/api/listings`
+  );
 
-//    const data = await res.json();
-//    console.log(data);
-//    return {
-//       props: { items: data.payload },
-//    };
-// };
+  const data = await res.json();
+  console.log(data);
+  return {
+    props: { listings: data.payload },
+  };
+};
 
-// function Listings({ items }) {
-function Listings() {
+function Listings({ listings }) {
+
   return (
     <>
       <Head>
@@ -46,8 +48,8 @@ function Listings() {
         <Searchbar />
       </div>
       <div className={styles.container}>
-        {/* {items.map((item) => (
-          <div key={item.id}>
+        {listings.map((listing) => (
+          <div key={listing.id}>
             <Card
               item_id={item.id}
               user_id={item.user_id}
@@ -63,7 +65,7 @@ function Listings() {
               time_slot={item.time_slot}
             />
           </div>
-        ))} */}
+        ))}
         ;
       </div>
     </>
