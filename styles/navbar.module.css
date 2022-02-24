@@ -1,33 +1,73 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&display=swap");
 
-.container {
+.top_container {
 	height: 30%;
 	width: 100vw;
 	display: flex;
-	align-items: center;
 	justify-content: space-between;
 	background-color: var(--navbar);
 	color: white;
-	padding: 0 50px;
-	font-size: 1.5em;
-	box-shadow: 1px 10px 20px black;
+	padding: 0 15px;
+	box-shadow: 0 5px 9px 0 rgba(0, 0, 0, .8);
 	font-family: "Montserrat", sans-serif;
-	z-index: 2;
+	position: sticky;
+	top: 0;
+
+	/* z-index: 2; */
+	/* border: 1px solid red; */
+}
+
+
+
+.container {
+	/* height: 30%;
+	width: 100vw; */
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	/* background-color: var(--navbar);
+	color: white; */
+	/* padding: 0 10px; */
+	font-size: 1em;
+	/* box-shadow: 1px 10px 20px black; */
+	/* font-family: "Montserrat", sans-serif;
+	z-index: 2; */
+	/* border: 1px solid yellow; */
+}
+
+.menu {
+	/* border: 1px solid red; */
+	margin-right: 10%;
+	padding-top: 1em;
 }
 
 .menuItem {
 	display: inline;
+	list-style: none;	
+}
+
+.menuItem a {
+	
 	cursor: pointer;
-	margin: 5em;
+	margin: 1.5em;
 	font-size: 1em;
-	list-style: none;
 	text-decoration: none;
 	color: white;
+	transition: all ease-in-out 230ms;
+}
+
+.menuItem a:hover {
+	color: rgba(255, 255, 255, .6);
+}
+
+.logo {
+	float: left;
 }
 
 .userImg img {
 	border-radius: 50%;
-	height: 3.5em;
-	width: 3.5em;
+	height: 6em;
+	width: 6em;
 	object-fit: cover;
+	/* border: 1px solid red; */
 }

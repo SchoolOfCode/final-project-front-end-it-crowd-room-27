@@ -24,8 +24,9 @@ export default function Home() {
 			<Navbar />
 
 			<div className={styles.container}>
+			<Top />
 				<main className={styles.main}>
-					<Top />
+					
 					<Middle />
 					<Bottom />
 				</main>

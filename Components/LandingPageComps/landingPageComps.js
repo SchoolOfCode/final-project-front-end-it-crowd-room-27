@@ -8,10 +8,11 @@ import { API_URL } from "../Config";
 export function Top() {
   return (
     <div className={styles.top}>
-      <p className={styles.logo}>Logo</p>
-      <h1 className={styles.title}>Welcome to iGive!</h1>
-      <LogInButton />
-      {/* <a href="/api/auth/login">LogIn</a> */}
+		<div className={styles.inner_top}>
+      		{/* <p className={styles.logo}>Logo</p> */}
+     		 <h1 className={styles.title}>Welcome to iGive!</h1>
+      		<LogInButton />
+      </div>
     </div>
   );
 }
