@@ -2,30 +2,35 @@
 
 /* =-=-==-=--=-=-==-=--=-=-=-=-=-=-=-=-=-=COLORS=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 :root {
-	--background: #f6fbf2;
-	--navbar: #4e505d;
-	--text: #4e505d;
-	--button: #2dc9be;
-	--card: #ffedcb;
+   --background: #f6fbf2;
+   --navbar: #4e505d;
+   --text: #4e505d;
+   --button: #2dc9be;
+   --card: #ffedcb;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 html,
 body {
-	padding: 0;
-	margin: 0;
-	font-family: "Montserrat", sans-serif;
-	background-color: var(--background);
+   padding: 0;
+   margin: 0;
+   font-family: "Montserrat", sans-serif;
+   background-color: var(--background);
 }
 
 .menuItem > a {
-	color: white !important;
-	text-decoration: none !important;
+   color: white !important;
+   text-decoration: none !important;
 }
 
 * {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-	font-family: "Montserrat", sans-serif;
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+   font-family: "Montserrat", sans-serif;
 }
+
+/* form {
+   display: inherit;
+   flex-direction: column;
+} */

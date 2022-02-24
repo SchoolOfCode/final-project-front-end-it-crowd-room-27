@@ -1,26 +1,19 @@
 .container {
 	font-family: "Montserrat", sans-serif;
-	padding: 0 2rem;
 }
-/* *.container {
-    border: 1px solid red;
-  } */
+
 .main {
 	height: 100vh;
-	padding: 2rem 0;
-	/* flex: 1; */
+	padding: 2rem;
 	display: grid;
 	/* flex-direction: column; */
 	/* justify-content: center; */
 	/* align-items: center; */
 	/* width: 100vw; */
-	grid-template:
-		1fr 1fr
-		/
-		1fr 1fr;
+	grid-template-rows: 1fr 1fr;
 	grid-template-areas:
-		"topp topp"
-		"midle botom";
+		"midle"
+		"botom";
 	border: 1px solid red;
 }
 .log {
@@ -78,16 +71,65 @@
 	width: 80%;
 	height: 80%;
 }
+
+/* LANDING PAGE COMPONENTS */
 .top {
 	grid-area: topp;
 	display: flex;
+	flex-direction: column;
+	background-image: url("https://images.pexels.com/photos/4871119/pexels-photo-4871119.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+	background-color: #a5a5a5;
+  	height: 500px; 
+  	background-position: center; 
+  	background-repeat: no-repeat; 
+  	background-size: cover;
+	opacity: 0.8em;
+
+	width: 100wh;
+	height: 70vh;
 }
+
+/* .top {
+	position: relative;
+
+	grid-area: topp;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .top:before {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 500px;
+	opacity: 0.6;
+	background-image: url("https://images.pexels.com/photos/4871119/pexels-photo-4871119.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+  }
+  
+  .inner_top {
+	position: relative;
+  } */
+
+
+
+
+
+
+
 .midle {
 	grid-area: midle;
 }
 .bottom {
 	grid-area: botom;
 }
+
+
 /* -=-=-=-= Mobile version of website -=-=-=- */
 @media (max-width: 600px) {
 	.container {
