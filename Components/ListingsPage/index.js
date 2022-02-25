@@ -1,9 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
-import Card from "../Components/Card/index";
-import Navbar from "../Components/Navbar/index.js";
-import styles from "../styles/listings.module.css";
-import Searchbar from "../Components/Searchbar";
+import Navbar from "../../Components/Navbar";
+import styles from "../../styles/listings.module.css";
+import Searchbar from "../../Components/Searchbar";
 import Head from "next/head";
 import GiveAwayModal from "../Components/GiveAwayModal/index";
 
@@ -28,7 +27,12 @@ export const getStaticProps = async () => {
   };
 };
 
-function Listings({ listings }) {
+function ListingsPage( registeredUserAvatar, userEmail ) {
+    // const newUser = registeredUser.registeredUser;
+    const newAvatar = registeredUserAvatar;
+    // console.log(newUser);
+    console.log(newAvatar);
+  
   return (
     <>
       <Head>
@@ -44,7 +48,7 @@ function Listings({ listings }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         ></link>
       </Head>
-      <Navbar />
+      <Navbar registeredUserAvatar={registeredUserAvatar} userEmail={userEmail}/>
       <div className={styles.searchbar}>
         <Searchbar />
       </div>
@@ -82,4 +86,4 @@ function Listings({ listings }) {
   );
 }
 
-export default Listings;
+export default ListingsPage;
