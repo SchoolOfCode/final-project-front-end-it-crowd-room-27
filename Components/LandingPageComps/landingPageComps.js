@@ -1,19 +1,16 @@
 import React from "react";
 import styles from "../../styles/home.module.css";
-import LogInButton from "../Buttons/LogInButton/Index";
 import ReadMoreButton from "../Buttons/ReadMoreButton/Index";
-
-import { API_URL } from "../Config";
 
 export function Top() {
   return (
-    <div className={styles.top}>
-		<div className={styles.inner_top}>
-      		{/* <p className={styles.logo}>Logo</p> */}
-     		 <h1 className={styles.title}>Welcome to iGive!</h1>
-      		<LogInButton />
-      </div>
-    </div>
+    <div className={styles.cover}>
+    	<div className={styles.top}>
+			<div className={styles.inner_top}>
+				  <h1 className={styles.title}>iGive <br/> with pleasure!</h1>
+      		</div>
+    	</div>
+	</div>
   );
 }
 
@@ -53,3 +50,44 @@ export function Bottom() {
     </div>
   );
 }
+
+export function VeryBottom() {
+	return (
+	  <div className={styles.very_bottom}>
+		
+		<h3 className={styles.cards_title}>Hear What Our Customers are Saing</h3>
+		
+		<div className={styles.cards_cover}>
+			
+			<div className={styles.card}>
+				<p className={styles.comment_author}>"I used to throw away veggies that were about to expire. Now I save money  and reduce food waste"</p>
+				<span className={styles.raiting_author}>5 stars</span>
+				<p className={styles.feedback_author}>Mike From Derby</p>
+			</div>
+			
+			<div className={styles.card}>
+				<p className={styles.comment_author}>"I used to throw away veggies that were about to expire. Now I save money  and reduce food waste"</p>
+				<span className={styles.raiting_author}>5 stars</span>
+				<p className={styles.feedback_author}>Mike From Derby</p>
+			</div>
+			
+			<div className={styles.card}>
+				<p className={styles.comment_author}>"I used to throw away veggies that were about to expire. Now I save money  and reduce food waste"</p>
+				<span className={styles.raiting_author}>5 stars</span>
+				<p className={styles.feedback_author}>Mike From Derby</p>
+			</div>
+		</div>
+
+		<h3 className={styles.cards_title}>Featured In</h3>
+		<div className={styles.featured_media}>
+			<img className={styles.featured_logo} src="https://stefanritson.com/wp-content/uploads/2017/12/StefanRitson_TheSundayTimes-01-min.png"/>
+			<img className={styles.featured_logo} src="https://www.logolynx.com/images/logolynx/2d/2d71f43a8bca9f5c33ad507415e303af.jpeg"/>
+			<img className={styles.featured_logo} src="https://media.info/i/lf/0/1442315133/1571.png"/>
+			<img className={styles.featured_logo} src="https://www.tabletalkmedia.co.uk/wp-content/uploads/2015/04/hello.png"/>
+		</div>
+		{/* </div> */}
+
+		
+	</div>
+	);
+  }
