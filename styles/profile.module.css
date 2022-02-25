@@ -12,23 +12,41 @@
 
 .flexItems {
   margin: 10px;
-  /* border: 3px solid black; */
 }
 
 .flexItem1 {
   position: relative;
   min-height: 400px;
-  width: 30%;
+  min-width: 20%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 }
 
 .flexItem2 {
+  height: 60%;
+  min-width: 50%;
+  width: 900px;
   display: flex;
-
-  min-height: 500px;
-  min-width: 60%;
+  flex-wrap: wrap;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
   background-color: white;
-  border-radius: 3px;
+  opacity: 0.7;
+  border-radius: 4px;
+}
+
+.flexItem4 {
+  height: 60%;
+  min-width: 50%;
+  position: relative;
+  width: 900px;
+
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+  background-color: white;
+  opacity: 0.7;
+  border-radius: 4px;
 }
 
 .flexItem3 {
@@ -44,62 +62,101 @@
 .userImg img {
   border-radius: 50%;
   object-fit: cover;
-  position: absolute;
+  position: relative;
   width: 19em;
   height: 19em;
-  margin-left: 0%;
+
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
 }
 
 .stars {
-  position: absolute;
+  position: relative;
   display: flex;
+  justify-content: center;
 
   /* width: 100%;
   height: 70%; */
-  left: 0.8em;
-  top: 6.5em;
+
   color: #f7d310;
   font-size: 3em;
 }
 
 .camera {
   position: absolute;
-  display: flex;
-  font-size: 3em;
-  left: 5.5em;
+
+  font-size: 3rem;
+
+  left: 6em;
 }
 
 /* PROFILE CARD */
 
 .profileTitle {
-  /* margin-top: 1em;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
   margin-left: 1em;
-  margin-bottom: 1em; */
-  display: block;
-  font-size: 2em;
+
+  font-size: 1.8em;
 }
 
-.input {
-  display: block;
-  width: 100%;
-  font-size: 14pt;
-  line-height: 28pt;
+.infoLine {
+  text-decoration: underline black;
+  margin-top: 1em;
+  margin-bottom: 0.3em;
+  margin-left: 0.5em;
 
-  margin-bottom: 28pt;
+  font-size: 1.8em;
+}
+
+.block1,
+.block2,
+.block3,
+.block4 {
+  display: flex;
+}
+
+.editBtn {
+  position: absolute;
+  background-color: var(--button);
+  height: 2em;
+  width: 6em;
+  border-radius: 10px;
+  cursor: pointer;
   border: none;
-  border-bottom: 5px solid black;
-  background: #f8f4e5;
-  min-width: 250px;
-  padding-left: 5px;
-  outline: none;
-  color: black;
+  color: white;
+  font-size: 1.5em;
+  transform: translate(17.5em, 1em);
 }
 
-/* .input:focus {
-  border-bottom: 5px solid #80f7ff;
-} */
+.editBtn:hover {
+  background-color: blueviolet;
+  box-shadow: 1px 5px 20px green;
+}
 
-.box1 {
-  /* display: flex; */
+/* BIO BOX */
+
+.btnSection {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.giveBtn,
+.searchBtn {
+  background-color: var(--button);
+  height: 2em;
+  width: 8em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+}
+
+.title {
+  font-size: 3em;
+  margin: 1em;
 }
