@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar/index";
 import styles from "../styles/home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Top, Middle, Bottom } from "../Components/LandingPageComps/landingPageComps.js";
+import { Top, Middle, Bottom, VeryBottom } from "../Components/LandingPageComps/landingPageComps.js";
 
 
 
@@ -26,9 +26,14 @@ export default function Home() {
 			<div className={styles.container}>
 			<Top />
 				<main className={styles.main}>
-					
+					{/* {user ? <Reg/> : <List/>} */}
 					<Middle />
 					<Bottom />
+					<VeryBottom />
+					<div className={styles.footer}>
+						<a href="#" className={styles.btn_up}>Pop Up</a>
+						<p className={styles.cast}>created by <strong>IT-Crowd</strong><br/> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy</p>
+	  				</div>
 				</main>
 			</div>
 		</div>
