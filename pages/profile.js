@@ -1,4 +1,6 @@
 import React from "react";
+import { useUser } from "@auth0/nextjs-auth0";
+
 import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
@@ -6,7 +8,28 @@ import Link from "next/link";
 import Head from "next/head";
 import Button from "../Components/Button";
 
-function profile() {
+function profile({ users }) {
+
+  const { user, error, isLoading } = useUser();
+
+  if(isLoading) return <div>Loading ...</div>;
+    if(error) return <div>{error.message}</div>;
+
+  const particularUser = users.filter(parUser => parUser.email === user.email);
+
+
+const { id,
+  first_name,
+  last_name,
+  email,
+  address,
+  is_active,
+  cloudinary_id,
+  avatar,
+  user_bio } = particularUser;
+
+
+
   return (
     <div className="main-container">
       <Head>
@@ -22,7 +45,7 @@ function profile() {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         ></link>
       </Head>
-      <Navbar />
+      <Navbar registeredUserAvatar={avatar} userEmail={user.email}/>
 
       <div className={styles.form}>
         <form></form>
@@ -47,39 +70,38 @@ function profile() {
           </div>
         </div>
         <div className={`${styles.flexItems} ${styles.flexItem2}`}>
-          <form>
-            <div className={styles.box1}>
-              <label className={styles.profileTitle}>Name</label>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Boris Johnson"
-              ></input>
-              <label className={styles.profileTitle}>Address</label>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="10 Downing Street, London"
-              ></input>
-              <label className={styles.profileTitle}>Email</label>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder="Boris@gmail.com"
-              ></input>
-              <label className={styles.profileTitle}>Number</label>
-              <input
-                className={styles.input}
-                type="number"
-                placeholder="07476052989"
-              ></input>
+          <div className={styles.profileInfoBox}>
+            <div className={styles.block1}>
+              <h4 className={styles.profileTitle}>Name</h4>
+              <h5 className={styles.infoLine}>`${first_name} ${last_name}`</h5>
             </div>
-            <div className={styles.box2}></div>
-          </form>
-        </div>
+            <div className={styles.block2}>
+              <h4 className={styles.profileTitle}>Address</h4>
+              <h5 className={styles.infoLine}>{address}</h5>
+            </div>
+            <div className={styles.block3}>
+              <h4 className={styles.profileTitle}>Email</h4>
+              <h5 className={styles.infoLine}>{email}</h5>
+            </div>
 
+            <button className={styles.editBtn}>Edit</button>
+          </div>
+
+        </div>
+        <div className={`${styles.flexItems} ${styles.flexItem4}`}>
+          <h4 className={styles.profileTitle}>Bio</h4>
+          <p>{user_bio}</p>
+        </div>
+        <div className={styles.btnSection}>
+          <button className={styles.giveBtn}>Give Item</button>
+          <button className={styles.searchBtn}>Search Item</button>
+        </div>
+        <h2 className={styles.title}>My Listing</h2>
+        
+        {/*  */}
         <div className={`${styles.flexItems} ${styles.flexItem3}`}>
-          <Card />
+          {/* USER ID FOR FETCHING ITEMS */}
+          {/* <Card userID={id} /> */}
           <Card />
           <Card />
           <Card />
@@ -94,4 +116,25 @@ function profile() {
   );
 }
 
+
+
+//Fetching data to PROPS
+export async function getServerSideProps() {
+    
+  const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
+  const data = await res.json();
+
+  // By returning { props: { allUsers } }, the PostAuth component
+  // will receive `allUsers` as a prop at BUILD time
+  return {
+      props: 
+          { users: data.payload },
+    }
+  
+}
+
+
+
 export default profile;
+
+
