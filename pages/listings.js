@@ -5,6 +5,8 @@ import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/listings.module.css";
 import Searchbar from "../Components/Searchbar";
 import Head from "next/head";
+import GiveAwayModal from "../Components/GiveAwayModal/index";
+
 
 // PLAN
 // set up getStaticprops
@@ -14,18 +16,19 @@ import Head from "next/head";
 // map over the array  and for each render </card> with database details dynamically updated
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
-// export const getStaticProps = async () => {
-//    const res = await fetch(`https://it-crowd-project.herokuapp.com/api/items`);
+export const getStaticProps = async () => {
+  const res = await fetch(
+    `https://it-crowd-project.herokuapp.com/api/listings`
+  );
 
-//    const data = await res.json();
-//    console.log(data);
-//    return {
-//       props: { items: data.payload },
-//    };
-// };
+  const data = await res.json();
+  console.log(data);
+  return {
+    props: { listings: data.payload },
+  };
+};
 
-// function Listings({ items }) {
-function Listings() {
+function Listings({ listings }) {
   return (
     <>
       <Head>
@@ -46,24 +49,33 @@ function Listings() {
         <Searchbar />
       </div>
       <div className={styles.container}>
-        {/* {items.map((item) => (
-          <div key={item.id}>
+        {/* mapping over our fetch GET request from users and items database table, to render each item on listinngs page */}
+        {listings.map((listing) => (
+          <div key={listing.item_id}>
             <Card
-              item_id={item.id}
-              user_id={item.user_id}
-              category={item.category}
-              item_name={item.item_name}
-              item_description={item.item_description}
-              use_by_date={item.use_by_date}
-              date_added={item.date_added}
-              quantity={item.date_added}
-              cloudinary_id={item.cloudinary_id}
-              is_reserved={item.is_reserved}
-              availability={item.availability}
-              time_slot={item.time_slot}
+              item_id={listing.id}
+              user_id={listing.user_id}
+              first_name={listing.first_name}
+              last_name={listing.last_name}
+              email={listing.email}
+              address={listing.address}
+              is_active={listing.is_active}
+              category={listing.category}
+              item_name={listing.item_name}
+              item_description={listing.item_description}
+              use_by_date={listing.use_by_date}
+              date_added={listing.date_added}
+              quantity={listing.quantity}
+              item_image={listing.item_image}
+              is_reserved={listing.is_reserved}
+              availability={listing.availability}
+              time_slot={listing.time_slot}
+              cloudinary_id={listing.cloudinary_id}
+              avatar={listing.avatar}
+              user_bio={listing.user_bio}
             />
           </div>
-        ))} */}
+        ))}
         ;
       </div>
     </>

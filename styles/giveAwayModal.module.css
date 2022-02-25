@@ -1,0 +1,12 @@
+.body,
+.header,
+.footer {
+   background-color: var(--card);
+   color: var(--text);
+}
+
+.body {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
