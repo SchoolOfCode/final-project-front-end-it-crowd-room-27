@@ -9,6 +9,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 
 
 // getServerSideProps
+
 export const getStaticProps = async () => {
   const res = await fetch("https://it-crowd-project.herokuapp.com/api/users");
   const data = await res.json();
@@ -36,8 +37,6 @@ const Profiles = ({ profiles }) => {
     cloudinary_id,
     avatar,
     user_bio } = particularUser;
-  
-
 
   return (
     <div className="main-container">
@@ -96,16 +95,17 @@ const Profiles = ({ profiles }) => {
 
             <button className={styles.editBtn}>Edit</button>
           </div>
-
         </div>
         <div className={`${styles.flexItems} ${styles.flexItem4}`}>
           <h4 className={styles.profileTitle}>Bio</h4>
           <p>{user_bio}</p>
+
         </div>
         <div className={styles.btnSection}>
           <button className={styles.giveBtn}>Give Item</button>
           <button className={styles.searchBtn}>Search Item</button>
         </div>
+
         <h2 className={styles.title}>My Listing</h2>
 
         <div className={`${styles.flexItems} ${styles.flexItem3}`}>
@@ -125,3 +125,4 @@ const Profiles = ({ profiles }) => {
 };
 
 export default Profiles;
+

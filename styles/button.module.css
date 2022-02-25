@@ -1,20 +1,21 @@
 .btn {
-	background-color: var(--button);
-	height: 2em;
-	width: 6em;
-	border-radius: 10px;
-	cursor: pointer;
-	border: none;
-	color: white;
-	font-size: 1.5em;
-	transform: translate(17.5em, 1em);
+
+  background-color: var(--button);
+  height: 2em;
+  width: 6em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  transform: translate(17.5em, 1em);
 }
 
 .btn:hover {
-	background-color: blueviolet;
-	box-shadow: 1px 5px 20px green;
+  background-color: blueviolet;
+  box-shadow: 1px 5px 20px green;
 }
 
 .read_more_button {
-	border: 1px solid red;
+  border: 1px solid red;
 }

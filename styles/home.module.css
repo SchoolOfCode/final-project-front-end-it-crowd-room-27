@@ -42,7 +42,6 @@
 	text-align: center;
 	margin-top: 10%;
 	padding: 0;
-	/* border: 1px solid red; */
 	font-family: 'Bungee Shade', cursive;
 	font-size: 5em;
 }
@@ -90,12 +89,10 @@
 	width: 100wh;
 	height: 70vh;
 } */
-
-.cover {
-	height: 500px;
+  .cover {
+	  height: 500px;
 }
-
-.top {
+ .top {
 	position: relative;
 	font-family: 'Bungee Shade', cursive;
 	grid-area: topp;
@@ -122,18 +119,36 @@
 	position: relative;
   }
 
-
-
-
-
-
-
 .midle {
 	grid-area: midle;
 }
 .bottom {
 	grid-area: botom;
 }
+.very_bottom {
+	grid-area: verybottom;
+	border: 1px solid red;
+}
+
+.cards_cover {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 3em;
+}
+
+.card {
+	font-size: .9em;
+	max-width: 200px;
+	border: 1px solid rgba(255, 255, 255, 0);
+	border-radius: 10px;
+	background: var(--card);
+	margin: 1em 0;
+	padding: 2.5em 1.3em 1em 1.3em;
+	text-align: center;
+}
+
 .very_bottom {
 	grid-area: verybottom;
 	border: 1px solid red;

@@ -1,13 +1,10 @@
 import React from "react";
 import styles from "../../styles/home.module.css";
-// import LogInButton from "../Buttons/LogInButton/Index";
 import ReadMoreButton from "../Buttons/ReadMoreButton/Index";
-
-// import { API_URL } from "../Config";
 
 export function Top() {
   return (
-	<div className={styles.cover}>
+    <div className={styles.cover}>
     	<div className={styles.top}>
 			<div className={styles.inner_top}>
 				  <h1 className={styles.title}>iGive <br/> with pleasure!</h1>

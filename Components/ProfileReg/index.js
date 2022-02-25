@@ -122,4 +122,5 @@ function ProfileReg() {
 
 export default ProfileReg;
 
+
 //max chars for item description is 180
