@@ -1,19 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500;700&display=swap");
 
 .top_container {
-  height: 30%;
-  width: 100vw;
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--navbar);
-  color: white;
-  padding: 0 15px;
-  box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.8);
-  font-family: "Montserrat", sans-serif;
-  position: sticky;
-  top: 0;
-
-  z-index: 2;
+	height: 30%;
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	background-color: var(--navbar);
+	color: white;
+	padding: 0 15px;
+	box-shadow: 0 5px 9px 0 rgba(0, 0, 0, .8);
+	font-family: "Montserrat", sans-serif;
+	position: sticky;
+	top: 0;
+	z-index: 2;
 }
 
 .container {
@@ -44,12 +43,12 @@
 }
 
 .menuItem a {
-  cursor: pointer;
-  margin: 1.5em;
-  font-size: 1em;
-  text-decoration: none;
-  color: white;
-  transition: all ease-in-out 230ms;
+	cursor: pointer;
+	margin: 1.5em;
+	font-size: 1em;
+	text-decoration: none;
+	color: white;
+	transition: all ease-in-out 230ms;
 }
 
 .menuItem a:hover {

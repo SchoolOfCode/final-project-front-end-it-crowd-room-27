@@ -5,6 +5,10 @@ import styles from "../../styles/profile.module.css";
 import Link from "next/link";
 import Head from "next/head";
 import Button from "../../Components/Button";
+import { useUser } from "@auth0/nextjs-auth0";
+
+
+// getServerSideProps
 
 export const getStaticProps = async () => {
   const res = await fetch("https://it-crowd-project.herokuapp.com/api/users");
@@ -16,6 +20,24 @@ export const getStaticProps = async () => {
 };
 
 const Profiles = ({ profiles }) => {
+    const { user, error, isLoading } = useUser();
+
+    if(isLoading) return <div>Loading ...</div>;
+      if(error) return <div>{error.message}</div>;
+  
+    const particularUser = profiles.filter(parUser => parUser.email === user.email);
+  
+  
+  const { id,
+    first_name,
+    last_name,
+    email,
+    address,
+    is_active,
+    cloudinary_id,
+    avatar,
+    user_bio } = particularUser;
+
   return (
     <div className="main-container">
       <Head>
@@ -60,25 +82,24 @@ const Profiles = ({ profiles }) => {
           <div className={styles.profileInfoBox}>
             <div className={styles.block1}>
               <h4 className={styles.profileTitle}>Name</h4>
-              <h5 className={styles.infoLine}>Boris Johnson</h5>
+              <h5 className={styles.infoLine}>`${first_name} ${last_name}`</h5>
             </div>
             <div className={styles.block2}>
               <h4 className={styles.profileTitle}>Address</h4>
-              <h5 className={styles.infoLine}>10 Downing Street, London</h5>
+              <h5 className={styles.infoLine}>{address}</h5>
             </div>
             <div className={styles.block3}>
               <h4 className={styles.profileTitle}>Email</h4>
-              <h5 className={styles.infoLine}>Boris@gmail.com</h5>
+              <h5 className={styles.infoLine}>{email}</h5>
             </div>
-            <div className={styles.block4}>
-              <h4 className={styles.profileTitle}>Number</h4>
-              <h5 className={styles.infoLine}>07467893993</h5>
-            </div>
+
             <button className={styles.editBtn}>Edit</button>
           </div>
         </div>
         <div className={`${styles.flexItems} ${styles.flexItem4}`}>
           <h4 className={styles.profileTitle}>Bio</h4>
+          <p>{user_bio}</p>
+
         </div>
         <div className={styles.btnSection}>
           <button className={styles.giveBtn}>Give Item</button>
@@ -104,3 +125,4 @@ const Profiles = ({ profiles }) => {
 };
 
 export default Profiles;
+

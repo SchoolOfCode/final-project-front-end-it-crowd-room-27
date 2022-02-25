@@ -4,8 +4,8 @@ import Navbar from "../../Components/Navbar";
 import styles from "../../styles/listings.module.css";
 import Searchbar from "../../Components/Searchbar";
 import Head from "next/head";
-import GiveAwayModal from "../Components/GiveAwayModal/index";
 
+import GiveAwayModal from "../Components/GiveAwayModal/index";
 
 // PLAN
 // set up getStaticprops
@@ -14,6 +14,7 @@ import GiveAwayModal from "../Components/GiveAwayModal/index";
 // destructure items array
 // map over the array  and for each render </card> with database details dynamically updated
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
+
 
 export const getStaticProps = async () => {
   const res = await fetch(
@@ -32,7 +33,7 @@ function ListingsPage( registeredUserAvatar, userEmail ) {
     const newAvatar = registeredUserAvatar;
     // console.log(newUser);
     console.log(newAvatar);
-  
+
   return (
     <>
       <Head>
@@ -53,6 +54,7 @@ function ListingsPage( registeredUserAvatar, userEmail ) {
         <Searchbar />
       </div>
       <div className={styles.container}>
+
         {/* mapping over our fetch GET request from users and items database table, to render each item on listinngs page */}
         {listings.map((listing) => (
           <div key={listing.item_id}>
@@ -79,11 +81,11 @@ function ListingsPage( registeredUserAvatar, userEmail ) {
               user_bio={listing.user_bio}
             />
           </div>
-        ))}
-        ;
+        ))};
       </div>
     </>
   );
 }
 
 export default ListingsPage;
+

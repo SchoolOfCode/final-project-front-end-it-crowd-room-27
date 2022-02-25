@@ -34,6 +34,7 @@ export function Middle() {
     </div>
   );
 }
+
 export function Bottom() {
   return (
     <div className={styles.bottom}>

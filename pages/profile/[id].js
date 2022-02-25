@@ -46,3 +46,4 @@ const Details = ({ profile }) => {
 };
 
 export default Details;
+
