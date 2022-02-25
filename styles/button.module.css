@@ -19,19 +19,3 @@
 .read_more_button {
   border: 1px solid red;
 }
-
-.log_button {
-  padding: 1.8em 1em;
-  border: 1px solid gray;
-  color: white;
-  background: var(--button);
-  border-radius: 50px;
-  text-align: center;
-  text-decoration: none;
-  width: 150px;
-}
-
-.log_button a {
-  text-decoration: none;
-
-}
