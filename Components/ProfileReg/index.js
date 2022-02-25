@@ -64,7 +64,7 @@ function ProfileReg() {
 			<div className={styles.container}>
 				<h1>Fill in your details below...</h1>
 				<div className={styles.form}>
-					<form >
+					<form>
 						<label className={styles.label}>First Name</label>
 						<textarea
 							className={styles.textField}
