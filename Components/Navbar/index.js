@@ -9,7 +9,7 @@ import Image from "next/image";
 import GiveAwayModal from "../GiveAwayModal";
 
 
-function Navbar({ registeredUserAvatar, userEmail, users }) {
+function Navbar( registeredUserAvatar, userEmail, { users }) {
    //Auth0
    const { user, error, isLoading } = useUser();
 console.log(user)
@@ -56,9 +56,9 @@ console.log(user)
               <Link href="/blog">Blog</Link>
             </li>
             
-              <li className={styles.menuItem}>
+              {!user && <li className={styles.menuItem}>
                   <a href="/api/auth/login">Log In</a>
-               </li>
+               </li>}
 
                {user && <li className={styles.menuItem}>
                   <a href="/api/auth/logout">Log Out</a>
@@ -81,19 +81,7 @@ console.log(user)
   );
 }
 
-export async function getServerSideProps() {
-    
-   const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
-   const data = await res.json();
- 
-   // By returning { props: { allUsers } }, the PostAuth component
-   // will receive `allUsers` as a prop at BUILD time
-   return {
-       props: 
-           { users: data.payload },
-     }
-   
-}
+
 // "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
 
 export async function getServerSideProps() {

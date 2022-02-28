@@ -4,8 +4,9 @@ import Navbar from "../../Components/Navbar";
 import styles from "../../styles/listings.module.css";
 import Searchbar from "../../Components/Searchbar";
 import Head from "next/head";
+import Card from "../Card";
 
-import GiveAwayModal from "../Components/GiveAwayModal/index";
+// import GiveAwayModal from "../Components/GiveAwayModal/index";
 
 // PLAN
 // set up getStaticprops
@@ -16,23 +17,16 @@ import GiveAwayModal from "../Components/GiveAwayModal/index";
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
 
-export const getStaticProps = async () => {
-  const res = await fetch(
-    `https://it-crowd-project.herokuapp.com/api/listings`
-  );
 
-  const data = await res.json();
-  console.log(data);
-  return {
-    props: { listings: data.payload },
-  };
-};
 
-function ListingsPage( registeredUserAvatar, userEmail ) {
+function ListingsPage({ listings }, userAvatar, userEmail) {
     // const newUser = registeredUser.registeredUser;
-    const newAvatar = registeredUserAvatar;
+// let newList = listings;
+console.log(listings);
+
+    // const newAvatar = userAvatar;
     // console.log(newUser);
-    console.log(newAvatar);
+    // console.log(newAvatar);
 
   return (
     <>
@@ -49,7 +43,7 @@ function ListingsPage( registeredUserAvatar, userEmail ) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         ></link>
       </Head>
-      <Navbar registeredUserAvatar={registeredUserAvatar} userEmail={userEmail}/>
+      <Navbar registeredUserAvatar={userAvatar} userEmail={userEmail}/>
       <div className={styles.searchbar}>
         <Searchbar />
       </div>
@@ -86,6 +80,19 @@ function ListingsPage( registeredUserAvatar, userEmail ) {
     </>
   );
 }
+
+// export const getStaticProps = async () => {
+//     const res = await fetch(
+//       `https://it-crowd-project.herokuapp.com/api/listings`
+//     );
+  
+//     const data = await res.json();
+//     console.log(data);
+//     return {
+//       props: { listings: data.payload },
+//     };
+//   };
+
 
 export default ListingsPage;
 
