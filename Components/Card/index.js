@@ -54,7 +54,7 @@ function Card({
               <span className={`fa fa-star ${styles.checked}`}></span>
               <span className={`fa fa-star ${styles.checked}`}></span>
               <span className={`fa fa-star ${styles.checked}`}></span>
-              <span class="fa fa-star"></span>
+              <span className="fa fa-star"></span>
             </div>
           </div>
           <div className={styles.userImg}>
