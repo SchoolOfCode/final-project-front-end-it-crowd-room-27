@@ -9,12 +9,16 @@ import Image from "next/image";
 import GiveAwayModal from "../GiveAwayModal";
 
 
-function Navbar( registeredUserAvatar, userEmail, { users }) {
+function Navbar( {avatar} ) {
    //Auth0
    const { user, error, isLoading } = useUser();
-console.log(user)
+   
+
    if(isLoading) return <div>Loading ...</div>;
     if(error) return <div>{error.message}</div>;
+
+   //  const userInOurDb = users.find(dbuser => dbuser.email === user.email);
+
 
   
   const [giveItemModalShow, setGiveItemModalShow] = React.useState(false);
@@ -71,7 +75,7 @@ console.log(user)
             <Link href="/profile">
                <a>
 				   { user ? 
-                  <img src={ registeredUserAvatar ? registeredUserAvatar : user.picture} 
+                  <img src={ avatar || user.picture} 
                        alt={user.first_name}/> : null }
                </a>
             </Link>
@@ -84,18 +88,17 @@ console.log(user)
 
 // "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
 
-export async function getServerSideProps() {
+// export async function getServerSideProps() {
     
-   const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
-   const data = await res.json();
+//    const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
+//    const data = await res.json();
  
-   // By returning { props: { allUsers } }, the PostAuth component
-   // will receive `allUsers` as a prop at BUILD time
-   return {
-       props: 
-           { users: data.payload },
-     }
    
-}
+//    return {
+//        props: 
+//            { users: data.payload },
+//      }
+   
+// }
 // "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
 export default Navbar;

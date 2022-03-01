@@ -5,6 +5,7 @@ import styles from "../../styles/listings.module.css";
 import Searchbar from "../../Components/Searchbar";
 import Head from "next/head";
 import Card from "../Card";
+import { useUser } from "@auth0/nextjs-auth0";
 
 // import GiveAwayModal from "../Components/GiveAwayModal/index";
 
@@ -19,14 +20,23 @@ import Card from "../Card";
 
 
 
-function ListingsPage({ listings }, userAvatar, userEmail) {
-    // const newUser = registeredUser.registeredUser;
-// let newList = listings;
-console.log(listings);
+function ListingsPage({ users, listings }) {
+    const u = users;
+    const { user, error, isLoading } = useUser();
 
-    // const newAvatar = userAvatar;
-    // console.log(newUser);
-    // console.log(newAvatar);
+    // console.log(u)
+    // console.log(users.);
+    
+    if(isLoading) return <div>Loading ...</div>;
+    if(error) return <div>{error.message}</div>;
+
+    const regUser = u.find(regUser => regUser.email === user.email);
+
+
+
+
+
+console.log(regUser);
 
   return (
     <>
@@ -43,7 +53,7 @@ console.log(listings);
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         ></link>
       </Head>
-      <Navbar registeredUserAvatar={userAvatar} userEmail={userEmail}/>
+      <Navbar avatar={regUser.avatar} />
       <div className={styles.searchbar}>
         <Searchbar />
       </div>
@@ -81,17 +91,7 @@ console.log(listings);
   );
 }
 
-// export const getStaticProps = async () => {
-//     const res = await fetch(
-//       `https://it-crowd-project.herokuapp.com/api/listings`
-//     );
-  
-//     const data = await res.json();
-//     console.log(data);
-//     return {
-//       props: { listings: data.payload },
-//     };
-//   };
+
 
 
 export default ListingsPage;
