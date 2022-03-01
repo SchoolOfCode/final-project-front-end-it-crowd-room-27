@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
 
 import Card from "../Components/Card/index";
@@ -7,6 +7,8 @@ import styles from "../styles/profile.module.css";
 import Link from "next/link";
 import Head from "next/head";
 import Button from "../Components/Button";
+
+import ProvideInfoForm from "../Components/ProvideInfoForm";
 
 function profile({ users, listings }) {
 
@@ -23,16 +25,58 @@ function profile({ users, listings }) {
 
   // const particularUser = users.filter(parUser => parUser.email === user.email);
 
+// =-=-=-=-=-=-==-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+  const [showEditModal, setShowEditModal] = useState(false);
+  // const [proceedUser, setProceedUser] = useState(null);
 
-const { id,
-  first_name,
-  last_name,
-  email,
-  address,
-  is_active,
-  cloudinary_id,
-  avatar,
-  user_bio } = regUser;
+  console.log(showEditModal);
+
+  function handleFormMode() {
+    
+    // setProceedUser(regUser);
+    setShowEditModal(true);
+  }
+
+
+  // function onProvideSubmit(postId, language, link, summary) {
+  //   const templateEditedPost = {
+  //     id: postId,
+  //     tags: language,
+  //     summary: summary,
+  //     link: link
+  //   };
+
+  //   fetch(`${API_URL}/weeks/${weekId}/resources/${postId}`, {
+  //     method: "PATCH",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(templateEditedPost),
+  //   })
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         throw Error("could not fetch the data for for that resourse");
+  //       }
+  //       return res.json();
+  //     })
+  //     .catch((err) => {
+  //       //auto catches network / connection error
+  //       setIsPending(false);
+  //       setError(err.message);
+  //     });
+
+// ==-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+  // const { id,
+  //   first_name,
+  //   last_name,
+  //   email,
+  //   address,
+  //   is_active,
+  //   cloudinary_id,
+  //   avatar,
+  //   user_bio } = regUser;
+
+
 
 
 
@@ -51,15 +95,11 @@ const { id,
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         ></link>
       </Head>
-      <Navbar avatar={regUser.avatar}/>
-
-      <div className={styles.form}>
-        <form></form>
-      </div>
+      <Navbar avatar={!regUser ? user.picture : regUser.avatar} />
 
       <div className={styles.flexboxContainer}>
-        <div className={`${styles.flexItems} ${styles.flexItem1}`}>
-        <img className={styles.userImg} src={regUser.avatar} />
+        {/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
+        
           
           {/* <div className={styles.userImg}> */}
             {/* <Link href="/">
@@ -77,40 +117,50 @@ const { id,
             <span class="fa fa-star"></span>
           </div> */}
 
-        </div>
-        <div className={`${styles.flexItems} ${styles.flexItem2}`}>
-       
-                
-              
-          <div className={styles.profileInfoBox}>
+        {/* </div> */}
+        <div className={styles.profileTopContainer}>
+          <div className={styles.profileContainer}>
+          
+          <div className={styles.imageContainer}>
+            <img className={styles.userImg} src={!regUser ? user.picture : regUser.avatar} />
+            <div className={styles.profileInfoBox}>
             <div className={styles.block1}>
-              <p className={styles.profileTitle}>Name</p>
-              <p className={styles.infoLine}>{first_name} {last_name}</p>
+              <p className={styles.profileTitle}>Full Name: {regUser ? `${regUser.first_name} ${regUser.last_name}` : null}</p>
             </div>
-            <div className={styles.block2}>
-              <p className={styles.profileTitle}>Address</p>
-              <p className={styles.infoLine}>{address}</p>
-            </div>
+            
             <div className={styles.block3}>
-              <p className={styles.profileTitle}>Email</p>
-              <p className={styles.infoLine}>{email}</p>
+              <p className={styles.profileTitle}>Email: {user.email} </p>
             </div>
-            <div>
-              <p className={styles.editBtn}>Edit</p>
-              <p className={styles.editBtn}>Add</p>
+
+            <div className={styles.block2}>
+              <p className={styles.profileTitle}>Address: {regUser ? `${regUser.address}` : null}</p>
+              
             </div>
             
           </div>
-
         </div>
-        <div className={`${styles.flexItems} ${styles.flexItem4}`}>
-          <h4 className={styles.profileTitle}>Bio</h4>
-          <p>{user_bio}</p>
+
+          
+          <div className={styles.bioBox}>
+              <p className={styles.profileTitle}>Bio</p>
+              <p>{regUser ? `${regUser.user_bio}` : null}</p>
+            </div>
+            
+          </div>
+            
+             <div className={styles.buttons}>
+              <p className={styles.editBtn}>Edit</p>
+              <p className={styles.editBtn} onClick={() => handleFormMode()}>Finish Profile</p>
+            </div>
+            <ProvideInfoForm showEditModal={showEditModal} setShowEditModal={setShowEditModal} />
+          </div>
+
         </div>
         <div className={styles.btnSection}>
           <button className={styles.giveBtn}>Give Item</button>
           <button className={styles.searchBtn}>Search Item</button>
         </div>
+        
         <h2 className={styles.title}>My Listing</h2>
         
         {/*  */}
@@ -126,8 +176,9 @@ const { id,
           <Card />
           <Card />
         </div>
+      
       </div>
-    </div>
+    // </div>
   );
 }
 
