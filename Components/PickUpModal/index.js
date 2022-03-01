@@ -39,12 +39,12 @@ function PickUpModal(props) {
 					<p>{props.item_description}</p>
 					<p>{props.quantity}</p>
 					<p>{props.use_by_date}</p>
+					<p>{props.address}</p>
 				</div>
 			</Modal.Body>
 			<Modal.Footer className={styles.footer}>
 				<p>{props.availability}</p>
 				<p>{props.time_slot}</p>
-				<p>{props.address}</p>
 				<button onClick={props.onHide} className={styles.btn}>
 					Close
 				</button>
