@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useUser } from "@auth0/nextjs-auth0";
 
 import Navbar from "../../Components/Navbar";
 import styles from "../../styles/register.module.css";
 import Button from "../../Components/Button";
+import ListingsPage from "../ListingsPage";
 
 function ProfileReg() {
 
@@ -18,6 +19,7 @@ function ProfileReg() {
 	const [address, setAddress] = useState("");
 	const [email, setEmail] = useState("");
 	const [lastName, setLastName] = useState("");
+    const [fetchedUsers, setfetchedUsers] = useState([]);
 
 	//an object which will represent the form data to send to the server (req.body)
 	const body = {
@@ -49,18 +51,42 @@ function ProfileReg() {
 
 	//stringify the body object defined above and send as req.body to server
 	const handleSubmit = async () => {
-		    await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
-			method: "POST",
-			body: JSON.stringify(body),
-			headers: { "Content-Type": "application/json" },
-		});
+		// if(firstName && lastName && address) {
+            await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
+                method: "POST",
+                body: JSON.stringify(body),
+                headers: { "Content-Type": "application/json" },
+            });
+
+            setTimeout( async () => {
+                const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
+                const data = await res.json();
+                setfetchedUsers(data.payload);
+            }, 1000)
+
+
+        // }
 	};
 
+    // const nav;
+    // const listingsPage = [];
+
+    // useEffect(() => {
+    //     const authorisedUser = fetchedUsers.find(aUser => aUser.email === user.email);
+    //     // const nav = authorisedUser.map( user => <Navbar />);
+    //     // const listingsPage = authorisedUser.map( user => <ListingsPage authUser={user}/>);
+
+    //     return  listingsPage;
+    // }, [fetchedUsers])
+
+    
 
     // encType="multipart/form-data" method="post" action="/users"
 	return (
 		<>
-			<Navbar />
+            {/* {listingsPage ? listingsPage :   */}
+            
+
 			<div className={styles.container}>
 				<h1>Fill in your details below...</h1>
 				<div className={styles.form}>
@@ -73,6 +99,7 @@ function ProfileReg() {
 							type="text"
 							value={firstName}
 							onChange={(e) => setFirstName(e.target.value)}
+                            required
 						></textarea>
 						<label className={styles.label}>Last Name</label>
 						<textarea
@@ -82,6 +109,7 @@ function ProfileReg() {
 							type="text"
 							value={lastName}
 							onChange={(e) => setLastName(e.target.value)}
+                            required
 						></textarea>
 						<label className={styles.label}>Address</label>
 						<textarea
@@ -91,6 +119,7 @@ function ProfileReg() {
 							type="text"
 							value={address}
 							onChange={(e) => setAddress(e.target.value)}
+                            required
 						></textarea>
 						{/* <label className={styles.label}>Contact Number</label>
 						<textarea
@@ -116,8 +145,23 @@ function ProfileReg() {
 					<Button handleSubmit={handleSubmit} text="Submit" />
 				</div>
 			</div>
+            {/* } */}
 		</>
 	);
+}
+
+export async function getServerSideProps() {
+    
+    const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
+    const data = await res.json();
+  
+    return {
+        props: 
+            { users: data.payload },
+    }
+
+    
+    
 }
 
 export default ProfileReg;

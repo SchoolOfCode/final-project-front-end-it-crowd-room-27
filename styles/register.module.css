@@ -63,6 +63,10 @@
    max-width: 100vw;
 }
 
+.container_none {
+	display: none;
+}
+
 .form {
    height: 80%;
    width: 60%;
