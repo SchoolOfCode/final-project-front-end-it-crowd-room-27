@@ -68,10 +68,13 @@ function Card({
           {/* <h5>{category}</h5> */}
           <p className={styles.descriptionText}>{item_description}</p>
         </div>
-        <div className={styles.cardRightBottom}>
-          <h5>Location: </h5>
+        <div>  
+        <h5>Location: </h5>
           <p>{address}</p>
 
+        </div>
+        <div className={styles.cardRightBottom}>
+         
           <button
             variant="primary"
             onClick={() => setModalShow(true)}
