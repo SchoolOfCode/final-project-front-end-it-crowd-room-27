@@ -17,9 +17,6 @@ import { useUser } from "@auth0/nextjs-auth0";
 // map over the array  and for each render </card> with database details dynamically updated
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
-
-
-
 function ListingsPage({ users, listings }) {
     const u = users;
     const { user, error, isLoading } = useUser();
@@ -31,9 +28,6 @@ function ListingsPage({ users, listings }) {
     if(error) return <div>{error.message}</div>;
 
     const regUser = u.find(regUser => regUser.email === user.email);
-
-
-
 
 
 console.log(regUser);
@@ -89,10 +83,7 @@ console.log(regUser);
       </div>
     </>
   );
+
 }
 
-
-
-
 export default ListingsPage;
-
