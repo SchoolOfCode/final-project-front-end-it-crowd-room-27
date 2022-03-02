@@ -9,8 +9,8 @@ import Image from "next/image";
 import GiveAwayModal from "../GiveAwayModal";
 
 function Navbar({ avatar, users }) {
-	console.log(users);
-	//Auth0
+   
+   //Auth0
 	const { user, error, isLoading } = useUser();
 
 	if (isLoading) return <div>Loading ...</div>;
@@ -24,12 +24,12 @@ function Navbar({ avatar, users }) {
 		<div className={styles.top_container}>
 			<div className={styles.logo}>
 				<Link href="/">
-					<a>
+					<a className={styles.logo_image}>
 						<Image src={Logo} height="120em" width="120em" />
 					</a>
 				</Link>
-			</div>
-			<div className={styles.middle_container}>
+				
+				<div className={styles.middle_container}>
 				<div className={styles.GiveItemButton}>
 					<button
 						variant="primary"
@@ -45,14 +45,16 @@ function Navbar({ avatar, users }) {
 					/>
 				</div>
 			</div>
+			</div>
+			
 			<div className={styles.container}>
 				<div className={styles.menu}>
 					<ul>
 						<li className={styles.menuItem}>
-							<Link href="/about">About</Link>
+							<Link href="/listings">Home</Link>
 						</li>
 						<li className={styles.menuItem}>
-							<Link href="/listings">Home</Link>
+							<Link href="/">About</Link>
 						</li>
 						<li className={styles.menuItem}>
 							<Link href="/blog">Blog</Link>
