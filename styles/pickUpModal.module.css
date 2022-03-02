@@ -1,47 +1,51 @@
 .body,
 .header,
 .footer {
-	background-color: var(--card);
-	color: var(--text);
+   background-color: var(--card);
+   color: var(--text);
 }
 
 .btn {
-	background-color: var(--button);
-	height: 3em;
-	width: 7em;
-	border-radius: 10px;
-	cursor: pointer;
-	border: none;
-	color: white;
-	font-size: 1em;
+   background-color: var(--button);
+   height: 3em;
+   width: 7em;
+   border-radius: 10px;
+   cursor: pointer;
+   border: none;
+   color: white;
+   font-size: 1em;
+   transform: translate(-1em, -0.1em);
 }
 
 .btn:hover {
-	background-color: blueviolet;
-	box-shadow: 1px 5px 20px green;
+   background-color: blueviolet;
+   box-shadow: 1px 5px 20px green;
 }
 
 .avatar img {
-	border-radius: 50%;
-	height: 50px;
-	width: 50px;
-	object-fit: cover;
-	transform: translate(12em, -2.8em);
+   border-radius: 50%;
+   height: 50px;
+   width: 50px;
+   object-fit: cover;
+   transform: translate(25em, -0em);
+   position: static;
 }
 
 .imgContainer {
-	height: 80%;
-	width: 80%;
-	object-fit: cover;
+   height: 80%;
+   width: 80%;
+   object-fit: cover;
 }
 
 .body {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .bodyLeft,
 .bodyRight {
-	width: 50%;
+   width: 50%;
+
+   text-align: left;
 }

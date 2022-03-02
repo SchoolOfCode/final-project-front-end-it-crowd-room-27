@@ -17,26 +17,19 @@ import { useUser } from "@auth0/nextjs-auth0";
 // map over the array  and for each render </card> with database details dynamically updated
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
-
-
-
 function ListingsPage({ users, listings }) {
-    const u = users;
-    const { user, error, isLoading } = useUser();
+  const u = users;
+  const { user, error, isLoading } = useUser();
 
-    // console.log(u)
-    // console.log(users.);
-    
-    if(isLoading) return <div>Loading ...</div>;
-    if(error) return <div>{error.message}</div>;
+  // console.log(u)
+  // console.log(users.);
 
-    const regUser = u.find(regUser => regUser.email === user.email);
+  if (isLoading) return <div>Loading ...</div>;
+  if (error) return <div>{error.message}</div>;
 
+  const regUser = u.find((regUser) => regUser.email === user.email);
 
-
-
-
-console.log(regUser);
+  console.log(regUser);
 
   return (
     <>
@@ -53,12 +46,11 @@ console.log(regUser);
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         ></link>
       </Head>
-      <Navbar avatar={!regUser ? user.picture : regUser.avatar} />
+      <Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users} />
       <div className={styles.searchbar}>
         <Searchbar />
       </div>
       <div className={styles.container}>
-
         {/* mapping over our fetch GET request from users and items database table, to render each item on listinngs page */}
         {listings.map((listing) => (
           <div key={listing.item_id}>
@@ -85,14 +77,10 @@ console.log(regUser);
               user_bio={listing.user_bio}
             />
           </div>
-        ))};
+        ))}
+        ;
       </div>
     </>
   );
 }
-
-
-
-
 export default ListingsPage;
-
