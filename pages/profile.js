@@ -4,17 +4,13 @@ import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
-import Link from "next/link";
 import Head from "next/head";
-import Button from "../Components/Button";
+import EditProfileModal from "../Components/EditProfileModal";
 
 import ProvideInfoForm from "../Components/ProvideInfoForm";
 
 function profile({ users, listings }) {
 	const { user, error, isLoading } = useUser();
-
-	// console.log(u)
-	// console.log(users.);
 
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
@@ -24,20 +20,22 @@ function profile({ users, listings }) {
 	// const particularUser = users.filter(parUser => parUser.email === user.email);
 
 	// =-=-=-=-=-=-==-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	const [showEditModal, setShowEditModal] = useState(false);
+	const [editProfileModalShow, setEditProfileModalShow] = React.useState(false);
 
-	console.log(showEditModal);
+	// console.log(showEditModal);
 
 	function handleFormMode() {
 		// setProceedUser(regUser);
 		setShowEditModal(true);
 	}
 
-	// const foundUser = users.find((dbuser) => dbuser.email === user.email);
 
-	// const userListings = listings.filter(
-	// 	(items) => items.user_id === foundUser.id
-	// );
+	const currentUser = users.find((currUser) => currUser.email === user.email);
+
+
+	const userListings = listings.filter(
+		(items) => items.user_id === currentUser.id
+	);
 
 	// function onProvideSubmit(postId, language, link, summary) {
 	//   const templateEditedPost = {
@@ -150,14 +148,26 @@ function profile({ users, listings }) {
 
 					<div className={styles.buttons}>
 						<p className={styles.editBtn}>Edit</p>
-						<p className={styles.editBtn} onClick={() => handleFormMode()}>
+						{/* <p className={styles.editBtn} onClick={() => handleFormMode()}>
 							Finish Profile
-						</p>
+						</p> */}
+						<button
+							variant="primary"
+							onClick={() => setEditProfileModalShow(true)}
+							className={styles.btn}
+						>
+							Finish profile
+						</button>
+						<EditProfileModal
+							users={users}
+							show={editProfileModalShow}
+							onHide={() => setEditProfileModalShow(false)}
+						/>
 					</div>
-					<ProvideInfoForm
+					{/* <ProvideInfoForm
 						showEditModal={showEditModal}
 						setShowEditModal={setShowEditModal}
-					/>
+					/> */}
 				</div>
 			</div>
 			<div className={styles.btnSection}>
@@ -172,7 +182,7 @@ function profile({ users, listings }) {
 				{/* USER ID FOR FETCHING ITEMS */}
 				{/* <Card userID={id} /> */}
 
-				{/* {userListings?.map((listing) => (
+				{userListings?.map((listing) => (
 					<Card
 						item_id={listing.id}
 						user_id={listing.user_id}
@@ -190,7 +200,7 @@ function profile({ users, listings }) {
 						avatar={listing.avatar}
 						user_bio={listing.user_bio}
 					/>
-				))} */}
+				))}
 			</div>
 		</div>
 		// </div>

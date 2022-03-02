@@ -4,11 +4,12 @@
 	height: 30%;
 	width: 100vw;
 	display: flex;
+	align-items: center;
 	justify-content: space-between;
 	background-color: var(--navbar);
 	color: white;
 	padding: 0 15px;
-	box-shadow: 0 5px 9px 0 rgba(0, 0, 0, .8);
+	box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.8);
 	font-family: "Montserrat", sans-serif;
 	position: sticky;
 	top: 0;
@@ -16,30 +17,30 @@
 }
 
 .container {
-  /* height: 30%;
+	/* height: 30%;
 	width: 100vw; */
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  /* background-color: var(--navbar);
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	/* background-color: var(--navbar);
 	color: white; */
-  /* padding: 0 10px; */
-  font-size: 1em;
-  /* box-shadow: 1px 10px 20px black; */
-  /* font-family: "Montserrat", sans-serif;
+	/* padding: 0 10px; */
+	font-size: 1em;
+	/* box-shadow: 1px 10px 20px black; */
+	/* font-family: "Montserrat", sans-serif;
 	z-index: 2; */
-  /* border: 1px solid yellow; */
+	/* border: 1px solid yellow; */
 }
 
 .menu {
-  padding-top: 1em;
-  width: 400%;
-  position: sticky;
+	padding-top: 1em;
+	width: 400%;
+	position: sticky;
 }
 
 .menuItem {
-  display: inline;
-  list-style: none;
+	display: inline;
+	list-style: none;
 }
 
 .menuItem a {
@@ -52,7 +53,7 @@
 }
 
 .menuItem a:hover {
-  color: rgba(255, 255, 255, 0.6);
+	color: rgba(255, 255, 255, 0.6);
 }
 
 .logo {
@@ -60,7 +61,6 @@
   display: flex;
   flex-direction: row;
 }
-
 
 .userImg img {
   border: 1.3px solid var(--color-six);
