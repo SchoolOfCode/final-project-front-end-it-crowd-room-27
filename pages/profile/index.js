@@ -1,3 +1,11 @@
+import React from "react";
+
+function Index() {
+  return <div>index</div>;
+}
+
+export default Index;
+
 // import React from "react";
 // import Card from "../../Components/Card/index.js";
 // import Navbar from "../../Components/Navbar/index.js";

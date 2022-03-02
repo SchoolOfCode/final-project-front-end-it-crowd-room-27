@@ -1,3 +1,11 @@
+import React from "react";
+
+function Giveaway() {
+  return <div>"giveaway"</div>;
+}
+
+export default Giveaway;
+
 // import React from "react";
 // import Head from "next/head";
 // import styles from "../styles/giveaway.module.css";
