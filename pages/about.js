@@ -58,4 +58,6 @@ function About() {
 	);
 }
 
+export const getServerSideProps = withPageAuthRequired();
+
 export default About;

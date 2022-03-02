@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import styles from "./formInputs.module.css";
 import { useUser } from "@auth0/nextjs-auth0";
 
-function FormInputs({ setShowEditModal }) {
+function FormInputs({ setShowEditModal, newFetchedUsers }) {
 	const { user, error, isLoading } = useUser();
-    
-    if(isLoading) return <div>Loading ...</div>;
-    if(error) return <div>{error.message}</div>;
 
+	if (isLoading) return <div>Loading ...</div>;
+	if (error) return <div>{error.message}</div>;
 
 	const [previewSource, setPreviewSource] = useState("");
 	const [firstName, setFirstName] = useState("");
@@ -15,7 +14,6 @@ function FormInputs({ setShowEditModal }) {
 	const email = user.email;
 	const [lastName, setLastName] = useState("");
 	const [userBio, setUserBio] = useState("");
-    const [fetchedUsers, setfetchedUsers] = useState([]);
 
 	//an object which will represent the form data to send to the server (req.body)
 	const body = {
@@ -27,8 +25,8 @@ function FormInputs({ setShowEditModal }) {
 		image: previewSource,
 		user_bio: userBio,
 	};
-    // const body = firstName;
-    console.log(body);
+	// const body = firstName;
+	console.log(body);
 	//when the user selects an image from their desktop, preview it in the browser
 	//when the user selects an image from their desktop, preview it in the browser
 	const handleFileInputChange = (e) => {
@@ -46,7 +44,6 @@ function FormInputs({ setShowEditModal }) {
 		};
 	};
 
-
 	// const handleEditForm = () => {
 	// 	if(firstName && lastName && address && userBio) {
 	// 		onProvideSubmit(body);
@@ -57,85 +54,88 @@ function FormInputs({ setShowEditModal }) {
 	const handleFormSubmit = async () => {
 		setShowEditModal(false);
 		// if(firstName && lastName && address) {
-            await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
-                method: "POST",
-                body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" },
-            });
+		await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
+			method: "POST",
+			body: JSON.stringify(body),
+			headers: { "Content-Type": "application/json" },
+		});
 
-            setTimeout( async () => {
-                const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
-                const data = await res.json();
-                setfetchedUsers(data.payload);
-            }, 1000)
+		setTimeout(async () => {
+			const res = await fetch(
+				`https://it-crowd-project.herokuapp.com/api/users`
+			);
+			const data = await res.json();
+			setfetchedUsers(data.payload);
+		}, 1000);
 
+		newFetchedUsers(fetchedUsers);
 
-        // }
+		// }
 	};
 
-
-
-
-
 	//when the user selects an image from their desktop, preview it in the browser
-// const handleFileInputChange = (e) => {
-// 		const file = e.target.files[0];
-// 		previewFile(file);
-// 	};
+	// const handleFileInputChange = (e) => {
+	// 		const file = e.target.files[0];
+	// 		previewFile(file);
+	// 	};
 
 	return (
 		<div className={styles.form}>
-		<form >
-			<p>Email: {email}</p>
-			<br />
-			<label className={styles.label}> First Name</label>
-			<br />
-			<input
-				className={styles.formInput}
-				type="text"
-				onChange={(e) => setFirstName(e.target.value)}
-				value={firstName}
-			/>
-			<br />
-			<label className={styles.label}><strong> Last Name</strong></label>
-			<br />
-			<input
-				className={styles.formInput}
-				type="text"
-				onChange={(e) => setLastName(e.target.value)}
-				value={lastName}
-			/>
-			<br />
-			<label className={styles.label}><strong> Address</strong></label>
-			<br />
-			<input
-				className={styles.formInput}
-				type="text"
-				onChange={(e) => setAddress(e.target.value)}
-				value={address}
-			/>
-			<br />
-			<label className={styles.label}><strong> Bio</strong></label>
-			<br />
-			<textarea
-				className={`${styles.formTextarea} ${styles.formInput}`}
-				type="text"
-				onChange={(e) => setUserBio(e.target.value)}
-				value={userBio}
-				maxLength="75"
-			/>
-			<br />
-			<input type="file" onChange={handleFileInputChange}></input>
-		</form>
+			<form>
+				<p>Email: {email}</p>
+				<br />
+				<label className={styles.label}> First Name</label>
+				<br />
+				<input
+					className={styles.formInput}
+					type="text"
+					onChange={(e) => setFirstName(e.target.value)}
+					value={firstName}
+				/>
+				<br />
+				<label className={styles.label}>
+					<strong> Last Name</strong>
+				</label>
+				<br />
+				<input
+					className={styles.formInput}
+					type="text"
+					onChange={(e) => setLastName(e.target.value)}
+					value={lastName}
+				/>
+				<br />
+				<label className={styles.label}>
+					<strong> Address</strong>
+				</label>
+				<br />
+				<input
+					className={styles.formInput}
+					type="text"
+					onChange={(e) => setAddress(e.target.value)}
+					value={address}
+				/>
+				<br />
+				<label className={styles.label}>
+					<strong> Bio</strong>
+				</label>
+				<br />
+				<textarea
+					className={`${styles.formTextarea} ${styles.formInput}`}
+					type="text"
+					onChange={(e) => setUserBio(e.target.value)}
+					value={userBio}
+					maxLength="75"
+				/>
+				<br />
+				<input type="file" onChange={handleFileInputChange}></input>
+			</form>
 			{previewSource && (
-						<img src={previewSource} style={{ height: "300px" }}></img>
-					)}
+				<img src={previewSource} style={{ height: "300px" }}></img>
+			)}
 			<br />
 			<button
 				className={styles.formSubmitButton}
-				onClick={() =>
-					handleFormSubmit()
-				}
+				onClick={() => handleFormSubmit()}
 			>
 				PROCEED
 			</button>

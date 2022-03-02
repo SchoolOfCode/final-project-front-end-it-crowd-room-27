@@ -18,23 +18,47 @@ function GiveAwayModal(props) {
 	const [quantity, setQuantity] = useState("");
 	const [category, setCategory] = useState("");
 	const [useByDate, setUseByDate] = useState("");
-	const [dateAdded, setDateAdded] = useState("");
+	const [availability, setAvailability] = useState(true);
+
+	const [dateAdded, setDateAdded] = useState(Date.now());
 	const [isReserved, setIsReserved] = useState(false);
 	const [timeSlot, setTimeSlot] = useState("");
 
 	//an object which will represent the form data to send to the server (req.body)
+
+	const users = props.users;
+
+	console.log(users);
+	const currentUser = users.find((currUser) => currUser.email === user.email);
+	console.log(currentUser.id);
+
 	const body = {
-		user_id: user.sub,
+		user_id: currentUser.id,
 		category: category,
 		item_name: itemName,
 		item_description: itemDesc,
 		use_by_date: useByDate,
 		date_added: Date.now(),
 		quantity: quantity,
-		is_reserved: isReserved,
+		is_reserved: true,
+		availability: false,
 		time_slot: timeSlot,
 		image: previewSource,
 	};
+
+	// // user_id,
+	// 	category,
+	// 	item_name,
+	// 	item_description,
+	// 	use_by_date,
+	// 	date_added,
+	// 	quantity,
+	// 	is_reserved,
+	// 	availability,
+	// 	time_slot,
+	// 	image,
+
+	console.log(body);
 
 	//when the user selects an image from their desktop, preview it in the browser
 	const handleFileInputChange = (e) => {
