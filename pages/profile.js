@@ -11,7 +11,6 @@ import Button from "../Components/Button";
 import ProvideInfoForm from "../Components/ProvideInfoForm";
 
 function profile({ users, listings }) {
-	const u = users;
 	const { user, error, isLoading } = useUser();
 
 	// console.log(u)
@@ -20,7 +19,7 @@ function profile({ users, listings }) {
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
 
-	const regUser = u.find((regUser) => regUser.email === user.email);
+	const regUser = users.find((regUser) => regUser.email === user.email);
 
 	// const particularUser = users.filter(parUser => parUser.email === user.email);
 
@@ -34,7 +33,7 @@ function profile({ users, listings }) {
 		setShowEditModal(true);
 	}
 
-	const foundUser = users.find((dbuser) => dbuser.email === user.email);
+	// const foundUser = users.find((dbuser) => dbuser.email === user.email);
 
 	// const userListings = listings.filter(
 	// 	(items) => items.user_id === foundUser.id
@@ -92,7 +91,7 @@ function profile({ users, listings }) {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users}/>
+			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users} />
 
 			<div className={styles.flexboxContainer}>
 				{/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}

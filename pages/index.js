@@ -1,3 +1,4 @@
+import { useUser } from "@auth0/nextjs-auth0";
 import Head from "next/head";
 import Image from "next/image";
 import Card from "../Components/Card/index";
@@ -11,9 +12,13 @@ import {
 	Bottom,
 	VeryBottom,
 } from "../Components/LandingPageComps/landingPageComps.js";
-import { withPageAuthRequired } from "@auth0/nextjs-auth0/dist/frontend";
 
-export default function Home() {
+export default function Home({ users }) {
+	const { user, error, isLoading } = useUser();
+	if (isLoading) return <div>Loading ...</div>;
+	if (error) return <div>{error.message}</div>;
+	console.log(user);
+	const regUser = users.find((rUser) => rUser.email === user.email);
 	return (
 		<div>
 			<Head>
@@ -25,7 +30,7 @@ export default function Home() {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-			<Navbar />
+			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users} />
 
 			<div className={styles.container}>
 				<Top />
@@ -49,5 +54,13 @@ export default function Home() {
 	);
 }
 
-// export const getServerSideProps ;
-// = withPageAuthRequired()
+export const getServerSideProps = async () => {
+	const usersRes = await fetch(
+		`https://it-crowd-project.herokuapp.com/api/users`
+	);
+	const usersData = await usersRes.json();
+
+	return {
+		props: { users: usersData.payload },
+	};
+};

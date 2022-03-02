@@ -63,23 +63,24 @@ function Card({
                <h5 className={styles.itemName}>{item_name}</h5>
                <h6 className={styles.expiry}>Use by date:{use_by_date}</h6>
             </div>
+        <div className={styles.cardRightMiddle}>
+          {/* <h5>{category}</h5> */}
+          <p className={styles.descriptionText}>{item_description}</p>
+        </div>
+        <div>  
+        <h5>Location: </h5>
+          <p>{address}</p>
 
-            <div className={styles.cardRightMiddle}>
-               {/* <h5>{category}</h5> */}
-               <p className={styles.descriptionText}>{item_description}</p>
-            </div>
-            <div className={styles.cardRightBottom}>
-               <h5>Location: </h5>
-               <p>{address}</p>
-
-               <button
-                  variant="primary"
-                  onClick={() => setModalShow(true)}
-                  className={styles.btn}
-               >
-                  Details
-               </button>
-
+        </div>
+        <div className={styles.cardRightBottom}>
+         
+          <button
+            variant="primary"
+            onClick={() => setModalShow(true)}
+            className={styles.btn}
+          >
+            Details
+          </button>
                <PickUpModal
                   item_id={item_id}
                   user_id={user_id}
