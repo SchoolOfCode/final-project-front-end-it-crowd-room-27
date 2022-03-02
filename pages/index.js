@@ -1,3 +1,4 @@
+import { useUser } from "@auth0/nextjs-auth0";
 import Head from "next/head";
 import Image from "next/image";
 import Card from "../Components/Card/index";
@@ -5,11 +6,19 @@ import Navbar from "../Components/Navbar/index";
 import styles from "../styles/home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Top, Middle, Bottom, VeryBottom } from "../Components/LandingPageComps/landingPageComps.js";
+import {
+	Top,
+	Middle,
+	Bottom,
+	VeryBottom,
+} from "../Components/LandingPageComps/landingPageComps.js";
 
-
-
-export default function Home() {
+export default function Home({ users }) {
+	const { user, error, isLoading } = useUser();
+	if (isLoading) return <div>Loading ...</div>;
+	if (error) return <div>{error.message}</div>;
+	console.log(user);
+	const regUser = users.find((rUser) => rUser.email === user.email);
 	return (
 		<div>
 			<Head>
@@ -21,21 +30,37 @@ export default function Home() {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-			<Navbar />
+			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users} />
 
 			<div className={styles.container}>
-			<Top />
+				<Top />
 				<main className={styles.main}>
 					{/* {user ? <Reg/> : <List/>} */}
 					<Middle />
 					<Bottom />
 					<VeryBottom />
 					<div className={styles.footer}>
-						<a href="#" className={styles.btn_up}>Pop Up</a>
-						<p className={styles.cast}>created by <strong>IT-Crowd</strong><br/> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy</p>
-	  				</div>
+						<a href="#" className={styles.btn_up}>
+							Pop Up
+						</a>
+						<p className={styles.cast}>
+							created by <strong>IT-Crowd</strong>
+							<br /> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy
+						</p>
+					</div>
 				</main>
 			</div>
 		</div>
 	);
 }
+
+export const getServerSideProps = async () => {
+	const usersRes = await fetch(
+		`https://it-crowd-project.herokuapp.com/api/users`
+	);
+	const usersData = await usersRes.json();
+
+	return {
+		props: { users: usersData.payload },
+	};
+};
