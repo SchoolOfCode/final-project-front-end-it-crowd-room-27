@@ -18,8 +18,8 @@ import { useUser } from "@auth0/nextjs-auth0";
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
 function ListingsPage({ users, listings }) {
-  const u = users;
-  const { user, error, isLoading } = useUser();
+
+	const { user, error, isLoading } = useUser();
 
   // console.log(u)
   // console.log(users.);
@@ -27,7 +27,7 @@ function ListingsPage({ users, listings }) {
   if (isLoading) return <div>Loading ...</div>;
   if (error) return <div>{error.message}</div>;
 
-  const regUser = u.find((regUser) => regUser.email === user.email);
+  const regUser = users.find((regUser) => regUser.email === user.email);
 
   console.log(regUser);
 

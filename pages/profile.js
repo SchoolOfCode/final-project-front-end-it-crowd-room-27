@@ -29,7 +29,9 @@ function profile({ users, listings }) {
 		setShowEditModal(true);
 	}
 
+
 	const currentUser = users.find((currUser) => currUser.email === user.email);
+
 
 	const userListings = listings.filter(
 		(items) => items.user_id === currentUser.id
