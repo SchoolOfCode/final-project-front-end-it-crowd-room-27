@@ -41,11 +41,18 @@
 	justify-content: center;
 }
 
-.bodyLeft,
-.bodyRight {
-	width: 50%;
+.bodyLeft img {
+	max-width: 90%;
+	border: 7px solid var(--button);
+}
+.bodyLeft .bodyRight {
+	max-width: 50%;
 }
 
 .bodyRight {
 	display: block;
+}
+.textField {
+	width: 100%;
+	background-color: var(--background);
 }

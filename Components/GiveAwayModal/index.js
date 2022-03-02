@@ -24,16 +24,12 @@ function GiveAwayModal(props) {
 	const [isReserved, setIsReserved] = useState(false);
 	const [timeSlot, setTimeSlot] = useState("");
 
-	//an object which will represent the form data to send to the server (req.body)
-
 	const users = props.users;
+	const currentUser = users.find((currUser) => currUser.email === user?.email);
 
-	console.log(users);
-	const currentUser = users.find((currUser) => currUser.email === user.email);
-	console.log(currentUser.id);
-
+	//an object which will represent the form data to send to the server (req.body)
 	const body = {
-		user_id: currentUser.id,
+		user_id: currentUser?.id,
 		category: category,
 		item_name: itemName,
 		item_description: itemDesc,
@@ -45,20 +41,6 @@ function GiveAwayModal(props) {
 		time_slot: timeSlot,
 		image: previewSource,
 	};
-
-	// // user_id,
-	// 	category,
-	// 	item_name,
-	// 	item_description,
-	// 	use_by_date,
-	// 	date_added,
-	// 	quantity,
-	// 	is_reserved,
-	// 	availability,
-	// 	time_slot,
-	// 	image,
-
-	console.log(body);
 
 	//when the user selects an image from their desktop, preview it in the browser
 	const handleFileInputChange = (e) => {
@@ -93,13 +75,11 @@ function GiveAwayModal(props) {
 			centered
 		>
 			<Modal.Header closeButton className={styles.header}>
-				<h1>Give Away Form</h1>
+				<h1>Give Away an Item</h1>
 			</Modal.Header>
 			<Modal.Body className={styles.body}>
 				<div className={styles.bodyLeft}>
-					{previewSource && (
-						<img src={previewSource} style={{ height: "500px" }}></img>
-					)}
+					{previewSource && <img src={previewSource}></img>}
 				</div>
 				<div className={styles.bodyRight}>
 					<div className={styles.container}>
@@ -163,14 +143,12 @@ function GiveAwayModal(props) {
 								<h6>Choose an image</h6>
 								<input type="file" onChange={handleFileInputChange}></input>
 							</form>
-
-							<Button handleSubmit={handleSubmit} text="Submit" />
 						</div>
 					</div>
 				</div>
 			</Modal.Body>
 			<Modal.Footer className={styles.footer}>
-				<button onClick={props.onHide} className={styles.btn}>
+				<button onClick={(props.onHide, handleSubmit)} className={styles.btn}>
 					Submit
 				</button>
 			</Modal.Footer>
