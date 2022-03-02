@@ -18,6 +18,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
 function ListingsPage({ users, listings }) {
+
 	const { user, error, isLoading } = useUser();
 
 	// console.log(users);
@@ -78,6 +79,7 @@ function ListingsPage({ users, listings }) {
 			</div>
 		</>
 	);
-}
+
+ }
 
 export default ListingsPage;
