@@ -49,4 +49,5 @@ export default function Home() {
 	);
 }
 
-export const getServerSideProps = withPageAuthRequired();
+// export const getServerSideProps ;
+// = withPageAuthRequired()

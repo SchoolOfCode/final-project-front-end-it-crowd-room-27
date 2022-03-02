@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
@@ -92,7 +92,7 @@ function profile({ users, listings }) {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-			<Navbar avatar={!regUser ? user.picture : regUser.avatar} />
+			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users}/>
 
 			<div className={styles.flexboxContainer}>
 				{/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
