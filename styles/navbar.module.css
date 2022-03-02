@@ -57,15 +57,39 @@
 
 .logo {
   float: left;
+  display: flex;
+  flex-direction: row;
 }
 
+
 .userImg img {
+  border: 1.3px solid var(--color-six);
   border-radius: 50%;
   height: 6em;
   width: 6em;
   object-fit: cover;
 }
 
-/*.GiveItemButton {
-	
-}*/
+.middle_container {
+  display: flex;
+  align-items: center;
+  margin-left: 2em;
+	/* padding-top: 10%; */
+  height: 100%;
+  /* position: sticky;
+  border: 1px solid red; */
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+	text-decoration: none;
+  color: white;
+	transition: all ease-in-out 230ms;
+  background: inherit;
+}
+
+.btn:hover {
+  color: rgba(255, 255, 255, 0.6);
+}

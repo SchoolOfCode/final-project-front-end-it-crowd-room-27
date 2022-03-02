@@ -27,7 +27,7 @@ function ListingsPage({ users, listings }) {
   if (isLoading) return <div>Loading ...</div>;
   if (error) return <div>{error.message}</div>;
 
-  const regUser = u.find((regUser) => regUser.email === user.email);
+  const regUser = users.find((regUser) => regUser.email === user.email);
 
   console.log(regUser);
 
