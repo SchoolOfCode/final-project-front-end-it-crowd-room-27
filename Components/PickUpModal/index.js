@@ -36,17 +36,17 @@ function PickUpModal(props) {
                <h4>{props.item_name}</h4>
                <p>{props.category}</p>
                <p>{props.date_added}</p>
-               <p>Use by: {props.use_by_date}</p>
                <p>{props.item_description}</p>
-               <p>Quantity: {props.quantity}</p>
-               <p>{props.availability}</p>
-               <p>Collection between: {props.time_slot}</p>
-               <p>Address: {props.address}</p>
+               <p>{props.quantity}</p>
+               <p>{props.use_by_date}</p>
+               <p>{props.address}</p>
             </div>
          </Modal.Body>
          <Modal.Footer className={styles.footer}>
+            <p>{props.availability}</p>
+            <p>{props.time_slot}</p>
             <button onClick={props.onHide} className={styles.btn}>
-               Reserve
+               Close
             </button>
          </Modal.Footer>
       </Modal>

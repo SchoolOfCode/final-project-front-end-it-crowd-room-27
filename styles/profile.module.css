@@ -18,7 +18,7 @@
 }
 
 .flexItem1 {
-  position: relative;
+  /* position: relative; */
   min-height: 400px;
   min-width: 20%;
   flex-shrink: 0;
@@ -29,20 +29,20 @@
 .flexItem2 {
   height: 50%;
   width: 50%;
-
+  border: 1px solid red;
 }
 
 .flexItem4 {
   height: 60%;
   min-width: 50%;
-  position: relative;
-  width: 900px;
+  /* position: relative; */
+  /* width: 900px; */
 
   display: flex;
   flex-wrap: wrap;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
   background-color: white;
-  opacity: 0.7;
+  /* opacity: 0.7; */
   border-radius: 4px;
 }
 
@@ -54,37 +54,6 @@
   justify-content: space-evenly;
 }
 
-/* PROFILE IMAGE BLOCK */
-
-.userImg {
-  border-radius: 50%;
-  object-fit: cover;
-  /* position: relative; */
-  width: 150px;
-  height: 150px;
-
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-}
-
-.stars {
-  position: relative;
-  display: flex;
-  justify-content: center;
-
-  /* width: 100%;
-  height: 70%; */
-
-  color: #f7d310;
-  font-size: 3em;
-}
-
-.camera {
-  position: absolute;
-
-  font-size: 3rem;
-
-  left: 6em;
-}
 
 /* PROFILE CARD */
 
@@ -104,25 +73,25 @@
 
   font-size: 1em;
 }
-
+/* 
 .block1,
 .block2,
 .block3,
 .block4 {
   display: flex;
-}
+} */
 
 .editBtn {
   /* position: absolute; */
   background-color: var(--button);
   /* height: 2em; */
   /* width: 6em; */
-  border-radius: 10px;
+  border-radius: 7px;
   cursor: pointer;
-  border: 1px solid black;
-  padding: 1em 1.4em;
+  /* border: 1px solid black; */
+  padding: .8em 1em;
   color: white;
-  font-size: 1.3em;
+  font-size: 1em;
   transform: translate(17.5em, 1em);
 }
 
@@ -159,17 +128,86 @@
   margin: 1em;
 }
 
-.profileInfoBox {
-  border: 1px solid yellow;
-  height: 50%;
-  width: 50%;
-  /* width: 400px; */
+
+
+ /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+
+
+ .profileTopContainer {
+   border: 1px solid blue;
+   width: 80%;
+   
+ }
+
+.profileContainer {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+
+}
+
+ .imageContainer {
+  border: 1px solid red;
+  width: 100%;
+ }
+
+ .bioBox {
+   width: 70%;
+   height: 10em;
+   float: right;
+   border: 1px solid red;
+   background-color: white;
+   border-radius: 4px;
+ }
+
+ .profileInfoBox {
+  border: 1px solid red;
+  height: 50%;
+  width: 30%;
+  padding: 2em 0;
+  /* width: 400px; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* flex-wrap: wrap; */
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
   background-color: white;
-  opacity: 0.7;
+  /* opacity: 0.7; */
   border-radius: 4px;
-
+  grid-area: info;
 } 
+
+/* PROFILE IMAGE BLOCK */
+
+.userImg {
+  border-radius: 50%;
+  object-fit: cover;
+  /* position: relative; */
+  width: 150px;
+  height: 150px;
+  margin: 1em 0 1em 5em;
+
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+}
+
+.stars {
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+
+  /* width: 100%;
+  height: 70%; */
+
+  color: #f7d310;
+  font-size: 3em;
+}
+
+.camera {
+  /* position: absolute; */
+
+  font-size: 3rem;
+
+  left: 6em;
+}
+
+.buttons {
+  border: 1px solid red;
+}
