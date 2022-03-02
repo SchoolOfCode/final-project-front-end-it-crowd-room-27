@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
@@ -11,7 +11,6 @@ import Button from "../Components/Button";
 import ProvideInfoForm from "../Components/ProvideInfoForm";
 
 function profile({ users, listings }) {
-	const u = users;
 	const { user, error, isLoading } = useUser();
 
 	// console.log(u)
@@ -20,7 +19,7 @@ function profile({ users, listings }) {
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
 
-	const regUser = u.find((regUser) => regUser.email === user.email);
+	const regUser = users.find((regUser) => regUser.email === user.email);
 
 	// const particularUser = users.filter(parUser => parUser.email === user.email);
 
@@ -92,7 +91,7 @@ function profile({ users, listings }) {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-			<Navbar avatar={!regUser ? user.picture : regUser.avatar} />
+			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users} />
 
 			<div className={styles.flexboxContainer}>
 				{/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
