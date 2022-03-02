@@ -19,59 +19,59 @@
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=LEFT HALF OF CARD =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 .cardLeft {
-	width: 50%;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+   width: 50%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
 }
 
 .imgContainer {
-	height: 80%;
-	width: 80%;
-	object-fit: cover;
+   height: 80%;
+   width: 80%;
+   object-fit: cover;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=RIGHT HALF OF CARD =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-== */
 
 .cardRight {
-	margin: auto;
-	width: 50%;
-	height: 100%;
-	font-size: 1em;
-	display: flex;
-	flex-direction: column;
+   margin: auto;
+   width: 50%;
+   height: 100%;
+   font-size: 1em;
+   display: flex;
+   flex-direction: column;
 }
 .checked {
-	color: orange;
+   color: orange;
 }
 .cardRightTop {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	height: 40%;
-	width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   height: 40%;
+   width: 100%;
 }
 
 .cardRightMiddle {
-	height: 40%;
-	width: 100%;
-	padding: 0;
-	overflow: hidden;
+   height: 40%;
+   width: 100%;
+   padding: 0;
+   overflow: hidden;
 }
 .cardRightBottom {
-	padding: 0;
-	height: 33%;
-	width: 100%;
+   padding: 0;
+   height: 33%;
+   width: 100%;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-GET PRECISE POSITIONING OF TEXT-=-==-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-= */
 .username {
-	transform: translate(0em, 1em);
-	font-weight: 800;
-	font-weight: bolder;
+   transform: translate(0em, 1em);
+   font-weight: 800;
+   font-weight: bolder;
 }
 .userImg img {
 	border-radius: 50%;
@@ -91,12 +91,12 @@
 }
 
 .expiry {
-	transform: translateY(-3em);
+   transform: translateY(-3em);
 }
 
 .descriptionText {
-	transform: translateY(0.5em);
-	line-height: 0.2px;
+   transform: translateY(0.5em);
+   line-height: 0.2px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-==--=---=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==--=-=-=-=-=- */
@@ -120,6 +120,6 @@
 }
 
 .btn:hover {
-	background-color: blueviolet;
-	box-shadow: 1px 5px 20px green;
+   background-color: blueviolet;
+   box-shadow: 1px 5px 20px green;
 }
