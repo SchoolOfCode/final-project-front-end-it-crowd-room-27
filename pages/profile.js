@@ -1,33 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
-
 import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
 import Head from "next/head";
 import EditProfileModal from "../Components/EditProfileModal";
 
-import ProvideInfoForm from "../Components/ProvideInfoForm";
-
 function profile({ users, listings }) {
+	useEffect(() => {
+		setUpdatedListings(userListings);
+	}, []);
+	const [editProfileModalShow, setEditProfileModalShow] = React.useState(false);
+	const [updatedListings, setUpdatedListings] = useState(listings);
 	const { user, error, isLoading } = useUser();
 
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
-
-	const regUser = users.find((regUser) => regUser.email === user.email);
-
-	// const particularUser = users.filter(parUser => parUser.email === user.email);
-
-	// =-=-=-=-=-=-==-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	const [editProfileModalShow, setEditProfileModalShow] = React.useState(false);
-
-	// console.log(showEditModal);
-
-	function handleFormMode() {
-		// setProceedUser(regUser);
-		setShowEditModal(true);
-	}
 
 	const currentUser = users.find((currUser) => currUser.email === user.email);
 
@@ -35,42 +23,21 @@ function profile({ users, listings }) {
 		(items) => items.user_id === currentUser.id
 	);
 
-	// function onProvideSubmit(postId, language, link, summary) {
-	//   const templateEditedPost = {
-	//     id: postId,
-	//     tags: language,
-	//     summary: summary,
-	//     link: link
-	//   };
+	const handleDelete = async (id) => {
+		console.log(id);
+		const res = await fetch(
+			`https://it-crowd-project.herokuapp.com/api/items/${id}`,
+			{
+				method: "DELETE",
+			}
+		);
 
-	//   fetch(`${API_URL}/weeks/${weekId}/resources/${postId}`, {
-	//     method: "PATCH",
-	//     headers: { "Content-Type": "application/json" },
-	//     body: JSON.stringify(templateEditedPost),
-	//   })
-	//     .then((res) => {
-	//       if (!res.ok) {
-	//         throw Error("could not fetch the data for for that resourse");
-	//       }
-	//       return res.json();
-	//     })
-	//     .catch((err) => {
-	//       //auto catches network / connection error
-	//       setIsPending(false);
-	//       setError(err.message);
-	//     });
-
-	// ==-=-=-=-=-=-=-=-=-=-=-=-=--==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-	// const { id,
-	//   first_name,
-	//   last_name,
-	//   email,
-	//   address,
-	//   is_active,
-	//   cloudinary_id,
-	//   avatar,
-	//   user_bio } = regUser;
+		const data = await res.json();
+		console.log(data);
+		setUpdatedListings(
+			updatedListings.filter((listing) => listing.item_id !== id)
+		);
+	};
 
 	return (
 		<div className="main-container">
@@ -87,7 +54,10 @@ function profile({ users, listings }) {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users} />
+			<Navbar
+				avatar={!currentUser ? user.picture : currentUser.avatar}
+				users={users}
+			/>
 
 			<div className={styles.flexboxContainer}>
 				{/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
@@ -114,14 +84,14 @@ function profile({ users, listings }) {
 						<div className={styles.imageContainer}>
 							<img
 								className={styles.userImg}
-								src={!regUser ? user.picture : regUser.avatar}
+								src={!currentUser ? user.picture : currentUser.avatar}
 							/>
 							<div className={styles.profileInfoBox}>
 								<div className={styles.block1}>
 									<p className={styles.profileTitle}>
 										Full Name:{" "}
-										{regUser
-											? `${regUser.first_name} ${regUser.last_name}`
+										{currentUser
+											? `${currentUser.first_name} ${currentUser.last_name}`
 											: null}
 									</p>
 								</div>
@@ -132,7 +102,7 @@ function profile({ users, listings }) {
 
 								<div className={styles.block2}>
 									<p className={styles.profileTitle}>
-										Address: {regUser ? `${regUser.address}` : null}
+										Address: {currentUser ? `${currentUser.address}` : null}
 									</p>
 								</div>
 							</div>
@@ -140,7 +110,7 @@ function profile({ users, listings }) {
 
 						<div className={styles.bioBox}>
 							<p className={styles.profileTitle}>Bio</p>
-							<p>{regUser ? `${regUser.user_bio}` : null}</p>
+							<p>{currentUser ? `${currentUser.user_bio}` : null}</p>
 						</div>
 					</div>
 
@@ -180,9 +150,10 @@ function profile({ users, listings }) {
 				{/* USER ID FOR FETCHING ITEMS */}
 				{/* <Card userID={id} /> */}
 
-				{userListings?.map((listing) => (
+				{updatedListings?.map((listing) => (
 					<Card
-						item_id={listing.id}
+						handleDelete={handleDelete}
+						item_id={listing.item_id}
 						user_id={listing.user_id}
 						category={listing.category}
 						item_name={listing.item_name}
@@ -197,6 +168,7 @@ function profile({ users, listings }) {
 						cloudinary_id={listing.cloudinary_id}
 						avatar={listing.avatar}
 						user_bio={listing.user_bio}
+						currentUser={currentUser}
 					/>
 				))}
 			</div>

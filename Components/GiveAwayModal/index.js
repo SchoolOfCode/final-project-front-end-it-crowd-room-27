@@ -79,6 +79,8 @@ function GiveAwayModal(props) {
 			</Modal.Header>
 			<Modal.Body className={styles.body}>
 				<div className={styles.bodyLeft}>
+					<div></div>
+
 					{previewSource && <img src={previewSource}></img>}
 				</div>
 				<div className={styles.bodyRight}>
