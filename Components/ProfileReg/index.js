@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
 
 import Navbar from "../../Components/Navbar";
@@ -7,19 +7,18 @@ import Button from "../../Components/Button";
 import ListingsPage from "../ListingsPage";
 
 function ProfileReg() {
+	const { user, error, isLoading } = useUser();
 
-    const { user, error, isLoading } = useUser();
-    
-    if(isLoading) return <div>Loading ...</div>;
-    if(error) return <div>{error.message}</div>;
-	
+	if (isLoading) return <div>Loading ...</div>;
+	if (error) return <div>{error.message}</div>;
+
 	//capture form data
 	const [previewSource, setPreviewSource] = useState("");
 	const [firstName, setFirstName] = useState("");
 	const [address, setAddress] = useState("");
 	const [email, setEmail] = useState("");
 	const [lastName, setLastName] = useState("");
-    const [fetchedUsers, setfetchedUsers] = useState([]);
+	const [fetchedUsers, setfetchedUsers] = useState([]);
 
 	//an object which will represent the form data to send to the server (req.body)
 	const body = {
@@ -31,8 +30,8 @@ function ProfileReg() {
 		image: previewSource,
 		user_bio: "",
 	};
-    // const body = firstName;
-    console.log(body);
+	// const body = firstName;
+
 	//when the user selects an image from their desktop, preview it in the browser
 	const handleFileInputChange = (e) => {
 		const file = e.target.files[0];
@@ -52,40 +51,38 @@ function ProfileReg() {
 	//stringify the body object defined above and send as req.body to server
 	const handleSubmit = async () => {
 		// if(firstName && lastName && address) {
-            await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
-                method: "POST",
-                body: JSON.stringify(body),
-                headers: { "Content-Type": "application/json" },
-            });
+		await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
+			method: "POST",
+			body: JSON.stringify(body),
+			headers: { "Content-Type": "application/json" },
+		});
 
-            setTimeout( async () => {
-                const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
-                const data = await res.json();
-                setfetchedUsers(data.payload);
-            }, 1000)
+		setTimeout(async () => {
+			const res = await fetch(
+				`https://it-crowd-project.herokuapp.com/api/users`
+			);
+			const data = await res.json();
+			setfetchedUsers(data.payload);
+		}, 1000);
 
-
-        // }
+		// }
 	};
 
-    // const nav;
-    // const listingsPage = [];
+	// const nav;
+	// const listingsPage = [];
 
-    // useEffect(() => {
-    //     const authorisedUser = fetchedUsers.find(aUser => aUser.email === user.email);
-    //     // const nav = authorisedUser.map( user => <Navbar />);
-    //     // const listingsPage = authorisedUser.map( user => <ListingsPage authUser={user}/>);
+	// useEffect(() => {
+	//     const authorisedUser = fetchedUsers.find(aUser => aUser.email === user.email);
+	//     // const nav = authorisedUser.map( user => <Navbar />);
+	//     // const listingsPage = authorisedUser.map( user => <ListingsPage authUser={user}/>);
 
-    //     return  listingsPage;
-    // }, [fetchedUsers])
+	//     return  listingsPage;
+	// }, [fetchedUsers])
 
-    
-
-    // encType="multipart/form-data" method="post" action="/users"
+	// encType="multipart/form-data" method="post" action="/users"
 	return (
 		<>
-            {/* {listingsPage ? listingsPage :   */}
-            
+			{/* {listingsPage ? listingsPage :   */}
 
 			<div className={styles.container}>
 				<h1>Fill in your details below...</h1>
@@ -99,7 +96,7 @@ function ProfileReg() {
 							type="text"
 							value={firstName}
 							onChange={(e) => setFirstName(e.target.value)}
-                            required
+							required
 						></textarea>
 						<label className={styles.label}>Last Name</label>
 						<textarea
@@ -109,7 +106,7 @@ function ProfileReg() {
 							type="text"
 							value={lastName}
 							onChange={(e) => setLastName(e.target.value)}
-                            required
+							required
 						></textarea>
 						<label className={styles.label}>Address</label>
 						<textarea
@@ -119,7 +116,7 @@ function ProfileReg() {
 							type="text"
 							value={address}
 							onChange={(e) => setAddress(e.target.value)}
-                            required
+							required
 						></textarea>
 						{/* <label className={styles.label}>Contact Number</label>
 						<textarea
@@ -145,26 +142,20 @@ function ProfileReg() {
 					<Button handleSubmit={handleSubmit} text="Submit" />
 				</div>
 			</div>
-            {/* } */}
+			{/* } */}
 		</>
 	);
 }
 
 export async function getServerSideProps() {
-    
-    const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
-    const data = await res.json();
-  
-    return {
-        props: 
-            { users: data.payload },
-    }
+	const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
+	const data = await res.json();
 
-    
-    
+	return {
+		props: { users: data.payload },
+	};
 }
 
 export default ProfileReg;
-
 
 //max chars for item description is 180

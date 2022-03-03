@@ -96,6 +96,7 @@ function GiveAwayModal(props) {
 									value={itemName}
 									onChange={(e) => setItemName(e.target.value)}
 									required
+									maxlength="20"
 								></textarea>
 								<h6>Category</h6>
 								<textarea

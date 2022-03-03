@@ -18,18 +18,12 @@ import { useUser } from "@auth0/nextjs-auth0";
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
 function ListingsPage({ users, listings }) {
-	const u = users;
 	const { user, error, isLoading } = useUser();
-
-	// console.log(u)
-	// console.log(users.);
 
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
 
-	const regUser = u.find((regUser) => regUser.email === user.email);
-
-	console.log(regUser);
+	const currentUser = users.find((currUser) => currUser.email === user.email);
 
 	return (
 		<>
@@ -46,7 +40,10 @@ function ListingsPage({ users, listings }) {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users} />
+			<Navbar
+				avatar={!currentUser ? user.picture : currentUser.avatar}
+				users={users}
+			/>
 			<div className={styles.searchbar}>
 				<Searchbar />
 			</div>
@@ -56,7 +53,7 @@ function ListingsPage({ users, listings }) {
 					<div key={listing.item_id}>
 						<Card
 							item_id={listing.id}
-							// user_id={listing.user_id}
+							user_id={listing.user_id}
 							first_name={listing.first_name}
 							last_name={listing.last_name}
 							email={listing.email}
@@ -75,6 +72,7 @@ function ListingsPage({ users, listings }) {
 							cloudinary_id={listing.cloudinary_id}
 							avatar={listing.avatar}
 							user_bio={listing.user_bio}
+							currentUser={currentUser}
 						/>
 					</div>
 				))}

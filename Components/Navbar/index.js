@@ -9,7 +9,6 @@ import Image from "next/image";
 import GiveAwayModal from "../GiveAwayModal";
 
 function Navbar({ avatar, users }) {
-	console.log(users);
 	//Auth0
 	const { user, error, isLoading } = useUser();
 

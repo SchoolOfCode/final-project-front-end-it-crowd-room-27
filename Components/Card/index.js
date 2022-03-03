@@ -28,7 +28,7 @@ function Card({
 	handleDelete,
 }) {
 	const [modalShow, setModalShow] = React.useState(false);
-
+	console.log(user_id);
 	return (
 		<div className={styles.cardContainer}>
 			<div className={styles.cardLeft}>
@@ -39,7 +39,7 @@ function Card({
 			<div className={styles.cardRight}>
 				<div className={styles.cardRightTop}>
 					<div className={styles.username}>
-						<Link href={`/profiles/${user_id}`} key={user_id}>
+						<Link href={`/users/${user_id}`} key={user_id}>
 							<h5 className={styles.profileLink}>
 								{first_name} {last_name}
 							</h5>
@@ -62,10 +62,9 @@ function Card({
 				</div>
 
 				<div className={styles.cardRightBottom}>
-					<div>
-						<h5>Location:</h5>
-						<p>{address}</p>
-					</div>
+					<h6>Location:</h6>
+					<p className={styles.address}>{address}</p>
+
 					<button
 						variant="primary"
 						onClick={() => setModalShow(true)}
@@ -73,7 +72,7 @@ function Card({
 					>
 						Details
 					</button>
-					{currentUser ? (
+					{currentUser.id === user_id ? (
 						<button
 							variant="primary"
 							onClick={() => handleDelete(item_id)}
