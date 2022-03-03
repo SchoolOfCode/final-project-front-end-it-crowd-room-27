@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index";
+
 import styles from "../styles/home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,7 +19,9 @@ export default function Home({ users }) {
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
 	console.log(user);
-	const regUser = users.find((rUser) => rUser.email === user.email);
+
+	const regUser = users.find((rUser) => rUser.email === user?.email);
+
 	return (
 		<div>
 			<Head>
@@ -30,12 +33,16 @@ export default function Home({ users }) {
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
 			</Head>
-			<Navbar avatar={!regUser ? user.picture : regUser.avatar} users={users} />
+			{/* when visiting the site for the first time, this component won't try and extract user data from auth0 that doesn't yet exist until after login (e.g. user.picture undefined on mount) */}
+
+			<Navbar
+				avatar={!regUser ? user?.picture : regUser.avatar}
+				users={users}
+			/>
 
 			<div className={styles.container}>
 				<Top />
 				<main className={styles.main}>
-					{/* {user ? <Reg/> : <List/>} */}
 					<Middle />
 					<Bottom />
 					<VeryBottom />

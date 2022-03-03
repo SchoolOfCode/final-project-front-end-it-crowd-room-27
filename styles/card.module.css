@@ -2,110 +2,109 @@
 /* -=-=-==-=-ONE PARENT CONTAINER WITH A LEFT AND RIGHT HALF=-=-=-=-=-=-=-=-=-=-==-=-=-=- */
 
 .cardContainer {
-  box-sizing: border-box;
-  padding: 0;
-  display: flex;
-  width: 32rem;
-  height: 20rem;
-  border-radius: 10px;
-  box-shadow: 1px 15px 60px 10px darkgray;
-  margin: 2em;
-  background-color: var(--card);
-  color: var(--text);
-  font-family: "Montserrat", sans-serif;
+	box-sizing: border-box;
+	padding: 0;
+	display: flex;
+	width: 32rem;
+
+	height: 20rem;
+	border-radius: 10px;
+	box-shadow: 1px 15px 60px 10px darkgray;
+	margin: 2em;
+	background-color: var(--card);
+	color: var(--text);
+	font-family: "Montserrat", sans-serif;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=LEFT HALF OF CARD =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 .cardLeft {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+   width: 50%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
 }
 
 .imgContainer {
-  height: 80%;
-  width: 80%;
-  object-fit: cover;
+   height: 80%;
+   width: 80%;
+   object-fit: cover;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=RIGHT HALF OF CARD =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-== */
 
 .cardRight {
-  margin: auto;
-  width: 50%;
-  height: 100%;
-  font-size: 1em;
-  display: flex;
-  flex-direction: column;
+   margin: auto;
+   width: 50%;
+   height: 100%;
+   font-size: 1em;
+   display: flex;
+   flex-direction: column;
 }
 .checked {
-  color: orange;
+   color: orange;
 }
 .cardRightTop {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 40%;
-  width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   height: 40%;
+   width: 100%;
 }
 
 .cardRightMiddle {
-	height: 40%;
-	width: 100%;
-	padding: 0;
-	overflow: hidden;
+   height: 40%;
+   width: 100%;
+   padding: 0;
+   overflow: hidden;
 }
 .cardRightBottom {
-	padding: 0;
-	height: 33%;
-	width: 100%;
+   padding: 0;
+   height: 33%;
+   width: 100%;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-GET PRECISE POSITIONING OF TEXT-=-==-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-= */
 .username {
-	transform: translate(0em, 1em);
-	font-weight: 800;
-	font-weight: bolder;
+   transform: translate(0em, 1em);
+   font-weight: 800;
+   font-weight: bolder;
 }
 .userImg img {
 	border-radius: 50%;
-	height: 50px;
-	width: 55px;
+	border: 5px solid var(--card);
+	height: 20%;
+	width: 120%;
 	object-fit: cover;
-	transform: translate(12em, -2.8em);
+	transform: translate(10em, -0.5em);
 }
+
 .stars {
 	transform: translate(0em, -0.8em);
-	
 }
 
 .itemName {
 	transform: translateY(-2.5em);
-
 }
 
 .expiry {
-  transform: translateY(-3em);
+   transform: translateY(-3em);
 }
 
 .descriptionText {
-	transform: translateY(0.5em);
-	line-height: 0.2px;
+   transform: translateY(0.5em);
+   line-height: 0.2px;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-==--=---=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==--=-=-=-=-=- */
 /* =--====-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=BUTTON=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 .btn_container {
-width: 8em;
-height: 3em;
-
+	width: 8em;
+	height: 3em;
 }
-
 
 .btn {
 	background-color: var(--button);
@@ -118,10 +117,9 @@ height: 3em;
 	font-size: 1em;
 	transform: translate(9.1em, -2.1em);
 	margin-top: 3em;
-
 }
 
 .btn:hover {
-  background-color: blueviolet;
-  box-shadow: 1px 5px 20px green;
+   background-color: blueviolet;
+   box-shadow: 1px 5px 20px green;
 }

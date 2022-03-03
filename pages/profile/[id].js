@@ -1,5 +1,11 @@
 // import React from "react";
+import React from "react";
 
+function Id() {
+  return <div>'hello world'</div>;
+}
+
+export default Id;
 // export const getServerSidePaths = async () => {
 //   const res = await fetch("https://it-crowd-project.herokuapp.com/api/users");
 //   // const res = await fetch("https://jsonplaceholder.typicode.com/users/");
