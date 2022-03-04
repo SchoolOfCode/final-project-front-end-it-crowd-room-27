@@ -166,8 +166,8 @@ function profile({ users, listings }) {
                 		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               		</a>
             	</Link> */}
-        {/* </div> */}
-        {/* <span className={`fa fa-camera ${styles.camera}`}></span>
+				{/* </div> */}
+				{/* <span className={`fa fa-camera ${styles.camera}`}></span>
           		<div className={styles.stars}>
             		<span className={`fa fa-star ${styles.checked}`}></span>
             		<span className={`fa fa-star ${styles.checked}`}></span>
@@ -175,7 +175,6 @@ function profile({ users, listings }) {
             		<span className={`fa fa-star ${styles.checked}`}></span>
             		<span class="fa fa-star"></span>
           		</div> */}
-
         {/* </div> */}
         <div className={styles.profileTopContainer}>
           <div className={styles.topContainer}>
@@ -383,7 +382,7 @@ function profile({ users, listings }) {
 // <h4 className={styles.title}>My Listings</h4>
 //  <div className={styles.itemsContainer}>
 {
-  /* USER ID FOR FETCHING ITEMS */
+	/* USER ID FOR FETCHING ITEMS */
 }
 
 //                 {updatedListings?.item_name ? updatedListings?.map((listing) => (
@@ -415,20 +414,20 @@ function profile({ users, listings }) {
 // }
 
 export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps() {
-    const usersRes = await fetch(
-      `https://it-crowd-project.herokuapp.com/api/users`
-    );
-    const usersData = await usersRes.json();
-    const listingsRes = await fetch(
-      `https://it-crowd-project.herokuapp.com/api/listings`
-    );
-    const listingsData = await listingsRes.json();
-    // By returning { props: { allUsers } }, the PostAuth component
-    // will receive `allUsers` as a prop at BUILD time
-    return {
-      props: { users: usersData.payload, listings: listingsData.payload },
-    };
-  },
+	async getServerSideProps() {
+		const usersRes = await fetch(
+			`https://it-crowd-project.herokuapp.com/api/users`
+		);
+		const usersData = await usersRes.json();
+		const listingsRes = await fetch(
+			`https://it-crowd-project.herokuapp.com/api/listings`
+		);
+		const listingsData = await listingsRes.json();
+		// By returning { props: { allUsers } }, the PostAuth component
+		// will receive `allUsers` as a prop at BUILD time
+		return {
+			props: { users: usersData.payload, listings: listingsData.payload },
+		};
+	},
 });
 export default profile;

@@ -50,9 +50,10 @@
 	flex-direction: column;
 }
 .checked {
-   color: orange;
+	color: orange;
 }
 .cardRightTop {
+	padding-top: 0.6em;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -63,13 +64,13 @@
 	cursor: pointer;
 }
 .cardRightMiddle {
-	height: 60%;
+	min-height: 40%;
+	padding: 0.1em;
 }
 .cardRightBottom {
-	height: 20%;
+	min-height: 20%;
 	display: flex;
 	flex-direction: row;
-	/* align-items: flex-end; */
 }
 .cardRightBottomRight,
 .cardRightBottomLeft {
@@ -116,16 +117,19 @@
 
 .location {
 	display: flex;
+	line-height: 20px;
 	height: 15%;
 }
 
 .descriptionText {
 	overflow: hidden;
+	line-height: 20px;
 	display: -webkit-box;
 	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 }
 .location p {
+	margin-top: 0.1em;
 	margin-left: 0.5em;
 }
 .location h6 {

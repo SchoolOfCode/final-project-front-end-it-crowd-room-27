@@ -7,13 +7,12 @@ import styles from "../styles/home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {
-
-  Banner,
-  SectionOne,
-  SectionTwo,
-  SectionThree,
-  SectionFour,
-  Copyright,
+	Banner,
+	SectionOne,
+	SectionTwo,
+	SectionThree,
+	SectionFour,
+	Copyright,
 } from "../Components/LandingPageComps/landingPageComps.js";
 
 export default function Home({ users }) {
@@ -60,7 +59,6 @@ export default function Home({ users }) {
       </main>
     </div>
   );
-
 }
 
 export const getServerSideProps = async () => {
