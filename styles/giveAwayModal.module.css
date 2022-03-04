@@ -17,7 +17,7 @@
 }
 
 .btn:hover {
-	background-color: blueviolet;
+	background-color: var(--button-hover);
 	box-shadow: 1px 5px 20px green;
 }
 

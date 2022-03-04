@@ -15,11 +15,11 @@
 	color: white;
 	font-size: 1em;
 	transform: translate(-1em, -0.1em);
+	transition: all ease-in-out 200ms;
 }
 
 .btn:hover {
-	background-color: blueviolet;
-	box-shadow: 1px 5px 20px green;
+	background-color: var(--button-hover);
 }
 
 .avatar img {
@@ -48,4 +48,21 @@
 	width: 50%;
 
 	text-align: left;
+}
+
+.footer {
+	/* border: 1px solid green; */
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.footerRight,
+.footerLeft {
+	/* border: 1px solid red; */
+	width: 50%;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	justify-content: space-between;
 }
