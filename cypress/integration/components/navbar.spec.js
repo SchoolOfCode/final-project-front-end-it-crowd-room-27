@@ -16,12 +16,12 @@ describe("user visits landing page", () => {
          cy.get("#__next").find("li").first().should("have.text", "Home");
       });
 
-      it("should render the About page once clicking on About on navbar", () => {
-         cy.get("#__next").find("li").should("have.text", "About");
-      });
+      // it("should render the About page once clicking on About on navbar", () => {
+      //    cy.get("#__next").find("li").should("have.text", "About");
+      // });
 
-      it("should render the blog once clicking on navbar", () => {
-         cy.get("#__next").find("li").should("have.text", "Blog");
-      });
+      // it("should render the blog once clicking on navbar", () => {
+      //    cy.get("#__next").find("li").should("have.text", "Blog");
+      // });
    });
 });
