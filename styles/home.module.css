@@ -1,6 +1,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
 
+.container {
+  background: var(--background);
+}
 
 /* .main {
   height: 100vh;

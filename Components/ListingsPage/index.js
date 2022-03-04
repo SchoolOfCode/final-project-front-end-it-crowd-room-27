@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import styles from "../../styles/listings.module.css";
 import Searchbar from "../../Components/Searchbar";
@@ -18,8 +18,8 @@ import { useUser } from "@auth0/nextjs-auth0";
 // pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
 
 function ListingsPage({ users, listings }) {
-
 	const { user, error, isLoading } = useUser();
+	const [searchedListings, setSearchedListings] = useState(listings);
 
 	if (isLoading)
 		return (
@@ -34,6 +34,20 @@ function ListingsPage({ users, listings }) {
 	if (error) return <div>{error.message}</div>;
 
 	const currentUser = users.find((currUser) => currUser.email === user.email);
+
+	const filterListings = (e) => {
+		const searchedLetters = e.target.value.toLowerCase();
+		const filteredListings = listings.filter((listing) => {
+			return (
+				listing.full_name.toLowerCase().includes(searchedLetters) ||
+				listing.category.toLowerCase().includes(searchedLetters) ||
+				listing.item_name.toLowerCase().includes(searchedLetters) ||
+				listing.address.toLowerCase().includes(searchedLetters) ||
+				listing.date_added.toLowerCase().includes(searchedLetters)
+			);
+		});
+		setSearchedListings(filteredListings);
+	};
 
 	return (
 		<>
@@ -55,17 +69,16 @@ function ListingsPage({ users, listings }) {
 				users={users}
 			/>
 			<div className={styles.searchbar}>
-				<Searchbar />
+				<Searchbar filterListings={filterListings} />
 			</div>
 			<div className={styles.container}>
 				{/* mapping over our fetch GET request from users and items database table, to render each item on listinngs page */}
-				{listings.map((listing) => (
+				{searchedListings.map((listing) => (
 					<div key={listing.item_id}>
 						<Card
 							item_id={listing.id}
 							user_id={listing.user_id}
-							first_name={listing.first_name}
-							last_name={listing.last_name}
+							full_name={listing.full_name}
 							email={listing.email}
 							address={listing.address}
 							is_active={listing.is_active}
