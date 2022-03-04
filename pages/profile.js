@@ -5,7 +5,6 @@ import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
 import Head from "next/head";
 
-
 function profile({ users, listings }) {
 	
 	const { user, error, isLoading } = useUser();
@@ -135,7 +134,6 @@ const handleFinishProfile = () => {
 	setButtonsToggle(!buttonsToggle);
 }
 
-
 function handleName(event) {
 	const name = event.target.value;
 	setFullName(name);
@@ -148,7 +146,6 @@ function handleBio(event) {
 	const bio = event.target.value;
 	setUserBio(bio);
 }
-
 
     return (
         <div className={styles.mainContainer}>
@@ -187,7 +184,6 @@ function handleBio(event) {
             		<span class="fa fa-star"></span>
           		</div> */}
             
-			
 			{/* </div> */}
                 <div className={styles.profileTopContainer}>
 					<div className={styles.topContainer}>
@@ -195,6 +191,7 @@ function handleBio(event) {
 				  			<img src="https://i0.wp.com/libg.s3.us-east-2.amazonaws.com/download/A-Sea-Of-Clouds-And-Mountains.jpg" className={styles.bannerImage}/>
 							<div className={styles.cover}>
 								<img className={styles.userImg} src={!currentUser ? user.picture : currentUser.avatar} />
+
 							</div>
 						</div>
 
@@ -282,9 +279,57 @@ function handleBio(event) {
 										userBio : 
 										<textarea type="text" onChange={handleBio} width="250px" height="150px" maxLength="75" value={userBio} /> }
 									</p>
-
                         </div>
 					</div>
+
+					{/* <ProvideInfoForm
+						showEditModal={showEditModal}
+						setShowEditModal={setShowEditModal}
+					/> */}
+				</div>
+			</div>
+			<div className={styles.btnSection}>
+				<button className={styles.giveBtn}>Give Item</button>
+				<button className={styles.searchBtn}>Search Item</button>
+			</div>
+
+			<h2 className={styles.title}>My Listing</h2>
+
+			{/*  */}
+			<div className={`${styles.flexItems} ${styles.flexItem3}`}>
+				{/* USER ID FOR FETCHING ITEMS */}
+				{/* <Card userID={id} /> */}
+
+				{updatedListings?.map((listing) => (
+					<Card
+						user={user}
+						item_id={listing.item_id}
+						user_id={listing.user_id}
+						category={listing.category}
+						item_name={listing.item_name}
+						item_description={listing.item_description}
+						use_by_date={listing.use_by_date}
+						date_added={listing.date_added}
+						quantity={listing.quantity}
+						item_image={listing.item_image}
+						is_reserved={listing.is_reserved}
+						availability={listing.availability}
+						time_slot={listing.time_slot}
+						cloudinary_id={listing.cloudinary_id}
+						avatar={listing.avatar}
+						user_bio={listing.user_bio}
+						currentUser={currentUser}
+					/>
+				))}
+			</div>
+		</div>
+		// </div>
+	);
+}
+
+//Fetching data to PROPS
+// export async function getServerSideProps() {
+
 
 
 					<h4 className={styles.title}>My Listings</h4> 

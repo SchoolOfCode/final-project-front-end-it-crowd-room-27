@@ -1,7 +1,7 @@
 import React from "react";
 
 function Index() {
-  return <div>index</div>;
+
 }
 
 export default Index;
@@ -26,7 +26,7 @@ export default Index;
 // 	};
 // };
 
-// const Profiles = ({ profiles }) => {
+// const Profile = ({ user }) => {
 // 	const { user, error, isLoading } = useUser();
 
 // 	if (isLoading) return <div>Loading ...</div>;

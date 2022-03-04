@@ -18,7 +18,6 @@ export default function Home({ users }) {
 	const { user, error, isLoading } = useUser();
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
-	console.log(user);
 
 	const regUser = users.find((rUser) => rUser.email === user?.email);
 

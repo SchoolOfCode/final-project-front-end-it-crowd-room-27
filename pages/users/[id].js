@@ -89,14 +89,6 @@ function Profile({ users, listings, currentUser }) {
 	// };
 
 
-
-
-
-
-
-
-
-
     useEffect(() => {
         setUpdatedListings(userListings);
     }, []);
@@ -135,10 +127,6 @@ const handleEdit = () => {
 const handleFinishProfile = () => {
 	setButtonsToggle(!buttonsToggle);
 }
-
-
-
-
 
 const sign = false;
 const nameLine = currentUser ? `  ${currentUser.first_name} ${currentUser.last_name}` : null;
@@ -401,4 +389,3 @@ const bioLine = currentUser ? `  ${currentUser.user_bio}` : null;
 // }
 
 export default Profile;
-
