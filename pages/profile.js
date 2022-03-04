@@ -148,6 +148,7 @@ function handleBio(event) {
 }
 
     return (
+		<>
         <div className={styles.mainContainer}>
             <Head>
                 <title>iGive</title>
@@ -295,7 +296,7 @@ function handleBio(event) {
 
 			<h2 className={styles.title}>My Listing</h2>
 
-			{/*  */}
+			
 			<div className={`${styles.flexItems} ${styles.flexItem3}`}>
 				{/* USER ID FOR FETCHING ITEMS */}
 				{/* <Card userID={id} /> */}
@@ -322,8 +323,8 @@ function handleBio(event) {
 					/>
 				))}
 			</div>
-		</div>
-		// </div>
+			</>
+		
 	);
 }
 
@@ -332,37 +333,37 @@ function handleBio(event) {
 
 
 
-					<h4 className={styles.title}>My Listings</h4> 
-					 <div className={styles.itemsContainer}>
+					// <h4 className={styles.title}>My Listings</h4> 
+					//  <div className={styles.itemsContainer}>
                 {/* USER ID FOR FETCHING ITEMS */}
                 
-                {updatedListings?.item_name ? updatedListings?.map((listing) => (
-                    <Card
-						user={user}
-                        handleDelete={handleDelete}
-                        item_id={listing.item_id}
-                        user_id={listing.user_id}
-                        category={listing.category}
-                        item_name={listing.item_name}
-                        item_description={listing.item_description}
-                        use_by_date={listing.use_by_date}
-                        date_added={listing.date_added}
-                        quantity={listing.quantity}
-                        item_image={listing.item_image}
-                        is_reserved={listing.is_reserved}
-                        availability={listing.availability}
-                        time_slot={listing.time_slot}
-                        cloudinary_id={listing.cloudinary_id}
-                        avatar={listing.avatar}
-                        user_bio={listing.user_bio}
-                        currentUser={currentUser}
-                    />
-                )) : <h3 style={{textAlign: 'center', paddingTop: '.8em'}}>There are no items to give away yet... (((</h3>}
-            </div>
-        </div>
-    </div>
-    );
-}
+//                 {updatedListings?.item_name ? updatedListings?.map((listing) => (
+//                     <Card
+// 						user={user}
+//                         handleDelete={handleDelete}
+//                         item_id={listing.item_id}
+//                         user_id={listing.user_id}
+//                         category={listing.category}
+//                         item_name={listing.item_name}
+//                         item_description={listing.item_description}
+//                         use_by_date={listing.use_by_date}
+//                         date_added={listing.date_added}
+//                         quantity={listing.quantity}
+//                         item_image={listing.item_image}
+//                         is_reserved={listing.is_reserved}
+//                         availability={listing.availability}
+//                         time_slot={listing.time_slot}
+//                         cloudinary_id={listing.cloudinary_id}
+//                         avatar={listing.avatar}
+//                         user_bio={listing.user_bio}
+//                         currentUser={currentUser}
+//                     />
+//                 )) : <h3 style={{textAlign: 'center', paddingTop: '.8em'}}>There are no items to give away yet... (((</h3>}
+//             </div>
+//         </div>
+//     </div>
+//     );
+// }
 
 export const getServerSideProps = withPageAuthRequired({
     async getServerSideProps() {
