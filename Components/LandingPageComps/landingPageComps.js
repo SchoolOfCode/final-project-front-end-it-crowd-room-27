@@ -77,20 +77,20 @@ export function SectionThree() {
 
           <div className={styles.card}>
             <p className={styles.comment_author}>
-              "I used to throw away veggies that were about to expire. Now I
-              save money and reduce food waste"
+              "Great app to use I have reduced my food waste by 50% since I
+              started using it, recommended 100%"
             </p>
             <span className={styles.raiting_author}>5 stars</span>
-            <p className={styles.feedback_author}>Mike From Derby</p>
+            <p className={styles.feedback_author}>Sarah From London</p>
           </div>
 
           <div className={styles.card}>
             <p className={styles.comment_author}>
-              "I used to throw away veggies that were about to expire. Now I
-              save money and reduce food waste"
+              "Excellant idea, I feed bad when I have to throw away food, why
+              not give to someone who needs it! "
             </p>
             <span className={styles.raiting_author}>5 stars</span>
-            <p className={styles.feedback_author}>Mike From Derby</p>
+            <p className={styles.feedback_author}>Amy From Liverpool</p>
           </div>
         </div>
       </div>
