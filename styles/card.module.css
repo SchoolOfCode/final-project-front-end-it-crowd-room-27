@@ -50,7 +50,7 @@
 	flex-direction: column;
 }
 .checked {
-	color: orange;
+   color: orange;
 }
 .cardRightTop {
 	display: flex;
@@ -112,9 +112,6 @@
 .itemName {
 	align-self: flex-start;
 	transform: translateY(-3.5em);
-}
-
-.expiry {
 }
 
 .location {

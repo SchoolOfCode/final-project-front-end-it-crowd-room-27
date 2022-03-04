@@ -17,19 +17,10 @@
 }
 
 .container {
-	/* height: 30%;
-	width: 100vw; */
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	/* background-color: var(--navbar);
-	color: white; */
-	/* padding: 0 10px; */
 	font-size: 1em;
-	/* box-shadow: 1px 10px 20px black; */
-	/* font-family: "Montserrat", sans-serif;
-	z-index: 2; */
-	/* border: 1px solid yellow; */
 }
 
 .menu {
@@ -49,41 +40,57 @@
 	font-size: 1em;
 	text-decoration: none;
 	color: white;
-	transition: all ease-in-out 230ms;
+	transition: all ease-in-out 150ms;
 }
 
 .menuItem a:hover {
-	color: rgba(255, 255, 255, 0.6);
+	/* color: rgba(255, 255, 255, 0.6); */
+  color: var(--button);
 }
 
 .logo {
-	float: left;
+  float: left;
+  display: flex;
+  flex-direction: row;
 }
 
 .userImg img {
-	border-radius: 50%;
-	height: 6em;
-	width: 6em;
-	object-fit: cover;
+  border: 1.3px solid var(--button);
+  border-radius: 50%;
+  height: 6em;
+  width: 6em;
+  object-fit: cover;
 }
 
-/*.GiveItemButton {
-	
-}*/
+/* .middle_container {
+  display: flex;
+  align-items: center;
+  margin-left: 2em;
+	/* padding-top: 10%; */
+  /* height: 100%; */
+  /* position: sticky; */
+  /* border: 1px solid red; */
+/* } */
+
+.GiveItemButton {
+  display: flex;
+  align-items: center;
+  padding: 3.2em;
+  height: 50%;
+}
 
 .btn {
-	background-color: var(--button);
-	height: 2em;
-	width: 6em;
-	/* border-radius: 10px; */
-	cursor: pointer;
-	border: none;
-	color: white;
-	font-size: 1em;
-	/* transform: translate(9.1em, -3em); */
+  border: none;
+  cursor: pointer;
+  font-size: 1em;
+	text-decoration: none;
+  color: white;
+	transition: all ease-in-out 150ms;
+  background: inherit;
+  align-items: center;
 }
 
 .btn:hover {
-	background-color: blueviolet;
-	box-shadow: 1px 5px 20px green;
+  /* color: rgba(255, 255, 255, 0.6); */
+  color: var(--button);
 }
