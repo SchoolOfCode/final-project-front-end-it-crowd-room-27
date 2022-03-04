@@ -2,11 +2,12 @@
 
 /* =-=-==-=--=-=-==-=--=-=-=-=-=-=-=-=-=-=COLORS=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 :root {
-	--background: #f6fbf2;
+	--background: #fff6e5;
 	--navbar: #4e505d;
 	--text: #4e505d;
 	--button: #2dc9be;
 	--card: #ffedcb;
+	
 
 	--button-hover: #23a198;
 	--button-delete-hover: #a31d2e;
@@ -24,7 +25,6 @@
 	--color-seven-opa: rgba(0, 0, 0, 0.6);
 	--font-style-1: "Poppins", sans-serif;
 	--font-style-2: sans-serif;
-	--background: rgb(255, 255, 255);
 	--background-sub-head: rgba(255, 255, 255, 0.8);
 	--text-primary: black;
 	--text-secondary: white;
@@ -41,11 +41,11 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: "Montserrat", sans-serif;
-	background-color: var(--background);
+	background:  var(--background);
 }
 
 .menuItem > a {
-	color: white !important;
+	/* color: white !important; */
 	text-decoration: none !important;
 }
 
