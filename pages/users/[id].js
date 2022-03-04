@@ -4,6 +4,7 @@ import Card from "../../Components/Card/index.js";
 import Navbar from "../../Components/Navbar/index.js";
 import styles from "../../styles/profile.module.css";
 import Head from "next/head";
+
 // import EditProfileModal from "../Components/EditProfileModal";
 
 export const getStaticPaths = async () => {
@@ -28,12 +29,12 @@ export const getStaticProps = async (ctx) => {
 	const dbUsersRes = await fetch(
 		"https://it-crowd-project.herokuapp.com/api/users"
 	);
-	const dbUsersData = dbUsersRes.json();
+	const dbUsersData = await dbUsersRes.json();
 
 	const dbListingsRes = await fetch(
 		"https://it-crowd-project.herokuapp.com/api/listings"
 	);
-	const dbListingsData = dbListingsRes.json();
+	const dbListingsData = await dbListingsRes.json();
 	console.log(dbListingsData);
 
 	const staticRes = await fetch(
@@ -45,26 +46,29 @@ export const getStaticProps = async (ctx) => {
 	return {
 		props: {
 			currentUser: staticData.payload[0],
-			listings: JSON.parse(dbListingsData),
-			users: JSON.parse(dbUsersData),
+			listings: dbListingsData.payload,
+			users: dbUsersData.payload,
 		},
 	};
 };
 
 function Profile({ users, listings, currentUser }) {
+	console.log(currentUser.id);
+
+	const userListings = listings.filter(
+		(items) => items.user_id === currentUser.id
+	);
+
 	useEffect(() => {
 		setUpdatedListings(userListings);
 	}, []);
+
 	const [editProfileModalShow, setEditProfileModalShow] = React.useState(false);
 	const [updatedListings, setUpdatedListings] = useState(listings);
 	const { user, error, isLoading } = useUser();
 
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
-
-	const userListings = listings.filter(
-		(items) => items.user_id === currentUser.id
-	);
 
 	const handleDelete = async (id) => {
 		console.log(id);
@@ -179,6 +183,7 @@ function Profile({ users, listings, currentUser }) {
 
 				{updatedListings?.map((listing) => (
 					<Card
+						user={user}
 						handleDelete={handleDelete}
 						item_id={listing.item_id}
 						user_id={listing.user_id}

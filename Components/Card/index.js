@@ -4,6 +4,7 @@ import PickUpModal from "../PickUpModal";
 import Link from "next/link";
 
 function Card({
+	user,
 	item_id,
 	user_id,
 	first_name,
@@ -27,8 +28,8 @@ function Card({
 	currentUser,
 	handleDelete,
 }) {
-	const [modalShow, setModalShow] = React.useState(false);
 	console.log(user_id);
+	const [modalShow, setModalShow] = React.useState(false);
 	return (
 		<div className={styles.cardContainer}>
 			<div className={styles.cardLeft}>
@@ -44,6 +45,13 @@ function Card({
 								{first_name} {last_name}
 							</h5>
 						</Link>
+						<div>
+							<div
+								className={`${styles.offline} ${
+									is_active ? styles.online : ""
+								}`}
+							></div>
+						</div>
 						<div className={styles.stars}>
 							<span className={`fa fa-star ${styles.checked}`}></span>
 							<span className={`fa fa-star ${styles.checked}`}></span>
@@ -57,30 +65,36 @@ function Card({
 					</div>
 					<h5 className={styles.itemName}>{item_name}</h5>
 				</div>
+
 				<div className={styles.cardRightMiddle}>
 					<p className={styles.descriptionText}>{item_description}</p>
 				</div>
-
-				<div className={styles.cardRightBottom}>
+				<div className={styles.location}>
 					<h6>Location:</h6>
-					<p className={styles.address}>{address}</p>
-
-					<button
-						variant="primary"
-						onClick={() => setModalShow(true)}
-						className={styles.btn}
-					>
-						Details
-					</button>
-					{currentUser.id === user_id ? (
+					<p>{address}</p>
+				</div>
+				<div className={styles.cardRightBottom}>
+					<div className={styles.cardRightBottomLeft}>
+						{user && currentUser.email === user.email ? (
+							<button
+								variant="primary"
+								onClick={() => handleDelete(item_id)}
+								className={styles.deleteBtn}
+							>
+								Delete
+							</button>
+						) : null}
+					</div>
+					<div className={styles.cardRightBottomRight}>
 						<button
 							variant="primary"
-							onClick={() => handleDelete(item_id)}
-							className={styles.deleteBtn}
+							onClick={() => setModalShow(true)}
+							className={styles.btn}
 						>
-							Delete
+							Details
 						</button>
-					) : null}
+					</div>
+
 					<PickUpModal
 						item_id={item_id}
 						user_id={user_id}

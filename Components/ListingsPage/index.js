@@ -20,7 +20,16 @@ import { useUser } from "@auth0/nextjs-auth0";
 function ListingsPage({ users, listings }) {
 	const { user, error, isLoading } = useUser();
 
-	if (isLoading) return <div>Loading ...</div>;
+	if (isLoading)
+		return (
+			<div class="lds-ring">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
+		);
+
 	if (error) return <div>{error.message}</div>;
 
 	const currentUser = users.find((currUser) => currUser.email === user.email);

@@ -158,4 +158,3 @@ export async function getServerSideProps() {
 
 export default ProfileReg;
 
-//max chars for item description is 180

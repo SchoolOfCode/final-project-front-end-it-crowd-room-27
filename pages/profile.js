@@ -152,7 +152,7 @@ function profile({ users, listings }) {
 
 				{updatedListings?.map((listing) => (
 					<Card
-						handleDelete={handleDelete}
+						user={user}
 						item_id={listing.item_id}
 						user_id={listing.user_id}
 						category={listing.category}

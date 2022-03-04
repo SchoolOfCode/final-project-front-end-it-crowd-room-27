@@ -79,9 +79,9 @@ function GiveAwayModal(props) {
 			</Modal.Header>
 			<Modal.Body className={styles.body}>
 				<div className={styles.bodyLeft}>
-					<div></div>
-
-					{previewSource && <img src={previewSource}></img>}
+					<div className={styles.imgContainer}>
+						{previewSource ? <img src={previewSource}></img> : null}
+					</div>
 				</div>
 				<div className={styles.bodyRight}>
 					<div className={styles.container}>
@@ -96,7 +96,7 @@ function GiveAwayModal(props) {
 									value={itemName}
 									onChange={(e) => setItemName(e.target.value)}
 									required
-									maxlength="20"
+									maxlength="17"
 								></textarea>
 								<h6>Category</h6>
 								<textarea

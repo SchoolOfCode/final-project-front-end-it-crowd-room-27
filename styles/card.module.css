@@ -26,12 +26,17 @@
 }
 
 .imgContainer {
-	width: 80%;
-	height: 80%;
+	width: 90%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	background: var(--navbar);
+	align-items: center;
 }
 .imgContainer img {
-	height: 100%;
-	width: 100%;
+	align-items: center;
+	height: 98%;
+	width: 98%;
 	object-fit: cover;
 }
 
@@ -51,21 +56,30 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	height: 20%;
+	height: 25%;
 }
 
 .profileLink {
 	cursor: pointer;
 }
 .cardRightMiddle {
-	height: 40%;
+	height: 60%;
 }
 .cardRightBottom {
-	height: 25%;
-
+	height: 20%;
 	display: flex;
 	flex-direction: row;
 	/* align-items: flex-end; */
+}
+.cardRightBottomRight,
+.cardRightBottomLeft {
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -103,18 +117,30 @@
 .expiry {
 }
 
+.location {
+	display: flex;
+	height: 15%;
+}
+
 .descriptionText {
 	overflow: hidden;
 	display: -webkit-box;
-	-webkit-line-clamp: 5;
+	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 }
+.location p {
+	margin-left: 0.5em;
+}
+.location h6 {
+	margin-top: 0.1em;
+}
+
 .address {
 	padding: 0;
-	margin-left: 0.5em;
+	margin-left: 0.6em;
 	overflow: hidden;
 	display: -webkit-box;
-	-webkit-line-clamp: 1;
+	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-==--=---=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==--=-=-=-=-=- */
@@ -133,8 +159,6 @@
 	border: none;
 	color: white;
 	font-size: 1em;
-	transform: translate(1.8em, 2.5em);
-	margin-top: 3em;
 	transition: all ease-in-out 200ms;
 }
 
@@ -151,8 +175,6 @@
 	border: none;
 	color: white;
 	font-size: 1em;
-	transform: translate(9.1em, -2.1em);
-	margin-top: 3em;
 	transition: background-color ease-in-out 200ms;
 }
 
