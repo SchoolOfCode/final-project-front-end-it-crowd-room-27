@@ -29,22 +29,20 @@ function Navbar({ avatar, users }) {
 					</a>
 				</Link>
 				
-				<div className={styles.middle_container}>
-				<div className={styles.GiveItemButton}>
-					<button
-						variant="primary"
-						onClick={() => setGiveItemModalShow(true)}
-						className={styles.btn}
-					>
-						Give Item
-					</button>
-					<GiveAwayModal
-						users={users}
-						show={giveItemModalShow}
-						onHide={() => setGiveItemModalShow(false)}
-					/>
-				</div>
-			</div>
+					<div className={styles.GiveItemButton}>
+						<button
+							variant="primary"
+							onClick={() => setGiveItemModalShow(true)}
+							className={styles.btn}
+						>
+							Give Item
+						</button>
+						<GiveAwayModal
+							users={users}
+							show={giveItemModalShow}
+							onHide={() => setGiveItemModalShow(false)}
+						/>
+					</div>
 			</div>
 			
 			<div className={styles.container}>

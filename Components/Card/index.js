@@ -4,6 +4,8 @@ import PickUpModal from "../PickUpModal";
 import Link from "next/link";
 
 function Card({
+	user,
+	handleDelete,
 	item_id,
 	user_id,
 	first_name,
@@ -40,7 +42,7 @@ function Card({
 			<div className={styles.cardRight}>
 				<div className={styles.cardRightTop}>
 					<div className={styles.username} style={boldText}>
-						<Link href={`/profiles/${user_id}`} key={user_id}>
+						<Link href={`/users/${user_id}`} key={user_id}>
 							<a>
 								<h5>
 									{first_name}
@@ -79,6 +81,17 @@ function Card({
 					>
 						Details
 					</button>
+					
+					{user && currentUser.email === user.email ? (
+                            <button
+                                variant="primary"
+                                onClick={() => handleDelete(item_id)}
+                                className={styles.deleteBtn}
+                            >
+                                Delete
+                            </button>
+                    ) : null}
+
 					<PickUpModal
 						item_id={item_id}
 						user_id={user_id}

@@ -32,6 +32,9 @@ export default function Home({ users }) {
 					rel="stylesheet"
 					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 				></link>
+				<link rel="preconnect" href="https://fonts.googleapis.com"/>
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+				<link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap" rel="stylesheet"/>
 			</Head>
 			{/* when visiting the site for the first time, this component won't try and extract user data from auth0 that doesn't yet exist until after login (e.g. user.picture undefined on mount) */}
 
