@@ -217,7 +217,7 @@ function Profile({ users, listings, currentUser }) {
 						</div>
 
 						{/* EDIT PROFILE SET OF BUTTONS */}
-						{currentUser ? (
+						{user && currentUser?.email === user.email ? (
 							<div className={styles.buttons}>
 								{/* <p className={styles.editBtn}>Edit</p> */}
 
