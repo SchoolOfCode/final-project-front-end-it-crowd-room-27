@@ -5,16 +5,16 @@
 	width: 32rem;
 	height: 20rem;
 	border-radius: 10px;
-	box-shadow: 1px 15px 25px #404040;
+	box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 	margin: 2em;
 	background-color: var(--card);
 	color: var(--text);
-	transition: box-shadow ease-in-out 200ms;
+	transition: box-shadow ease-in-out 250ms;
 }
 .cardContainer:hover {
-	box-shadow: 2px 20px 50px #404040;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
 }
-
+/* box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; */
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=LEFT HALF OF CARD =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 .cardLeft {
@@ -100,8 +100,8 @@
 
 .userImgContainer img {
 	border-radius: 50%;
-	height: 100%;
-	width: 100%;
+	height: 60px;
+	width: 60px;
 	object-fit: cover;
 }
 

@@ -10,57 +10,12 @@
   justify-content: space-evenly;
 }
 
-.flexItems {
-  margin: 10px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid red;
-}
-
-.flexItem1 {
-  /* position: relative; */
-  min-height: 400px;
-  min-width: 20%;
-  flex-shrink: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.flexItem2 {
-  height: 50%;
-  width: 50%;
-  border: 1px solid red;
-}
-
-.flexItem4 {
-  height: 60%;
-  min-width: 50%;
-  /* position: relative; */
-  /* width: 900px; */
-
-  display: flex;
-  flex-wrap: wrap;
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-  background-color: white;
-  /* opacity: 0.7; */
-  border-radius: 4px;
-}
-
-.flexItem3 {
-  min-height: 100%;
-  min-width: 90%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-
 /* PROFILE CARD */
 
 .profileTitle {
-  margin-top: 1em;
+  margin-top: .8em;
   margin-bottom: 0.3em;
-  margin-left: 1em;
+  /* margin-left: 1em; */
 
   font-size: 1em;
 }
@@ -95,10 +50,10 @@
   transform: translate(17.5em, 1em);
 }
 
-.editBtn:hover {
+/* .editBtn:hover {
   background-color: blueviolet;
   box-shadow: 1px 5px 20px green;
-}
+} */
 
 /* BIO BOX */
 
@@ -121,6 +76,20 @@
   border: none;
   color: white;
   font-size: 1.5em;
+}
+
+.finishProfile {
+  cursor: pointer;
+  margin: .3em 0;
+  padding: .5em .7em;
+  border: .5px solid gray;
+  border-radius: 10px;
+  background: var(--button-delete);
+  transition: all ease-in-out 200ms;
+}
+
+.finishProfile:hover {
+  background: var(--button-delete-hover);
 }
 
 .title {
@@ -167,40 +136,30 @@
 
  /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
-/* .mainContainer {
-  
-} */
+
 
 .profileTopContainer {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: #ECF0F1;
+  background: var(--background);;
   margin: 0;
   padding: 0;
-
-  border: 1px solid red;
 }
 
 .topContainer {
   display: flex;
   flex-direction: column;
   width: 95%;
-  background: white;
+  background: var(--card);
   border-radius: 15px;
   margin: 0 auto;
   margin-top: 1em;
   padding-bottom: 3em;
-  /* position: relative; */
-  
-
-  /* border: 1px solid red; */
 }
 
 .bannerContainer {
-  /* width: 100%; */
-  /* height: 120px; */
   border-radius: 15px;
   position: relative;
   display: inline;
@@ -221,7 +180,6 @@
 
 .imageContainer {
   width: 30%;
-  border: 1px solid red;
   top: 50%;
 }
 
@@ -232,20 +190,18 @@
  .infoContainer {
   padding: 2em 0;
   width: auto;
-  /* border: 1px solid red; */
 }
 
 .bioBox {
   width: 70%;
   height: 10em;
   float: right;
-  /* border: 1px solid red; */
-  background-color: white;
+  background: #ECF0F1;;
   border-radius: 4px;
   margin-top: 2em;
   margin-left: 10em;
-  /* padding-top: 1.5em; */
   border: 1px dotted gray;
+  padding: 0 0 0 .7em;
 }
 
 .bioBox p textarea {
@@ -253,6 +209,7 @@
   height: 100px;
   padding: .5em;
   margin-left: 1.2em;
+  
 }
 
 .btn {
@@ -261,18 +218,25 @@
   padding: .5em .7em;
   border: .5px solid gray;
   border-radius: 10px;
+  background: var(--button);
+  transition: all ease-in-out 200ms;
+}
+
+.btn:hover {
+  background: var(--button-hover);
 }
 
 .itemsContainer {
   display: flex;
   flex-direction: column;
   width: 95%;
-  background: white;
+  background: var(--card);
   border-radius: 15px;
   margin: 0 auto;
   margin-top: 1em;
   margin-bottom: 2.3em;
   padding-bottom: 3em;
+  padding-top: 2em;
 }
 
 .title {
@@ -290,7 +254,7 @@
 }
 
 .userImg {
-  border: 3px solid white;
+  border: 3px solid var(--card);
   border-radius: 50%;
   object-fit: cover;
   width: 135px;
@@ -322,54 +286,36 @@
 
 .buttons {
   margin-top: 1em;
-  padding-bottom: 25px;
+  padding: 0;
+  margin: 0;
 }
 
 .buttonsSet {
   /* margin-top: 1em; */
   display: flex;
-  flex-direction: column;
+  padding: 0;
 }
 
 .btn {
   margin-right: 1em;
+  /* border: 1px solid red; */
 }
 
-
-
-
- /* .profileTopContainer {
-   border: 1px solid blue;
-   width: 80%;
-   
- } */
-
-/* .profileContainer {
-  display: flex;
-  flex-direction: column;
-
-} */
-
- /* .imageContainer {
-  border: 1px solid red;
-  width: 100%;
- } */
-
- 
-
  .profileInfoBox {
-  border: 1px solid red;
   height: 50%;
   width: 30%;
   padding: 2em 0;
   /* width: 400px; */
-  /* display: flex; */
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   /* flex-wrap: wrap; */
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-  background-color: white;
+  background: var(--background);
   /* opacity: 0.7; */
   border-radius: 4px;
-  grid-area: info;
+  /* grid-area: info; */
 } 
 
+.mainContainer {
+  background: var(--background);
+}

@@ -139,7 +139,7 @@ function profile({ users, listings }) {
   }
 
   return (
-    <>
+    <div>
       <div className={styles.mainContainer}>
         <Head>
           <title>iGive</title>
@@ -239,11 +239,10 @@ function profile({ users, listings }) {
               </div>
 
               {/* EDIT PROFILE SET OF BUTTONS */}
-              {currentUser ? (
+              {user && currentUser?.email === user.email ? (
                 <div className={styles.buttons}>
                   {/* <p className={styles.editBtn}>Edit</p> */}
-
-                  {!buttonsToggle ? (
+				{!buttonsToggle ? (
                     <button
                       variant="primary"
                       onClick={() => handleBackFromEdit()}
@@ -285,7 +284,7 @@ function profile({ users, listings }) {
                     <button
                       variant="primary"
                       onClick={() => handleFinishProfile()}
-                      className={styles.btn}
+                      className={styles.finishProfile}
                     >
                       Finish profile
                     </button>
@@ -343,14 +342,11 @@ function profile({ users, listings }) {
 					/> */}
         </div>
       </div>
-      <div className={styles.btnSection}>
-        <button className={styles.giveBtn}>Give Item</button>
-        <button className={styles.searchBtn}>Search Item</button>
-      </div>
+      
 
       <h2 className={styles.title}>My Listing</h2>
 
-      <div className={`${styles.flexItems} ${styles.flexItem3}`}>
+      <div className={styles.itemsContainer}>
         {/* USER ID FOR FETCHING ITEMS */}
         {/* <Card userID={id} /> */}
 
@@ -377,7 +373,7 @@ function profile({ users, listings }) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
