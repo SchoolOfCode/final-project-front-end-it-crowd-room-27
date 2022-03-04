@@ -129,7 +129,7 @@ export function SectionFour() {
 export function ContactUs() {
   return (
     <div className="container">
-      <h1>FormSubmit Demo</h1>
+      <h1 className={styles.formTitle}>Need help? Get in touch</h1>
       <form
         target="_blank"
         action="https://formsubmit.co/irfan185@gmail.com"
@@ -146,7 +146,7 @@ export function ContactUs() {
                 required
               />
             </div>
-            <div class="col">
+            <div className="col">
               <input
                 type="email"
                 name="email"
@@ -166,8 +166,8 @@ export function ContactUs() {
             required
           ></textarea>
         </div>
-        <button type="submit" className="btn btn-lg btn-dark btn-block">
-          Submit Form
+        <button type="submit" className={styles.button}>
+          Submit
         </button>
       </form>
     </div>

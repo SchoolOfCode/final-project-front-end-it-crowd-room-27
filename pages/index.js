@@ -13,7 +13,7 @@ import {
   SectionTwo,
   SectionThree,
   SectionFour,
-  ContactUsForm,
+  ContactUs,
   Copyright,
 } from "../Components/LandingPageComps/landingPageComps.js";
 
@@ -37,8 +37,8 @@ export default function Home() {
         <SectionOne />
         <SectionTwo />
         <SectionThree />
+        <ContactUs />
         <SectionFour />
-        <ContactUsForm />
         <Copyright />
       </main>
     </div>
