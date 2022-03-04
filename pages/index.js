@@ -1,11 +1,14 @@
+import { useUser } from "@auth0/nextjs-auth0";
 import Head from "next/head";
 import Image from "next/image";
 import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index";
+
 import styles from "../styles/home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {
+
   Banner,
   SectionOne,
   SectionTwo,
@@ -39,4 +42,16 @@ export default function Home() {
       </main>
     </div>
   );
+
 }
+
+export const getServerSideProps = async () => {
+	const usersRes = await fetch(
+		`https://it-crowd-project.herokuapp.com/api/users`
+	);
+	const usersData = await usersRes.json();
+
+	return {
+		props: { users: usersData.payload },
+	};
+};

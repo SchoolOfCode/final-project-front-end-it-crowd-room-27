@@ -2,33 +2,59 @@
 
 /* =-=-==-=--=-=-==-=--=-=-=-=-=-=-=-=-=-=COLORS=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 :root {
-   --background: #f6fbf2;
-   --navbar: #4e505d;
-   --text: #4e505d;
-   --button: #2dc9be;
-   --card: #ffedcb;
+	--background: #f6fbf2;
+	--navbar: #4e505d;
+	--text: #4e505d;
+	--button: #2dc9be;
+	--card: #ffedcb;
+
+	--button-hover: #23a198;
+	--button-delete-hover: #a31d2e;
+	--button-delete: #b53f4e;
+
+	--color-one: #5526fb;
+	--color-two: #ffffff;
+	--color-three: #6dfcd2;
+	--color-three-hover: #a8f7df;
+	--color-four: #7c59de;
+	--color-four-hover: #8a71d0;
+	--color-five: #f2f2f2;
+	--color-six: #b2b2b2;
+	--color-seven: rgb(0, 0, 0);
+	--color-seven-opa: rgba(0, 0, 0, 0.6);
+	--font-style-1: "Poppins", sans-serif;
+	--font-style-2: sans-serif;
+	--background: rgb(255, 255, 255);
+	--background-sub-head: rgba(255, 255, 255, 0.8);
+	--text-primary: black;
+	--text-secondary: white;
+	--text-tertiary: rgb(90, 90, 90);
+	--color-sun: rgba(255, 255, 255, 0);
+	--color-moon: rgb(90, 90, 90);
+	--color-shade: rgba(0, 0, 0, 0.2);
 }
+
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 html,
 body {
-   padding: 0;
-   margin: 0;
-   font-family: "Montserrat", sans-serif;
-   background-color: var(--background);
+	padding: 0;
+	margin: 0;
+	font-family: "Montserrat", sans-serif;
+	background-color: var(--background);
 }
 
 .menuItem > a {
-   color: white !important;
-   text-decoration: none !important;
+	color: white !important;
+	text-decoration: none !important;
 }
 
 * {
-   box-sizing: border-box;
-   padding: 0;
-   margin: 0;
-   font-family: "Montserrat", sans-serif;
-   color: var(--navbar);
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-family: "Montserrat", sans-serif;
+	color: var(--navbar);
 }
 
 /* form {
