@@ -41,12 +41,29 @@
 	justify-content: center;
 }
 
-.bodyLeft img {
+/* .bodyLeft img {
 	max-width: 90%;
 	border: 7px solid var(--button);
-}
+} */
 .bodyLeft .bodyRight {
 	max-width: 50%;
+	height: 100%;
+	border: 1px solid red;
+}
+
+.imgContainer img {
+	align-items: center;
+	height: 98%;
+	width: 98%;
+	object-fit: cover;
+}
+.imgContainer {
+	width: 90%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	background: var(--navbar);
+	align-items: center;
 }
 
 .bodyRight {

@@ -4,6 +4,7 @@ import PickUpModal from "../PickUpModal";
 import Link from "next/link";
 
 function Card({
+	user,
 	item_id,
 	user_id,
 	first_name,
@@ -24,31 +25,33 @@ function Card({
 	cloudinary_id,
 	avatar,
 	user_bio,
+	currentUser,
+	handleDelete,
 }) {
-	const boldText = {
-		fontWeight: "900",
-	};
-
+	console.log(user_id);
 	const [modalShow, setModalShow] = React.useState(false);
 	return (
 		<div className={styles.cardContainer}>
 			<div className={styles.cardLeft}>
 				<div className={styles.imgContainer}>
-					<img src={item_image} height="100%" width="100%"></img>
+					<img src={item_image}></img>
 				</div>
 			</div>
 			<div className={styles.cardRight}>
 				<div className={styles.cardRightTop}>
-					<div className={styles.username} style={boldText}>
-						<Link href={`/profiles/${user_id}`} key={user_id}>
-							<a>
-								<h5>
-									{first_name}
-									{` `}
-									{last_name}
-								</h5>
-							</a>
+					<div className={styles.username}>
+						<Link href={`/users/${user_id}`} key={user_id}>
+							<h5 className={styles.profileLink}>
+								{first_name} {last_name}
+							</h5>
 						</Link>
+						<div>
+							<div
+								className={`${styles.offline} ${
+									is_active ? styles.online : ""
+								}`}
+							></div>
+						</div>
 						<div className={styles.stars}>
 							<span className={`fa fa-star ${styles.checked}`}></span>
 							<span className={`fa fa-star ${styles.checked}`}></span>
@@ -57,28 +60,41 @@ function Card({
 							<span className="fa fa-star"></span>
 						</div>
 					</div>
-					<div className={styles.userImg}>
+					<div className={styles.userImgContainer}>
 						<img src={avatar}></img>
 					</div>
 					<h5 className={styles.itemName}>{item_name}</h5>
-					<h6 className={styles.expiry}>Use by date:{use_by_date}</h6>
 				</div>
+
 				<div className={styles.cardRightMiddle}>
-					{/* <h5>{category}</h5> */}
 					<p className={styles.descriptionText}>{item_description}</p>
 				</div>
-				<div>
-					<h5>Location: </h5>
+				<div className={styles.location}>
+					<h6>Location:</h6>
 					<p>{address}</p>
 				</div>
 				<div className={styles.cardRightBottom}>
-					<button
-						variant="primary"
-						onClick={() => setModalShow(true)}
-						className={styles.btn}
-					>
-						Details
-					</button>
+					<div className={styles.cardRightBottomLeft}>
+						{user && currentUser.email === user.email ? (
+							<button
+								variant="primary"
+								onClick={() => handleDelete(item_id)}
+								className={styles.deleteBtn}
+							>
+								Delete
+							</button>
+						) : null}
+					</div>
+					<div className={styles.cardRightBottomRight}>
+						<button
+							variant="primary"
+							onClick={() => setModalShow(true)}
+							className={styles.btn}
+						>
+							Details
+						</button>
+					</div>
+
 					<PickUpModal
 						item_id={item_id}
 						user_id={user_id}

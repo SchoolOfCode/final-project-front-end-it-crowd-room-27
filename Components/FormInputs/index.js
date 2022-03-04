@@ -26,7 +26,7 @@ function FormInputs({ setShowEditModal, newFetchedUsers }) {
 		user_bio: userBio,
 	};
 	// const body = firstName;
-	console.log(body);
+	// console.log(body);
 	//when the user selects an image from their desktop, preview it in the browser
 	//when the user selects an image from their desktop, preview it in the browser
 	const handleFileInputChange = (e) => {
