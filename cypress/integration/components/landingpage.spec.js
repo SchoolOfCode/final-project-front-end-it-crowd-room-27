@@ -5,7 +5,7 @@ describe("when user visits landing page", () => {
       });
 
       it("should render the landing page and display a message", () => {
-         cy.get("[data-cy= landing-page]").contains("iGive with pleasure");
+         cy.get("cy.get('body')").contains("iGive with pleasure");
       });
    });
 });
