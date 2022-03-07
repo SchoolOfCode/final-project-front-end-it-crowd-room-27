@@ -5,6 +5,7 @@ import Navbar from "../../Components/Navbar";
 import styles from "../../styles/register.module.css";
 import Button from "../../Components/Button";
 import ListingsPage from "../ListingsPage";
+import { API_URL } from "../../config";
 
 function ProfileReg() {
 	const { user, error, isLoading } = useUser();
@@ -51,16 +52,14 @@ function ProfileReg() {
 	//stringify the body object defined above and send as req.body to server
 	const handleSubmit = async () => {
 		// if(firstName && lastName && address) {
-		await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
+		await fetch(`${API_URL}/api/users`, {
 			method: "POST",
 			body: JSON.stringify(body),
 			headers: { "Content-Type": "application/json" },
 		});
 
 		setTimeout(async () => {
-			const res = await fetch(
-				`https://it-crowd-project.herokuapp.com/api/users`
-			);
+			const res = await fetch(`${API_URL}/api/users`);
 			const data = await res.json();
 			setfetchedUsers(data.payload);
 		}, 1000);
@@ -148,7 +147,7 @@ function ProfileReg() {
 }
 
 export async function getServerSideProps() {
-	const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
+	const res = await fetch(`${API_URL}/api/users`);
 	const data = await res.json();
 
 	return {
@@ -157,4 +156,3 @@ export async function getServerSideProps() {
 }
 
 export default ProfileReg;
-

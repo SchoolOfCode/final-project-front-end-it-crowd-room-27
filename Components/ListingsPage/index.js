@@ -10,16 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import GiveAwayModal from "../GiveAwayModal";
 
-// import GiveAwayModal from "../Components/GiveAwayModal/index";
-
-// PLAN
-// set up getStaticprops
-// make a fetch GET request to https://it-crowd-project.herokuapp.com/api/items
-// retur props, items: data
-// destructure items array
-// map over the array  and for each render </card> with database details dynamically updated
-// pass down props into card component; item_id, user_id, category, item_name, item_description, use_by_date, date_added, quantity, cloudinary_id, is_reserved, availability, time_slot
-
 function ListingsPage({ users, listings }) {
   const { user, error, isLoading } = useUser();
   const [searchedListings, setSearchedListings] = useState(listings);
@@ -39,21 +29,26 @@ function ListingsPage({ users, listings }) {
 
   if (error) return <div>{error.message}</div>;
 
-  const currentUser = users.find((currUser) => currUser.email === user.email);
-
-  const filterListings = (e) => {
-    const searchedLetters = e.target.value.toLowerCase();
-    const filteredListings = listings.filter((listing) => {
-      return (
-        listing.full_name.toLowerCase().includes(searchedLetters) ||
-        listing.category.toLowerCase().includes(searchedLetters) ||
-        listing.item_name.toLowerCase().includes(searchedLetters) ||
-        listing.address.toLowerCase().includes(searchedLetters) ||
-        listing.date_added.toLowerCase().includes(searchedLetters)
-      );
-    });
-    setSearchedListings(filteredListings);
-  };
+//currentUser matches the authenticated user with their info in our db
+	const currentUser = users.find((currUser) => currUser.email === user.email);
+	//this function is passed down to the searchbar component below
+	// it fires each time a key is pressed
+	const filterListings = (e) => {
+		//it is a case insensitive search
+		const searchedLetters = e.target.value.toLowerCase();
+		// and filters our params using .includes() method
+		const filteredListings = listings.filter((listing) => {
+			return (
+				listing.full_name.toLowerCase().includes(searchedLetters) ||
+				listing.category.toLowerCase().includes(searchedLetters) ||
+				listing.item_name.toLowerCase().includes(searchedLetters) ||
+				listing.address.toLowerCase().includes(searchedLetters) ||
+				listing.date_added.toLowerCase().includes(searchedLetters)
+			);
+		});
+		// set the value to the piece of state above - we map through this state below
+		setSearchedListings(filteredListings);
+	};
 
   return (
     <>
@@ -70,15 +65,19 @@ function ListingsPage({ users, listings }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         ></link>
       </Head>
+      {/* if the user isn't yet registered - use their default picture */}
+			{/* if the user is registered - use their uploaded picture */}
       <Navbar
         avatar={!currentUser ? user.picture : currentUser.avatar}
         users={users}
       />
       <div className={styles.searchbar}>
-        <Searchbar filterListings={filterListings} />
-      </div>
-      <div className={styles.container}>
-        {/* mapping over our fetch GET request from users and items database table, to render each item on listinngs page */}
+       	{/* here we take in filterListings func from above */}
+				<Searchbar filterListings={filterListings} />
+			</div>
+			<div className={styles.container}>
+				{/* mapping over our filtered listings from search*/}
+				{/* it is just listings by default (if nothing is searched)*/}>
         {searchedListings.map((listing) => (
           <div key={listing.item_id}>
             <Card
@@ -102,7 +101,6 @@ function ListingsPage({ users, listings }) {
               avatar={listing.avatar}
               user_bio={listing.user_bio}
               currentUser={currentUser}
-
               users={users}
 
             />

@@ -36,19 +36,20 @@
   display: flex;
 } */
 
-.editBtn {
+/* .editBtn { */
   /* position: absolute; */
-  background-color: var(--button);
+  /* background-color: var(--button); */
   /* height: 2em; */
   /* width: 6em; */
-  border-radius: 7px;
-  cursor: pointer;
+  /* border-radius: 7px;
+  cursor: pointer; */
   /* border: 1px solid black; */
-  padding: 0.8em 1em;
+  /* padding: .8em 1em;
+
   color: white;
   font-size: 1em;
   transform: translate(17.5em, 1em);
-}
+} */
 
 /* .editBtn:hover {
   background-color: blueviolet;
@@ -79,6 +80,7 @@
 }
 
 .finishProfile {
+  color: white;
   cursor: pointer;
   margin: 0.3em 0;
   padding: 0.5em 0.7em;
@@ -210,9 +212,9 @@
 
 .btn {
   cursor: pointer;
-  margin: 0.3em 0;
-  padding: 0.5em 0.7em;
-  border: 0.5px solid gray;
+  margin: .3em .5em;
+  padding: .5em .7em;
+  border: .5px solid gray;
   border-radius: 10px;
   background: var(--button);
   transition: all ease-in-out 200ms;
@@ -220,6 +222,35 @@
 
 .btn:hover {
   background: var(--button-hover);
+}
+
+.editingBtn {
+  cursor: pointer;
+  margin: .3em .6em;
+  padding: .5em .7em;
+  border: .5px solid gray;
+  border-radius: 10px;
+  background: var(--button-edit);
+  transition: all ease-in-out 200ms;
+}
+
+.editingBtn:hover {
+  background: var(--button-edit-hover);
+}
+
+.deleteBtn {
+  color: white;
+  cursor: pointer;
+  margin: .3em .6em;
+  padding: .5em .7em;
+  border: .5px solid gray;
+  border-radius: 10px;
+  background: var(--button-delete);
+  transition: all ease-in-out 200ms;
+}
+
+.deleteBtn:hover {
+  background: var(--button-delete-hover);
 }
 
 .itemsContainer {
@@ -281,19 +312,17 @@
 
 .buttons {
   margin-top: 1em;
+  margin-right: .5em;
   padding: 0;
-  margin: 0;
+  /* margin: 0; */
 }
 
 .buttonsSet {
   /* margin-top: 1em; */
+  width: 133px;
   display: flex;
   padding: 0;
-}
-
-.btn {
-  margin-right: 1em;
-  /* border: 1px solid red; */
+  flex-wrap: wrap;
 }
 
 .profileInfoBox {
