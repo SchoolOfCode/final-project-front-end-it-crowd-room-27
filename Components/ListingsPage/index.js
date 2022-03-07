@@ -77,7 +77,7 @@ function ListingsPage({ users, listings }) {
 			</div>
 			<div className={styles.container}>
 				{/* mapping over our filtered listings from search*/}
-				{/* it is just listings by default (if nothing is searched)*/}>
+				{/* it is just listings by default (if nothing is searched)*/}
         {searchedListings.map((listing) => (
           <div key={listing.item_id}>
             <Card
