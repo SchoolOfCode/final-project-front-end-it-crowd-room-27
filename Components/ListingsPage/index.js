@@ -9,7 +9,6 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
-library.add(faCirclePlus);
 
 // import GiveAwayModal from "../Components/GiveAwayModal/index";
 
@@ -103,9 +102,13 @@ function ListingsPage({ users, listings }) {
             />
           </div>
         ))}
-        <div className={styles.addItemIcon}>
-          <FontAwesomeIcon icon={faCirclePlus} style={{ width: "40px" }} />
-        </div>
+      </div>
+      <div className={styles.iconContainer}>
+        <FontAwesomeIcon
+          icon={faCirclePlus}
+          size={"5x"}
+          className={styles.faIcon}
+        />
       </div>
     </>
   );
