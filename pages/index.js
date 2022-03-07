@@ -24,11 +24,7 @@ export default function Home({ users }) {
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
-      if (window.pageYOffset > 300) {
-        setShowScroll(true);
-      } else {
-        setShowScroll(false);
-      }
+      window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
     });
   });
 
