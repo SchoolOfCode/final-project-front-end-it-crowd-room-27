@@ -13,7 +13,7 @@
 /* PROFILE CARD */
 
 .profileTitle {
-  margin-top: .8em;
+  margin-top: 0.8em;
   margin-bottom: 0.3em;
   /* margin-left: 1em; */
 
@@ -44,7 +44,7 @@
   border-radius: 7px;
   cursor: pointer;
   /* border: 1px solid black; */
-  padding: .8em 1em;
+  padding: 0.8em 1em;
   color: white;
   font-size: 1em;
   transform: translate(17.5em, 1em);
@@ -80,9 +80,9 @@
 
 .finishProfile {
   cursor: pointer;
-  margin: .3em 0;
-  padding: .5em .7em;
-  border: .5px solid gray;
+  margin: 0.3em 0;
+  padding: 0.5em 0.7em;
+  border: 0.5px solid gray;
   border-radius: 10px;
   background: var(--button-delete);
   transition: all ease-in-out 200ms;
@@ -127,23 +127,21 @@
 }
 @keyframes lds-ring {
   0% {
-      transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
- /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
-
-
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 .profileTopContainer {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: var(--background);;
+  background: var(--back);
   margin: 0;
   padding: 0;
 }
@@ -166,7 +164,6 @@
 }
 
 .bannerImage {
-  
   width: 100%;
   object-fit: cover;
   border-radius: 15px;
@@ -184,10 +181,10 @@
 }
 
 .infoContainer p input {
-  padding: .2em;
+  padding: 0.2em;
 }
 
- .infoContainer {
+.infoContainer {
   padding: 2em 0;
   width: auto;
 }
@@ -196,27 +193,26 @@
   width: 70%;
   height: 10em;
   float: right;
-  background: #ECF0F1;;
+  background: #ecf0f1;
   border-radius: 4px;
   margin-top: 2em;
   margin-left: 10em;
   border: 1px dotted gray;
-  padding: 0 0 0 .7em;
+  padding: 0 0 0 0.7em;
 }
 
 .bioBox p textarea {
   width: 450px;
   height: 100px;
-  padding: .5em;
+  padding: 0.5em;
   margin-left: 1.2em;
-  
 }
 
 .btn {
   cursor: pointer;
-  margin: .3em 0;
-  padding: .5em .7em;
-  border: .5px solid gray;
+  margin: 0.3em 0;
+  padding: 0.5em 0.7em;
+  border: 0.5px solid gray;
   border-radius: 10px;
   background: var(--button);
   transition: all ease-in-out 200ms;
@@ -241,7 +237,7 @@
 
 .title {
   text-align: center;
-  margin: 1em 0 .3em 0;
+  margin: 1em 0 0.3em 0;
 }
 
 /*-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-= PROFILE IMAGE BLOCK */
@@ -262,7 +258,6 @@
 
   /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.5); */
 }
-
 
 .stars {
   /* position: relative; */
@@ -301,7 +296,7 @@
   /* border: 1px solid red; */
 }
 
- .profileInfoBox {
+.profileInfoBox {
   height: 50%;
   width: 30%;
   padding: 2em 0;
@@ -310,11 +305,11 @@
   flex-direction: column;
   /* flex-wrap: wrap; */
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-  background: var(--background);
+  background: var(--back);
   /* opacity: 0.7; */
   border-radius: 4px;
   /* grid-area: info; */
-} 
+}
 
 .mainContainer {
   background: var(--background);
