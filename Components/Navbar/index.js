@@ -9,7 +9,6 @@ import Image from "next/image";
 import GiveAwayModal from "../GiveAwayModal";
 
 function Navbar({ avatar, users }) {
-
 	const { user, error, isLoading } = useUser();
 
 	if (isLoading) return <div>Loading ...</div>;
@@ -27,23 +26,23 @@ function Navbar({ avatar, users }) {
 						<Image src={Logo} height="120em" width="120em" />
 					</a>
 				</Link>
-				
-					<div className={styles.GiveItemButton}>
-						<button
-							variant="primary"
-							onClick={() => setGiveItemModalShow(true)}
-							className={styles.btn}
-						>
-							Give Item
-						</button>
-						<GiveAwayModal
-							users={users}
-							show={giveItemModalShow}
-							onHide={() => setGiveItemModalShow(false)}
-						/>
-					</div>
+
+				<div className={styles.GiveItemButton}>
+					<button
+						variant="primary"
+						onClick={() => setGiveItemModalShow(true)}
+						className={styles.btn}
+					>
+						Give Item
+					</button>
+					<GiveAwayModal
+						users={users}
+						show={giveItemModalShow}
+						onHide={() => setGiveItemModalShow(false)}
+					/>
+				</div>
 			</div>
-			
+
 			<div className={styles.container}>
 				<div className={styles.menu}>
 					<ul>
@@ -56,13 +55,13 @@ function Navbar({ avatar, users }) {
 						<li className={styles.menuItem}>
 							<Link href="/blog">Blog</Link>
 						</li>
-
+						{/* if user isn't logged in  - display the login button */}
 						{!user && (
 							<li className={styles.menuItem}>
 								<a href="/api/auth/login">Log In</a>
 							</li>
 						)}
-
+						{/* if there is logged in- display the logout button */}
 						{user && (
 							<li className={styles.menuItem}>
 								<a href="/api/auth/logout">Log Out</a>
@@ -71,6 +70,7 @@ function Navbar({ avatar, users }) {
 					</ul>
 				</div>
 				<div className={styles.userImg}>
+					{/* if user is logged in, let their profile picture link to their profile */}
 					<Link href="/profile">
 						<a>
 							{user ? (
@@ -84,18 +84,4 @@ function Navbar({ avatar, users }) {
 	);
 }
 
-// "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-
-// export async function getServerSideProps() {
-
-//    const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
-//    const data = await res.json();
-
-//    return {
-//        props:
-//            { users: data.payload },
-//      }
-
-// }
-// "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
 export default Navbar;

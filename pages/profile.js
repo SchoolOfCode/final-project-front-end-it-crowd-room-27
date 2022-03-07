@@ -4,6 +4,7 @@ import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
 import Head from "next/head";
+import { API_URL } from "../config";
 import DeleteModal from '../Components/DeleteModal';
 
 function profile({ users, listings }) {
@@ -74,7 +75,7 @@ function profile({ users, listings }) {
   // =-=-=-=-=-=-=- CREATE NEW PROFILE RECORD IN DATABASE =-==-=-=-=--=-=-
 
   const handleRegistration = async () => {
-    await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
+    await fetch(`${API_URL}/api/users`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" },
@@ -97,7 +98,7 @@ function profile({ users, listings }) {
   const uID = currentUser?.id;
   console.log(uID);
   const handleEdit = async () => {
-    await fetch(`https://it-crowd-project.herokuapp.com/api/users/${uID}`, {
+    await fetch(`${API_URL}/api/users/${uID}`, {
       method: "PUT",
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" },
@@ -112,7 +113,7 @@ function profile({ users, listings }) {
   const handleDelete = async (id) => {
     console.log(id);
     const res = await fetch(
-      `https://it-crowd-project.herokuapp.com/api/items/${id}`,
+      `${API_URL}/api/items/${id}`,
       {
         method: "DELETE",
       }
@@ -172,6 +173,7 @@ function profile({ users, listings }) {
         {/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
         {/* <div className={styles.userImg}> */}
         {/* <Link href="/">
+
               		<a>
                 		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               		</a>
@@ -364,44 +366,46 @@ function profile({ users, listings }) {
           </div>
 
           {/* <ProvideInfoForm
+
 						showEditModal={showEditModal}
 						setShowEditModal={setShowEditModal}
 					/> */}
-        </div>
-      </div>
-      
+				</div>
+			</div>
 
-      <h2 className={styles.title}>My Listing</h2>
+			<h2 className={styles.title}>My Listings...</h2>
 
-      <div className={styles.itemsContainer}>
-        {/* USER ID FOR FETCHING ITEMS */}
-        {/* <Card userID={id} /> */}
+			<div className={styles.itemsContainer}>
+				{/* USER ID FOR FETCHING ITEMS */}
+				{/* <Card userID={id} /> */}
 
-        {updatedListings?.map((listing) => (
-          <Card
-            user={user}
-            item_id={listing.item_id}
-            user_id={listing.user_id}
-            category={listing.category}
-            item_name={listing.item_name}
-            item_description={listing.item_description}
-            use_by_date={listing.use_by_date}
-            date_added={listing.date_added}
-            quantity={listing.quantity}
-            item_image={listing.item_image}
-            is_reserved={listing.is_reserved}
-            availability={listing.availability}
-            time_slot={listing.time_slot}
-            cloudinary_id={listing.cloudinary_id}
-            avatar={listing.avatar}
-            user_bio={listing.user_bio}
-            currentUser={currentUser}
-            handleDelete={handleDelete}
-          />
-        ))}
-      </div>
-    </div>
-  );
+				{updatedListings?.map((listing) => (
+					<Card
+						user={user}
+						full_name={listing.full_name}
+						item_id={listing.item_id}
+						user_id={listing.user_id}
+						category={listing.category}
+						item_name={listing.item_name}
+						item_description={listing.item_description}
+						use_by_date={listing.use_by_date}
+						date_added={listing.date_added}
+						quantity={listing.quantity}
+						item_image={listing.item_image}
+						is_reserved={listing.is_reserved}
+						availability={listing.availability}
+						time_slot={listing.time_slot}
+						cloudinary_id={listing.cloudinary_id}
+						avatar={listing.avatar}
+						address={listing.address}
+						user_bio={listing.user_bio}
+						currentUser={currentUser}
+						handleDelete={handleDelete}
+					/>
+				))}
+			</div>
+		</div>
+	);
 }
 
 //Fetching data to PROPS
@@ -443,13 +447,9 @@ function profile({ users, listings }) {
 
 export const getServerSideProps = withPageAuthRequired({
 	async getServerSideProps() {
-		const usersRes = await fetch(
-			`https://it-crowd-project.herokuapp.com/api/users`
-		);
+		const usersRes = await fetch(`${API_URL}/api/users`);
 		const usersData = await usersRes.json();
-		const listingsRes = await fetch(
-			`https://it-crowd-project.herokuapp.com/api/listings`
-		);
+		const listingsRes = await fetch(`${API_URL}/api/listings`);
 		const listingsData = await listingsRes.json();
 		// By returning { props: { allUsers } }, the PostAuth component
 		// will receive `allUsers` as a prop at BUILD time
