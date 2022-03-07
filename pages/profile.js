@@ -139,7 +139,7 @@ function profile({ users, listings }) {
   }
 
   return (
-    <>
+    <div>
       <div className={styles.mainContainer}>
         <Head>
           <title>iGive</title>
@@ -166,8 +166,8 @@ function profile({ users, listings }) {
                 		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               		</a>
             	</Link> */}
-        {/* </div> */}
-        {/* <span className={`fa fa-camera ${styles.camera}`}></span>
+				{/* </div> */}
+				{/* <span className={`fa fa-camera ${styles.camera}`}></span>
           		<div className={styles.stars}>
             		<span className={`fa fa-star ${styles.checked}`}></span>
             		<span className={`fa fa-star ${styles.checked}`}></span>
@@ -175,7 +175,6 @@ function profile({ users, listings }) {
             		<span className={`fa fa-star ${styles.checked}`}></span>
             		<span class="fa fa-star"></span>
           		</div> */}
-
         {/* </div> */}
         <div className={styles.profileTopContainer}>
           <div className={styles.topContainer}>
@@ -239,11 +238,10 @@ function profile({ users, listings }) {
               </div>
 
               {/* EDIT PROFILE SET OF BUTTONS */}
-              {currentUser ? (
+              {user && currentUser?.email === user.email ? (
                 <div className={styles.buttons}>
                   {/* <p className={styles.editBtn}>Edit</p> */}
-
-                  {!buttonsToggle ? (
+				{!buttonsToggle ? (
                     <button
                       variant="primary"
                       onClick={() => handleBackFromEdit()}
@@ -285,7 +283,7 @@ function profile({ users, listings }) {
                     <button
                       variant="primary"
                       onClick={() => handleFinishProfile()}
-                      className={styles.btn}
+                      className={styles.finishProfile}
                     >
                       Finish profile
                     </button>
@@ -343,14 +341,11 @@ function profile({ users, listings }) {
 					/> */}
         </div>
       </div>
-      <div className={styles.btnSection}>
-        <button className={styles.giveBtn}>Give Item</button>
-        <button className={styles.searchBtn}>Search Item</button>
-      </div>
+      
 
       <h2 className={styles.title}>My Listing</h2>
 
-      <div className={`${styles.flexItems} ${styles.flexItem3}`}>
+      <div className={styles.itemsContainer}>
         {/* USER ID FOR FETCHING ITEMS */}
         {/* <Card userID={id} /> */}
 
@@ -377,7 +372,7 @@ function profile({ users, listings }) {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 }
 
@@ -387,7 +382,7 @@ function profile({ users, listings }) {
 // <h4 className={styles.title}>My Listings</h4>
 //  <div className={styles.itemsContainer}>
 {
-  /* USER ID FOR FETCHING ITEMS */
+	/* USER ID FOR FETCHING ITEMS */
 }
 
 //                 {updatedListings?.item_name ? updatedListings?.map((listing) => (
@@ -419,20 +414,20 @@ function profile({ users, listings }) {
 // }
 
 export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps() {
-    const usersRes = await fetch(
-      `https://it-crowd-project.herokuapp.com/api/users`
-    );
-    const usersData = await usersRes.json();
-    const listingsRes = await fetch(
-      `https://it-crowd-project.herokuapp.com/api/listings`
-    );
-    const listingsData = await listingsRes.json();
-    // By returning { props: { allUsers } }, the PostAuth component
-    // will receive `allUsers` as a prop at BUILD time
-    return {
-      props: { users: usersData.payload, listings: listingsData.payload },
-    };
-  },
+	async getServerSideProps() {
+		const usersRes = await fetch(
+			`https://it-crowd-project.herokuapp.com/api/users`
+		);
+		const usersData = await usersRes.json();
+		const listingsRes = await fetch(
+			`https://it-crowd-project.herokuapp.com/api/listings`
+		);
+		const listingsData = await listingsRes.json();
+		// By returning { props: { allUsers } }, the PostAuth component
+		// will receive `allUsers` as a prop at BUILD time
+		return {
+			props: { users: usersData.payload, listings: listingsData.payload },
+		};
+	},
 });
 export default profile;
