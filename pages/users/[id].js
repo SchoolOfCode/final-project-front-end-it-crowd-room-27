@@ -450,5 +450,5 @@ export default withPageAuthRequired(
 	// }
 );
 
-export default Profile;
+
 
