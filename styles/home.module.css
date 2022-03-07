@@ -38,17 +38,6 @@
   text-align: center;
   margin: 0 auto;
 }
-.title {
-  /* grid-area: title; */
-  top: 50%;
-  text-align: center;
-  margin-top: 15%;
-  padding: 0;
-  font-weight: 800;
-  /* font-family: "Bungee Shade", cursive; */
-  font-size: 7em;
-  color: white;
-}
 
 /* text */
 
@@ -125,12 +114,12 @@
 	flex-direction: column;
 	background-image: url("https://images.pexels.com/photos/4871119/pexels-photo-4871119.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 	background-color: #a5a5a5;
-  	height: 500px; 
-  	background-position: top; 
-  	background-repeat: no-repeat; 
-  	background-size: cover;
+  height: 500px; 
+  background-position: top; 
+  background-repeat: no-repeat; 
+  background-size: cover;
 	opacity: 0.8em;
-
+  
 	width: 100wh;
 	height: 70vh;
 } */
@@ -159,6 +148,19 @@
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
+  z-index: 0;
+}
+
+.title {
+  /* grid-area: title; */
+  top: 50%;
+  text-align: center;
+  margin-top: 15%;
+  padding: 0;
+  font-weight: 800;
+  /* font-family: "Bungee Shade", cursive; */
+  font-size: 7em;
+  color: white;
 }
 
 .inner_top {
@@ -269,6 +271,7 @@
   position: fixed;
   bottom: 1rem;
   right: 0;
+  z-index: 0;
 }
 
 .faIcon {

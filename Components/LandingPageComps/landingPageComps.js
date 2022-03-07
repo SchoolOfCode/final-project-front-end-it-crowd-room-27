@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/home.module.css";
 import ReadMoreButton from "../Buttons/ReadMoreButton/Index";
-import ScrollArrow from "../ScrollToTop/index";
+import { ScrollArrow } from "../ScrollToTop/index";
 
 export function Banner() {
   return (
@@ -20,7 +20,6 @@ export function Banner() {
 export function SectionOne() {
   return (
     <div className={styles.flexboxContainer}>
-      <ScrollArrow />
       <div className={`${styles.flexItem1}`}>
         <h3 className={styles.arttitle}>Our Story!</h3>
         <p className={styles.article}>
@@ -127,7 +126,7 @@ export function SectionFour() {
     </div>
   );
 }
-export function Copyright() {
+export function Copyright({ style }) {
   return (
     <div className={styles.footer}>
       <a href="#" className={styles.btn_up}>
@@ -137,6 +136,7 @@ export function Copyright() {
         created by <strong>IT-Crowd</strong>
         <br /> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy
       </p>
+      <ScrollArrow style={style} />
     </div>
   );
 }
