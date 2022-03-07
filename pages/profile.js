@@ -4,6 +4,7 @@ import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
 import Head from "next/head";
+import DeleteModal from '../Components/DeleteModal';
 
 function profile({ users, listings }) {
   const { user, error, isLoading } = useUser();
@@ -32,8 +33,12 @@ function profile({ users, listings }) {
   const [updatedListings, setUpdatedListings] = useState(listings);
 
   const [previewSource, setPreviewSource] = useState(currentUser?.avatar);
+  const [tempPreviewSource, setTempPreviewSource] = useState(user.picture);
+  // const [btnVisible, setBtnVisible] = useState(true);
   const [fullName, setFullName] = useState(currentUser?.full_name);
   const [address, setAddress] = useState(currentUser?.address);
+  const [deleteUserModalShow, setDeleteUserModalShow] = useState(false);
+
   const email = user.email;
   // const [lastName, setLastName] = useState("");
   const [userBio, setUserBio] = useState(currentUser?.user_bio);
@@ -52,6 +57,7 @@ function profile({ users, listings }) {
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     previewFile(file);
+    // console.log('Hello', e.target);
   };
 
   //convert to base64encoded image using new FileReader API
@@ -61,6 +67,7 @@ function profile({ users, listings }) {
 
     reader.onloadend = () => {
       setPreviewSource(reader.result);
+      setTempPreviewSource(reader.result);
     };
   };
 
@@ -75,6 +82,7 @@ function profile({ users, listings }) {
 
     setButtonsToggle(!buttonsToggle);
     setPreviewSource(null);
+    // setBtnVisible(false);
   };
 
   useEffect(() => {
@@ -116,6 +124,7 @@ function profile({ users, listings }) {
     );
   };
 
+
   // BUTTONS HANDLERS
   const handleBackFromEdit = () => {
     setButtonsToggle(!buttonsToggle);
@@ -153,9 +162,10 @@ function profile({ users, listings }) {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           ></link>
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         </Head>
         <Navbar
-          avatar={!currentUser ? user.picture : currentUser.avatar}
+          avatar={!currentUser ? tempPreviewSource : currentUser.avatar}
           users={users}
         />
         {/* <div className={styles.flexboxContainer}> */}
@@ -186,7 +196,7 @@ function profile({ users, listings }) {
               <div className={styles.cover}>
                 <img
                   className={styles.userImg}
-                  src={!currentUser ? user.picture : currentUser.avatar}
+                  src={!currentUser ? tempPreviewSource : currentUser.avatar}
                 />
               </div>
             </div>
@@ -220,10 +230,11 @@ function profile({ users, listings }) {
                 <p className={styles.profileTitle}>
                   <strong>Email:</strong> {user.email}
                 </p>
-
-                {!buttonsToggle ? null : (
+                
+                
+                {!buttonsToggle ? null :
                   <input type="file" onChange={handleFileInputChange}></input>
-                )}
+                }
                 {buttonsToggle ? (
                   <img
                     src={previewSource}
@@ -240,15 +251,16 @@ function profile({ users, listings }) {
               {/* EDIT PROFILE SET OF BUTTONS */}
               {user && currentUser?.email === user.email ? (
                 <div className={styles.buttons}>
-                  {/* <p className={styles.editBtn}>Edit</p> */}
-				{!buttonsToggle ? (
+                  
+				        {!buttonsToggle ? (
                     <button
                       variant="primary"
                       onClick={() => handleBackFromEdit()}
-                      className={styles.btn}
+                      className={styles.editingBtn}
                     >
                       {" "}
-                      Edit{" "}
+                      <span class="material-icons-outlined material-icons"> edit</span>
+                      {" "}
                     </button>
                   ) : null}
 
@@ -271,6 +283,22 @@ function profile({ users, listings }) {
                         {" "}
                         Back{" "}
                       </button>
+                      
+                      <div className={styles.GiveItemButton}>
+                        <button
+                            variant="primary"
+                            onClick={() => setDeleteUserModalShow(true)}
+                            className={styles.deleteBtn}
+                        >{" "}
+                        Delete Profile{" "}
+                        </button>
+                        <DeleteModal
+                            id={uID}
+							              show={deleteUserModalShow}
+							              onHide={() => setDeleteUserModalShow(false)}
+						            />
+                      </div>
+                        
                     </div>
                   ) : null}
                 </div>
