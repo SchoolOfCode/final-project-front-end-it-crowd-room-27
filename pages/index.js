@@ -30,15 +30,9 @@ export default function Home({ users }) {
         setShowScroll(false);
       }
     });
-  }, []);
+  });
 
-  //   const checkScrollTop = () => {
-  //     if (!showScroll && window.pageYOffset > 400) {
-  //       setShowScroll(true);
-  //     } else if (showScroll && window.pageYOffset <= 400) {
-  //       setShowScroll(false);
-  //     }
-  //   };
+  // window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
 
   if (isLoading)
     return (
@@ -79,7 +73,7 @@ export default function Home({ users }) {
         <ContactUs />
         <SectionFour />
 
-        <Copyright showScroll={showScroll} setShowScroll={setShowScroll} />
+        <Copyright showScroll={showScroll} />
       </main>
     </div>
   );
