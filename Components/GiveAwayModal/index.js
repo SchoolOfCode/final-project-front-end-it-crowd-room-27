@@ -1,10 +1,12 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "../Button";
+import Link from "next/link";
 import styles from "../../styles/giveAwayModal.module.css";
 import { useUser } from "@auth0/nextjs-auth0";
 import { useState } from "react";
 import GiveItemSubmitButton from "../Buttons/GiveItemSubmitButton/index";
+import { API_URL } from "../../config";
 
 function GiveAwayModal(props) {
 	const { user, error, isLoading } = useUser();
@@ -61,7 +63,7 @@ function GiveAwayModal(props) {
 
 	//stringify the body object defined above and send as req.body to server
 	const handleSubmit = async () => {
-		await fetch(`https://it-crowd-project.herokuapp.com/api/items`, {
+		await fetch(`${API_URL}/api/items`, {
 			method: "POST",
 			body: JSON.stringify(body),
 			headers: { "Content-Type": "application/json" },
@@ -153,9 +155,11 @@ function GiveAwayModal(props) {
 				</div>
 			</Modal.Body>
 			<Modal.Footer className={styles.footer}>
-				<button onClick={(props.onHide, handleSubmit)} className={styles.btn}>
-					Submit
-				</button>
+				<Link href="/listings">
+					<button onClick={(props.onHide, handleSubmit)} className={styles.btn}>
+						Submit
+					</button>
+				</Link>
 			</Modal.Footer>
 		</Modal>
 	);

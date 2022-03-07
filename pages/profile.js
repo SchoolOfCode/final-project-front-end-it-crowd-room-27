@@ -4,6 +4,7 @@ import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
 import Head from "next/head";
+import { API_URL } from "../config";
 
 function profile({ users, listings }) {
 	const { user, error, isLoading } = useUser();
@@ -67,7 +68,7 @@ function profile({ users, listings }) {
 	// =-=-=-=-=-=-=- CREATE NEW PROFILE RECORD IN DATABASE =-==-=-=-=--=-=-
 
 	const handleRegistration = async () => {
-		await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
+		await fetch(`${API_URL}/api/users`, {
 			method: "POST",
 			body: JSON.stringify(body),
 			headers: { "Content-Type": "application/json" },
@@ -87,7 +88,7 @@ function profile({ users, listings }) {
 	const uID = currentUser?.id;
 	console.log(uID);
 	const handleEdit = async () => {
-		await fetch(`https://it-crowd-project.herokuapp.com/api/users/${uID}`, {
+		await fetch(`${API_URL}/api/users/${uID}`, {
 			method: "PUT",
 			body: JSON.stringify(body),
 			headers: { "Content-Type": "application/json" },
@@ -101,12 +102,9 @@ function profile({ users, listings }) {
 
 	const handleDelete = async (id) => {
 		console.log(id);
-		const res = await fetch(
-			`https://it-crowd-project.herokuapp.com/api/items/${id}`,
-			{
-				method: "DELETE",
-			}
-		);
+		const res = await fetch(`${API_URL}/api/items/${id}`, {
+			method: "DELETE",
+		});
 		const data = await res.json();
 		console.log(data);
 		setUpdatedListings(
@@ -340,7 +338,7 @@ function profile({ users, listings }) {
 				</div>
 			</div>
 
-			<h2 className={styles.title}>My Listing</h2>
+			<h2 className={styles.title}>My Listings...</h2>
 
 			<div className={styles.itemsContainer}>
 				{/* USER ID FOR FETCHING ITEMS */}
@@ -349,6 +347,7 @@ function profile({ users, listings }) {
 				{updatedListings?.map((listing) => (
 					<Card
 						user={user}
+						full_name={listing.full_name}
 						item_id={listing.item_id}
 						user_id={listing.user_id}
 						category={listing.category}
@@ -363,7 +362,7 @@ function profile({ users, listings }) {
 						time_slot={listing.time_slot}
 						cloudinary_id={listing.cloudinary_id}
 						avatar={listing.avatar}
-						// address={listing.address}
+						address={listing.address}
 						user_bio={listing.user_bio}
 						currentUser={currentUser}
 						handleDelete={handleDelete}
@@ -413,13 +412,9 @@ function profile({ users, listings }) {
 
 export const getServerSideProps = withPageAuthRequired({
 	async getServerSideProps() {
-		const usersRes = await fetch(
-			`https://it-crowd-project.herokuapp.com/api/users`
-		);
+		const usersRes = await fetch(`${API_URL}/api/users`);
 		const usersData = await usersRes.json();
-		const listingsRes = await fetch(
-			`https://it-crowd-project.herokuapp.com/api/listings`
-		);
+		const listingsRes = await fetch(`${API_URL}/api/listings`);
 		const listingsData = await listingsRes.json();
 		// By returning { props: { allUsers } }, the PostAuth component
 		// will receive `allUsers` as a prop at BUILD time

@@ -4,10 +4,10 @@ import Card from "../../Components/Card/index";
 import Navbar from "../../Components/Navbar/index.js";
 import styles from "../../styles/profile.module.css";
 import Head from "next/head";
-// import { useUser } from "@auth0/nextjs-auth0";
+import { API_URL } from "../../config";
 
 export const getStaticPaths = async () => {
-	const res = await fetch("https://it-crowd-project.herokuapp.com/api/users");
+	const res = await fetch(`${API_URL}/api/users`);
 	const data = await res.json();
 	const users = data.payload;
 	const paths = users.map((user) => {
@@ -22,18 +22,12 @@ export const getStaticPaths = async () => {
 };
 export const getStaticProps = async (ctx) => {
 	const id = ctx.params.id;
-	const dbUsersRes = await fetch(
-		"https://it-crowd-project.herokuapp.com/api/users"
-	);
+	const dbUsersRes = await fetch(`${API_URL}/api/users`);
 	const dbUsersData = await dbUsersRes.json();
-	const dbListingsRes = await fetch(
-		"https://it-crowd-project.herokuapp.com/api/listings"
-	);
+	const dbListingsRes = await fetch(`${API_URL}/api/listings`);
 	const dbListingsData = await dbListingsRes.json();
 	console.log(dbListingsData);
-	const staticRes = await fetch(
-		"https://it-crowd-project.herokuapp.com/api/users/" + id
-	);
+	const staticRes = await fetch(`${API_URL}/api/users/` + id);
 	const staticData = await staticRes.json();
 	return {
 		props: {
@@ -44,121 +38,120 @@ export const getStaticProps = async (ctx) => {
 	};
 };
 
-function Profile({ users, listings, currentUser }) {
-	// const { user, error, isLoading } = useUser();
+export default withPageAuthRequired(
+	function Profile({ users, listings, currentUser }) {
+		// const { user, error, isLoading } = useUser();
 
-	// if (isLoading) return <div>Loading ...</div>;
-	// if (error) return <div>{error.message}</div>;
+		// if (isLoading) return <div>Loading ...</div>;
+		// if (error) return <div>{error.message}</div>;
 
-	// const [previewSource, setPreviewSource] = useState("");
-	// const [firstName, setFirstName] = useState("");
-	// const [address, setAddress] = useState("");
-	// const email = user.email;
-	// const [lastName, setLastName] = useState("");
-	// const [userBio, setUserBio] = useState("");
+		// const [previewSource, setPreviewSource] = useState("");
+		// const [firstName, setFirstName] = useState("");
+		// const [address, setAddress] = useState("");
+		// const email = user.email;
+		// const [lastName, setLastName] = useState("");
+		// const [userBio, setUserBio] = useState("");
 
-	//an object which will represent the form data to send to the server (req.body)
-	// const body = {
-	// 	first_name: firstName,
-	// 	last_name: lastName,
-	// 	email: email,
-	// 	address: address,
-	// 	is_active: true,
-	// 	image: previewSource,
-	// 	user_bio: userBio,
-	// };
-	// const body = firstName;
-	// console.log(body);
-	//when the user selects an image from their desktop, preview it in the browser
-	//when the user selects an image from their desktop, preview it in the browser
-	const handleFileInputChange = (e) => {
-		const file = e.target.files[0];
-		previewFile(file);
-	};
+		//an object which will represent the form data to send to the server (req.body)
+		// const body = {
+		// 	first_name: firstName,
+		// 	last_name: lastName,
+		// 	email: email,
+		// 	address: address,
+		// 	is_active: true,
+		// 	image: previewSource,
+		// 	user_bio: userBio,
+		// };
+		// const body = firstName;
+		// console.log(body);
+		//when the user selects an image from their desktop, preview it in the browser
+		//when the user selects an image from their desktop, preview it in the browser
+		const handleFileInputChange = (e) => {
+			const file = e.target.files[0];
+			previewFile(file);
+		};
 
-	//convert to base64encoded image using new FileReader API
-	// const previewFile = (file) => {
-	// 	const reader = new FileReader();
-	// 	reader.readAsDataURL(file);
+		//convert to base64encoded image using new FileReader API
+		// const previewFile = (file) => {
+		// 	const reader = new FileReader();
+		// 	reader.readAsDataURL(file);
 
-	// 	reader.onloadend = () => {
-	// 		setPreviewSource(reader.result);
-	// 	};
-	// };
+		// 	reader.onloadend = () => {
+		// 		setPreviewSource(reader.result);
+		// 	};
+		// };
 
-	useEffect(() => {
-		setUpdatedListings(userListings);
-	}, []);
-	const [editProfileModalShow, setEditProfileModalShow] = React.useState(false);
-	const [updatedListings, setUpdatedListings] = useState(listings);
-	const [buttonsToggle, setButtonsToggle] = useState(false);
-	const { user, error, isLoading } = useUser();
-	if (isLoading) return <div>Loading ...</div>;
-	if (error) return <div>{error.message}</div>;
+		useEffect(() => {
+			setUpdatedListings(userListings);
+		}, []);
+		const [editProfileModalShow, setEditProfileModalShow] =
+			React.useState(false);
+		const [updatedListings, setUpdatedListings] = useState(listings);
+		const [buttonsToggle, setButtonsToggle] = useState(false);
+		const { user, error, isLoading } = useUser();
+		if (isLoading) return <div>Loading ...</div>;
+		if (error) return <div>{error.message}</div>;
 
-	const authUser = users.find((currUser) => currUser.email === user.email);
+		const authUser = users.find((currUser) => currUser.email === user.email);
 
-	const userListings = listings.filter(
-		(items) => items.user_id === currentUser.id
-	);
-	const handleDelete = async (id) => {
-		console.log(id);
-		const res = await fetch(
-			`https://it-crowd-project.herokuapp.com/api/items/${id}`,
-			{
+		const userListings = listings.filter(
+			(items) => items.user_id === currentUser.id
+		);
+		const handleDelete = async (id) => {
+			console.log(id);
+			const res = await fetch(`${API_URL}/api/items/${id}`, {
 				method: "DELETE",
-			}
-		);
-		const data = await res.json();
-		console.log(data);
-		setUpdatedListings(
-			updatedListings.filter((listing) => listing.item_id !== id)
-		);
-	};
+			});
+			const data = await res.json();
+			console.log(data);
+			setUpdatedListings(
+				updatedListings.filter((listing) => listing.item_id !== id)
+			);
+		};
 
-	const handleEdit = () => {
-		setButtonsToggle(!buttonsToggle);
-	};
+		const handleEdit = () => {
+			setButtonsToggle(!buttonsToggle);
+		};
 
-	const handleFinishProfile = () => {
-		setButtonsToggle(!buttonsToggle);
-	};
+		const handleFinishProfile = () => {
+			setButtonsToggle(!buttonsToggle);
+		};
 
-	const sign = false;
-	const nameLine = currentUser ? `  ${currentUser.full_name}` : null;
-	const addressLine = currentUser ? `  ${currentUser.address}` : null;
-	const emailLine = currentUser ? `  ${currentUser.email}` : null;
-	const bioLine = currentUser ? `  ${currentUser.user_bio}` : null;
+		const sign = false;
+		const nameLine = currentUser ? `  ${currentUser.full_name}` : null;
+		const addressLine = currentUser ? `  ${currentUser.address}` : null;
+		const emailLine = currentUser ? `  ${currentUser.email}` : null;
+		const bioLine = currentUser ? `  ${currentUser.user_bio}` : null;
 
-	return (
-		<div className={styles.mainContainer}>
-			<Head>
-				<title>iGive</title>
-				<meta name="description" content="Generated by create next app" />
-				<link rel="icon" href="/favicon.ico" />
-				<style>
-					@import
-					url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-				</style>
-				<link
-					rel="stylesheet"
-					href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-				></link>
-			</Head>
-			<Navbar
-				avatar={!currentUser ? user.picture : authUser.avatar}
-				users={users}
-			/>
-			{/* <div className={styles.flexboxContainer}> */}
-			{/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
-			{/* <div className={styles.userImg}> */}
-			{/* <Link href="/">
+		return (
+			<div className={styles.mainContainer}>
+				<Head>
+					<title>iGive</title>
+					<meta name="description" content="Generated by create next app" />
+					<link rel="icon" href="/favicon.ico" />
+					<style>
+						@import
+						url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+					</style>
+					<link
+						rel="stylesheet"
+						href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+					></link>
+				</Head>
+				<Navbar
+					avatar={!currentUser ? user.picture : authUser.avatar}
+					users={users}
+				/>
+				{/* <div className={styles.flexboxContainer}> */}
+				{/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
+				{/* <div className={styles.userImg}> */}
+				{/* <Link href="/">
               		<a>
                 		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               		</a>
             	</Link> */}
-			{/* </div> */}
-			{/* <span className={`fa fa-camera ${styles.camera}`}></span>
+				{/* </div> */}
+				{/* <span className={`fa fa-camera ${styles.camera}`}></span>
           		<div className={styles.stars}>
             		<span className={`fa fa-star ${styles.checked}`}></span>
             		<span className={`fa fa-star ${styles.checked}`}></span>
@@ -167,197 +160,199 @@ function Profile({ users, listings, currentUser }) {
             		<span class="fa fa-star"></span>
           		</div> */}
 
-			{/* </div> */}
-			<div className={styles.profileTopContainer}>
-				<div className={styles.topContainer}>
-					<div className={styles.bannerContainer}>
-						<img
-							src="https://i0.wp.com/libg.s3.us-east-2.amazonaws.com/download/A-Sea-Of-Clouds-And-Mountains.jpg"
-							className={styles.bannerImage}
-						/>
-						<div className={styles.cover}>
+				{/* </div> */}
+				<div className={styles.profileTopContainer}>
+					<div className={styles.topContainer}>
+						<div className={styles.bannerContainer}>
 							<img
-								className={styles.userImg}
-								src={!currentUser ? user.picture : currentUser.avatar}
+								src="https://i0.wp.com/libg.s3.us-east-2.amazonaws.com/download/A-Sea-Of-Clouds-And-Mountains.jpg"
+								className={styles.bannerImage}
 							/>
-						</div>
-					</div>
-
-					<div className={styles.infoCover}>
-						<div className={styles.infoContainer}>
-							<p className={styles.profileTitle}>
-								{" "}
-								<strong>Full Name:</strong>{" "}
-								{!buttonsToggle ? (
-									nameLine
-								) : (
-									<input type="text" placeholder={nameLine} />
-								)}
-							</p>
-							<p className={styles.profileTitle}>
-								{" "}
-								<strong>Address:</strong>{" "}
-								{!buttonsToggle ? (
-									addressLine
-								) : (
-									<input type="text" placeholder={addressLine} />
-								)}{" "}
-							</p>
-							<p className={styles.profileTitle}>
-								<strong>Email:</strong>{" "}
-								{!buttonsToggle ? (
-									emailLine
-								) : (
-									<input type="text" placeholder={addressLine} />
-								)}{" "}
-							</p>
-
-							{!buttonsToggle ? null : <input type="file"></input>}
-							{/* onChange={handleFileInputChange} */}
+							<div className={styles.cover}>
+								<img
+									className={styles.userImg}
+									src={!currentUser ? user.picture : currentUser.avatar}
+								/>
+							</div>
 						</div>
 
-						{/* EDIT PROFILE SET OF BUTTONS */}
-						{user && currentUser?.email === user.email ? (
-							<div className={styles.buttons}>
-								{/* <p className={styles.editBtn}>Edit</p> */}
+						<div className={styles.infoCover}>
+							<div className={styles.infoContainer}>
+								<p className={styles.profileTitle}>
+									{" "}
+									<strong>Full Name:</strong>{" "}
+									{!buttonsToggle ? (
+										nameLine
+									) : (
+										<input type="text" placeholder={nameLine} />
+									)}
+								</p>
+								<p className={styles.profileTitle}>
+									{" "}
+									<strong>Address:</strong>{" "}
+									{!buttonsToggle ? (
+										addressLine
+									) : (
+										<input type="text" placeholder={addressLine} />
+									)}{" "}
+								</p>
+								<p className={styles.profileTitle}>
+									<strong>Email:</strong>{" "}
+									{!buttonsToggle ? (
+										emailLine
+									) : (
+										<input type="text" placeholder={addressLine} />
+									)}{" "}
+								</p>
 
-								{!buttonsToggle ? (
-									<button
-										variant="primary"
-										onClick={() => handleEdit()}
-										className={styles.btn}
-									>
-										{" "}
-										Edit{" "}
-									</button>
-								) : null}
-								{/* <EditProfileModal
-                            		users={users}
-                            		show={editProfileModalShow}
-                            		onHide={() => setEditProfileModalShow(false)}
-                        		/> */}
+								{!buttonsToggle ? null : <input type="file"></input>}
+								{/* onChange={handleFileInputChange} */}
+							</div>
 
-								{buttonsToggle ? (
-									<div className={styles.buttonsSet}>
-										<button
-											variant="primary"
-											// onClick={() => setEditProfileModalShow(true)}
-											className={styles.btn}
-										>
-											{" "}
-											Submit{" "}
-										</button>
+							{/* EDIT PROFILE SET OF BUTTONS */}
+							{user && currentUser?.email === user.email ? (
+								<div className={styles.buttons}>
+									{/* <p className={styles.editBtn}>Edit</p> */}
 
+									{!buttonsToggle ? (
 										<button
 											variant="primary"
 											onClick={() => handleEdit()}
 											className={styles.btn}
 										>
 											{" "}
-											Back{" "}
+											Edit{" "}
 										</button>
-									</div>
-								) : null}
-							</div>
-						) : null}
-
-						{/* FINISH PROFILE SET OF BUTTONS */}
-						{!currentUser ? (
-							<div className={styles.buttons}>
-								{/* <p className={styles.editBtn}>Edit</p> */}
-
-								{!buttonsToggle ? (
-									<button
-										variant="primary"
-										onClick={() => handleFinishProfile()}
-										className={styles.btn}
-									>
-										Finish profile
-									</button>
-								) : null}
-								{/* <EditProfileModal
+									) : null}
+									{/* <EditProfileModal
                             		users={users}
                             		show={editProfileModalShow}
                             		onHide={() => setEditProfileModalShow(false)}
                         		/> */}
 
-								{buttonsToggle ? (
-									<div className={styles.buttonsSet}>
-										<button
-											variant="primary"
-											// onClick={() => setEditProfileModalShow(true)}
-											className={styles.btn}
-										>
-											{" "}
-											Submit{" "}
-										</button>
+									{buttonsToggle ? (
+										<div className={styles.buttonsSet}>
+											<button
+												variant="primary"
+												// onClick={() => setEditProfileModalShow(true)}
+												className={styles.btn}
+											>
+												{" "}
+												Submit{" "}
+											</button>
 
+											<button
+												variant="primary"
+												onClick={() => handleEdit()}
+												className={styles.btn}
+											>
+												{" "}
+												Back{" "}
+											</button>
+										</div>
+									) : null}
+								</div>
+							) : null}
+
+							{/* FINISH PROFILE SET OF BUTTONS */}
+							{!currentUser ? (
+								<div className={styles.buttons}>
+									{/* <p className={styles.editBtn}>Edit</p> */}
+
+									{!buttonsToggle ? (
 										<button
 											variant="primary"
 											onClick={() => handleFinishProfile()}
 											className={styles.btn}
 										>
-											{" "}
-											Back{" "}
+											Finish profile
 										</button>
-									</div>
-								) : null}
-							</div>
-						) : null}
+									) : null}
+									{/* <EditProfileModal
+                            		users={users}
+                            		show={editProfileModalShow}
+                            		onHide={() => setEditProfileModalShow(false)}
+                        		/> */}
+
+									{buttonsToggle ? (
+										<div className={styles.buttonsSet}>
+											<button
+												variant="primary"
+												// onClick={() => setEditProfileModalShow(true)}
+												className={styles.btn}
+											>
+												{" "}
+												Submit{" "}
+											</button>
+
+											<button
+												variant="primary"
+												onClick={() => handleFinishProfile()}
+												className={styles.btn}
+											>
+												{" "}
+												Back{" "}
+											</button>
+										</div>
+									) : null}
+								</div>
+							) : null}
+						</div>
+						<div className={styles.bioBox}>
+							<p className={styles.profileTitle}>
+								<strong>Bio</strong>
+							</p>
+							<p>
+								{!buttonsToggle ? (
+									bioLine
+								) : (
+									<textarea
+										type="text"
+										width="250px"
+										height="150px"
+										maxLength="75"
+									/>
+								)}
+							</p>
+						</div>
 					</div>
-					<div className={styles.bioBox}>
-						<p className={styles.profileTitle}>
-							<strong>Bio</strong>
-						</p>
-						<p>
-							{!buttonsToggle ? (
-								bioLine
-							) : (
-								<textarea
-									type="text"
-									width="250px"
-									height="150px"
-									maxLength="75"
+
+					<h4 className={styles.title}>My Listings</h4>
+					<div className={styles.itemsContainer}>
+						{/* USER ID FOR FETCHING ITEMS */}
+
+						{updatedListings ? (
+							updatedListings?.map((listing) => (
+								<Card
+									handleDelete={handleDelete}
+									item_id={listing.item_id}
+									user_id={listing.user_id}
+									category={listing.category}
+									full_name={listing.full_name}
+									item_name={listing.item_name}
+									item_description={listing.item_description}
+									use_by_date={listing.use_by_date}
+									date_added={listing.date_added}
+									quantity={listing.quantity}
+									item_image={listing.item_image}
+									is_reserved={listing.is_reserved}
+									availability={listing.availability}
+									address={listing.address}
+									time_slot={listing.time_slot}
+									cloudinary_id={listing.cloudinary_id}
+									avatar={listing.avatar}
+									user_bio={listing.user_bio}
+									currentUser={currentUser}
 								/>
-							)}
-						</p>
+							))
+						) : (
+							<h3 style={{ textAlign: "center", paddingTop: ".8em" }}>
+								There are no items just yet... :(
+							</h3>
+						)}
 					</div>
-				</div>
 
-				<h4 className={styles.title}>My Listings</h4>
-				<div className={styles.itemsContainer}>
-					{/* USER ID FOR FETCHING ITEMS */}
-
-					{updatedListings?.item_name ? (
-						updatedListings?.map((listing) => (
-							<Card
-								handleDelete={handleDelete}
-								item_id={listing.item_id}
-								user_id={listing.user_id}
-								category={listing.category}
-								item_name={listing.item_name}
-								item_description={listing.item_description}
-								use_by_date={listing.use_by_date}
-								date_added={listing.date_added}
-								quantity={listing.quantity}
-								item_image={listing.item_image}
-								is_reserved={listing.is_reserved}
-								availability={listing.availability}
-								time_slot={listing.time_slot}
-								cloudinary_id={listing.cloudinary_id}
-								avatar={listing.avatar}
-								user_bio={listing.user_bio}
-								currentUser={currentUser}
-							/>
-						))
-					) : (
-						<h3 style={{ textAlign: "center", paddingTop: ".8em" }}>
-							There are no items to give away yet... (((
-						</h3>
-					)}
-				</div>
-
-				{/* <div className={styles.profileTopContainer}>
+					{/* <div className={styles.profileTopContainer}>
                     <div className={styles.profileContainer}>
                         <div className={styles.imageContainer}>
                             <img
@@ -413,10 +408,10 @@ function Profile({ users, listings, currentUser }) {
             </div>
             <h2 className={styles.title}>My Listing</h2> */}
 
-				{/* <div className={`${styles.flexItems} ${styles.flexItem3}`}>
+					{/* <div className={`${styles.flexItems} ${styles.flexItem3}`}>
                 {/* USER ID FOR FETCHING ITEMS */}
 
-				{/* {updatedListings?.map((listing) => (
+					{/* {updatedListings?.map((listing) => (
                     <Card
                         handleDelete={handleDelete}
                         item_id={listing.item_id}
@@ -438,20 +433,19 @@ function Profile({ users, listings, currentUser }) {
                     />
                 ))}
             </div> */}
+				</div>
 			</div>
-		</div>
-	);
-}
-//Fetching data to PROPS
-// export async function getServerSideProps() {
-//   const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
-//   const data = await res.json();
-//   // By returning { props: { allUsers } }, the PostAuth component
-//   // will receive `allUsers` as a prop at BUILD time
-//   return {
-//       props:
-//           { users: data.payload },
-//     }
-// }
-
-export default Profile;
+		);
+	}
+	//Fetching data to PROPS
+	// export async function getServerSideProps() {
+	//   const res = await fetch(`https://it-crowd-project.herokuapp.com/api/users`);
+	//   const data = await res.json();
+	//   // By returning { props: { allUsers } }, the PostAuth component
+	//   // will receive `allUsers` as a prop at BUILD time
+	//   return {
+	//       props:
+	//           { users: data.payload },
+	//     }
+	// }
+);

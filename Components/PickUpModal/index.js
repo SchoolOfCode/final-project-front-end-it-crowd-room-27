@@ -40,7 +40,10 @@ function PickUpModal(props) {
 					<p>{props.time_slot}</p>
 				</div>
 				<div className={styles.footerRight}>
-					<button className={styles.btn}>Request Item</button>
+					{props.currentUser?.id !== props.user_id ? (
+						<button className={styles.btn}>Request Item</button>
+					) : null}
+
 					<button onClick={props.onHide} className={styles.btn}>
 						Close
 					</button>

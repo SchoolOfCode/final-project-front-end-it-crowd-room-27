@@ -66,6 +66,26 @@ function Card({
 				</div>
 				<div className={styles.cardRightBottom}>
 					<div className={styles.cardRightBottomLeft}>
+						{user && currentUser?.email === user.email ? (
+							<button
+								variant="primary"
+								onClick={() => setModalShow(true)}
+								className={styles.editBtn}
+							>
+								Edit
+							</button>
+						) : (
+							<button
+								variant="primary"
+								onClick={() => setModalShow(true)}
+								className={styles.btn}
+							>
+								Details
+							</button>
+						)}
+					</div>
+
+					<div className={styles.cardRightBottomRight}>
 						{/* 1.only display the delete button if the user owns the card*/}
 						{/* 2.'user' is here because we only pass the user prop to the card on the profile page - user can't delete from any other page */}
 						{user && currentUser?.email === user.email ? (
@@ -78,16 +98,6 @@ function Card({
 							</button>
 						) : null}
 					</div>
-					<div className={styles.cardRightBottomRight}>
-						<button
-							variant="primary"
-							onClick={() => setModalShow(true)}
-							className={styles.btn}
-						>
-							Details
-						</button>
-					</div>
-
 					<PickUpModal
 						item_id={item_id}
 						user_id={user_id}
@@ -109,6 +119,7 @@ function Card({
 						avatar={avatar}
 						user_bio={user_bio}
 						show={modalShow}
+						currentUser={currentUser}
 						onHide={() => setModalShow(false)}
 					/>
 				</div>

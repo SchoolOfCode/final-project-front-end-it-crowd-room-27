@@ -7,7 +7,9 @@
 	--text: #4e505d;
 	--button: #2dc9be;
 	--card: #ffedcb;
-	
+
+	--button-edit: #ffd365;
+	--button-edit-hover: #ddb859;
 
 	--button-hover: #23a198;
 	--button-delete-hover: #a31d2e;
@@ -41,7 +43,7 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: "Montserrat", sans-serif;
-	background:  var(--background);
+	background: var(--background);
 }
 
 .menuItem > a {
