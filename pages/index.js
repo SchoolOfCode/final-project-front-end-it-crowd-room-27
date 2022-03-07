@@ -7,12 +7,15 @@ import styles from "../styles/home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import {
-	Banner,
-	SectionOne,
-	SectionTwo,
-	SectionThree,
-	SectionFour,
-	Copyright,
+
+  Banner,
+  SectionOne,
+  SectionTwo,
+  SectionThree,
+  SectionFour,
+  ContactUs,
+  Copyright,
+
 } from "../Components/LandingPageComps/landingPageComps.js";
 
 export default function Home({ users }) {
@@ -54,6 +57,7 @@ export default function Home({ users }) {
         <SectionOne />
         <SectionTwo />
         <SectionThree />
+        <ContactUs />
         <SectionFour />
         <Copyright />
       </main>
@@ -62,12 +66,12 @@ export default function Home({ users }) {
 }
 
 export const getServerSideProps = async () => {
-	const usersRes = await fetch(
-		`https://it-crowd-project.herokuapp.com/api/users`
-	);
-	const usersData = await usersRes.json();
+  const usersRes = await fetch(
+    `https://it-crowd-project.herokuapp.com/api/users`
+  );
+  const usersData = await usersRes.json();
 
-	return {
-		props: { users: usersData.payload },
-	};
+  return {
+    props: { users: usersData.payload },
+  };
 };
