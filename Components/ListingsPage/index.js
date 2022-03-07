@@ -6,9 +6,9 @@ import Searchbar from "../../Components/Searchbar";
 import Head from "next/head";
 import Card from "../Card";
 import { useUser } from "@auth0/nextjs-auth0";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
+import GiveAwayModal from "../GiveAwayModal";
 
 // import GiveAwayModal from "../Components/GiveAwayModal/index";
 
@@ -23,6 +23,7 @@ import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 function ListingsPage({ users, listings }) {
   const { user, error, isLoading } = useUser();
   const [searchedListings, setSearchedListings] = useState(listings);
+  const [giveItemModalShow, setGiveItemModalShow] = React.useState(false);
 
   if (isLoading)
     return (
@@ -108,6 +109,13 @@ function ListingsPage({ users, listings }) {
           icon={faCirclePlus}
           size={"5x"}
           className={styles.faIcon}
+          onClick={() => setGiveItemModalShow(true)}
+        />
+
+        <GiveAwayModal
+          users={users}
+          show={giveItemModalShow}
+          onHide={() => setGiveItemModalShow(false)}
         />
       </div>
     </>
