@@ -1,4 +1,5 @@
 import { useUser } from "@auth0/nextjs-auth0";
+import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Card from "../Components/Card/index";
@@ -13,28 +14,42 @@ import {
   SectionTwo,
   SectionThree,
   SectionFour,
+
   ContactUs,
   Copyright,
+
 
 } from "../Components/LandingPageComps/landingPageComps.js";
 
 export default function Home({ users }) {
+  const { user, error, isLoading } = useUser();
+//   const [showScroll, setShowScroll] = useState(true);
 
-	const { user, error, isLoading } = useUser();
+//   const checkScrollTop = () => {
+//     if (!showScroll && window.pageYOffset > 400) {
+//       setShowScroll(true);
+//     } else if (showScroll && window.pageYOffset <= 400) {
+//       setShowScroll(false);
+//     }
+//   };
+//   React.useEffect(() => {
+//     window.addEventListener("scroll", checkScrollTop);
+//     return;
+//   }, []);
 
-	if (isLoading)
-	  return (
-		<div class="lds-ring">
-		  <div></div>
-		  <div></div>
-		  <div></div>
-		  <div></div>
-		</div>
-	  );
-  
-	if (error) return <div>{error.message}</div>;
+  if (isLoading)
+    return (
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    );
 
-	const currentUser = users?.find((currUser) => currUser.email === user?.email);
+  if (error) return <div>{error.message}</div>;
+
+  const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
   return (
     <div className={styles.container}>
@@ -47,9 +62,10 @@ export default function Home({ users }) {
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         ></link>
       </Head>
-      <Navbar avatar={!currentUser ? user?.picture : currentUser?.avatar}
-          users={users}
-	  />
+      <Navbar
+        avatar={!currentUser ? user?.picture : currentUser?.avatar}
+        users={users}
+      />
 
       <Banner />
       <main className={styles.main}>
@@ -59,6 +75,7 @@ export default function Home({ users }) {
         <SectionThree />
         <ContactUs />
         <SectionFour />
+        {/* <Copyright style={{ display: showScroll ? "fixed" : "none" }} /> */}
         <Copyright />
       </main>
     </div>

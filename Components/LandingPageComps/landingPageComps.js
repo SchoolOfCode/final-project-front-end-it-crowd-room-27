@@ -1,6 +1,10 @@
 import React from "react";
 import styles from "../../styles/home.module.css";
+
+import ReadMoreButton from "../Buttons/ReadMoreButton/Index";
+import { ScrollArrow } from "../ScrollToTop/index";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export function Banner() {
   return (
@@ -126,6 +130,9 @@ export function SectionFour() {
   );
 }
 
+export function Copyright({ style }) {
+
+
 export function ContactUs() {
   return (
     <div className="container">
@@ -174,6 +181,7 @@ export function ContactUs() {
   );
 }
 export function Copyright() {
+
   return (
     <div className={styles.footer}>
       <a href="#" className={styles.btn_up}>
@@ -183,6 +191,7 @@ export function Copyright() {
         created by <strong>IT-Crowd</strong>
         <br /> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy
       </p>
+      <ScrollArrow style={style} />
     </div>
   );
 }
