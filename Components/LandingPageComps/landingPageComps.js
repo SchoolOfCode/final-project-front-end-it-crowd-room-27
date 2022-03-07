@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "../../styles/home.module.css";
+
 import ReadMoreButton from "../Buttons/ReadMoreButton/Index";
 import { ScrollArrow } from "../ScrollToTop/index";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export function Banner() {
   return (
@@ -126,7 +129,59 @@ export function SectionFour() {
     </div>
   );
 }
+
 export function Copyright({ style }) {
+
+
+export function ContactUs() {
+  return (
+    <div className="container">
+      <h1 className={styles.formTitle}>Need help? Get in touch</h1>
+      <form
+        target="_blank"
+        action="https://formsubmit.co/irfan185@gmail.com"
+        method="POST"
+      >
+        <div className="form-group">
+          <div className="form-row">
+            <div className="col">
+              <input
+                type="text"
+                name="name"
+                className="form-control"
+                placeholder="Full Name"
+                required
+              />
+            </div>
+            <div className="col">
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div className="form-group">
+          <textarea
+            placeholder="Your Message"
+            className="form-control"
+            name="message"
+            rows="10"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" className={styles.button}>
+          Submit
+        </button>
+      </form>
+    </div>
+  );
+}
+export function Copyright() {
+
   return (
     <div className={styles.footer}>
       <a href="#" className={styles.btn_up}>

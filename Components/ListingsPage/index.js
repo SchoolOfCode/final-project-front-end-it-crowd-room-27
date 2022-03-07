@@ -23,7 +23,9 @@ import GiveAwayModal from "../GiveAwayModal";
 function ListingsPage({ users, listings }) {
   const { user, error, isLoading } = useUser();
   const [searchedListings, setSearchedListings] = useState(listings);
+
   const [giveItemModalShow, setGiveItemModalShow] = React.useState(false);
+
 
   if (isLoading)
     return (
@@ -100,10 +102,14 @@ function ListingsPage({ users, listings }) {
               avatar={listing.avatar}
               user_bio={listing.user_bio}
               currentUser={currentUser}
+
+              users={users}
+
             />
           </div>
         ))}
       </div>
+
       <div className={styles.iconContainer}>
         <FontAwesomeIcon
           icon={faCirclePlus}
@@ -118,6 +124,7 @@ function ListingsPage({ users, listings }) {
           onHide={() => setGiveItemModalShow(false)}
         />
       </div>
+
     </>
   );
 }
