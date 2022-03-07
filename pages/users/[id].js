@@ -96,7 +96,7 @@ function Profile({ users, listings, currentUser }) {
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
 
-	const regiUser = users.find((currUser) => currUser.email === user.email);
+	const authUser = users.find((currUser) => currUser.email === user.email);
 
 	const userListings = listings.filter(
 		(items) => items.user_id === currentUser.id
@@ -146,7 +146,7 @@ function Profile({ users, listings, currentUser }) {
 				></link>
 			</Head>
 			<Navbar
-				avatar={!currentUser ? user.picture : regiUser.avatar}
+				avatar={!currentUser ? user.picture : authUser.avatar}
 				users={users}
 			/>
 			{/* <div className={styles.flexboxContainer}> */}

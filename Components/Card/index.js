@@ -27,7 +27,6 @@ function Card({
 	currentUser,
 	handleDelete,
 }) {
-	console.log(user_id);
 	const [modalShow, setModalShow] = React.useState(false);
 	return (
 		<div className={styles.cardContainer}>
@@ -39,16 +38,11 @@ function Card({
 			<div className={styles.cardRight}>
 				<div className={styles.cardRightTop}>
 					<div className={styles.username}>
+						{/* link which takes us to the user profile page w/ dynamic routing */}
 						<Link href={`/users/${user_id}`} key={user_id}>
 							<h5 className={styles.profileLink}>{full_name}</h5>
 						</Link>
-						<div>
-							<div
-								className={`${styles.offline} ${
-									is_active ? styles.online : ""
-								}`}
-							></div>
-						</div>
+						{/* stars to show how a user rating could look if we ever develop this feature */}
 						<div className={styles.stars}>
 							<span className={`fa fa-star ${styles.checked}`}></span>
 							<span className={`fa fa-star ${styles.checked}`}></span>
@@ -72,6 +66,8 @@ function Card({
 				</div>
 				<div className={styles.cardRightBottom}>
 					<div className={styles.cardRightBottomLeft}>
+						{/* 1.only display the delete button if the user owns the card*/}
+						{/* 2.'user' is here because we only pass the user prop to the card on the profile page - user can't delete from any other page */}
 						{user && currentUser?.email === user.email ? (
 							<button
 								variant="primary"

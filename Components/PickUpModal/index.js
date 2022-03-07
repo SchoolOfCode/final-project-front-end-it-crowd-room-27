@@ -2,12 +2,6 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import styles from "../../styles/pickUpModal.module.css";
 
-// is_active = { is_active };
-
-// email = { email };
-// item_image = { item_image };
-// is_reserved = { is_reserved };
-
 function PickUpModal(props) {
 	return (
 		<Modal
