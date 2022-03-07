@@ -1,9 +1,10 @@
-
 @import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+
 
 .container {
   background: var(--background);
 }
+
 
 /* .main {
   height: 100vh;
@@ -38,17 +39,6 @@
   border: 1px solid red;
   text-align: center;
   margin: 0 auto;
-}
-.title {
-  /* grid-area: title; */
-  top: 50%;
-  text-align: center;
-  margin-top: 15%;
-  padding: 0;
-  font-weight: 800;
-  /* font-family: "Bungee Shade", cursive; */
-  font-size: 7em;
-  color: white;
 }
 
 /* text */
@@ -126,12 +116,12 @@
 	flex-direction: column;
 	background-image: url("https://images.pexels.com/photos/4871119/pexels-photo-4871119.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
 	background-color: #a5a5a5;
-  	height: 500px; 
-  	background-position: top; 
-  	background-repeat: no-repeat; 
-  	background-size: cover;
+  height: 500px; 
+  background-position: top; 
+  background-repeat: no-repeat; 
+  background-size: cover;
 	opacity: 0.8em;
-
+  
 	width: 100wh;
 	height: 70vh;
 } */
@@ -160,6 +150,19 @@
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
+  z-index: 0;
+}
+
+.title {
+  /* grid-area: title; */
+  top: 50%;
+  text-align: center;
+  margin-top: 15%;
+  padding: 0;
+  font-weight: 800;
+  /* font-family: "Bungee Shade", cursive; */
+  font-size: 7em;
+  color: white;
 }
 
 .inner_top {
@@ -255,30 +258,33 @@
   padding: 0;
 }
 
-.btn_up {
-  width: 60px;
-  height: 40px;
-  background: var(--button);
-  font-size: 0.8em;
-  color: var(--navbar);
-  text-decoration: none;
-  text-align: center;
-  float: right;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  transition: all 230ms;
-}
-
-.btn_up:hover {
-  opacity: 0.8;
-  color: var(--navbar);
-  background: var(--button);
-}
-
 .cast {
   text-align: center;
   font-size: 0.7em;
   padding-top: 2em;
+}
+
+.btn_up {
+  font-size: 0.8em;
+  transition: all 230ms;
+}
+
+.iconContainer {
+  position: fixed;
+  bottom: 1rem;
+  right: 0;
+  z-index: 0;
+}
+
+.faIcon {
+  color: #2dc9be;
+  background-color: white;
+  padding: 1rem;
+}
+
+.faIcon:hover {
+  color: white;
+  background-color: #2dc9be;
 }
 
 /* -=-=-=-= Mobile version of website -=-=-=- */
@@ -365,3 +371,35 @@
     grid-area: botom;
   }
 } */
+
+/* FORM */
+
+.formTitle {
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-size: 3em;
+  font-weight: 800;
+}
+
+.formGroup {
+  background-color: aqua;
+}
+
+.button {
+  background-color: var(--button);
+  height: 2em;
+  width: 6em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1.5em;
+  /* transform: translate(17.5em, 1em); */
+  box-shadow: 1px 5px 20px;
+}
+
+.button:hover {
+  background-color: var(--button-hover);
+  box-shadow: 1px 5px 20px;
+}

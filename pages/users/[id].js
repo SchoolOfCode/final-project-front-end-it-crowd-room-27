@@ -150,8 +150,8 @@ export default withPageAuthRequired(
                 		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               		</a>
             	</Link> */}
-				{/* </div> */}
-				{/* <span className={`fa fa-camera ${styles.camera}`}></span>
+      {/* </div> */}
+      {/* <span className={`fa fa-camera ${styles.camera}`}></span>
           		<div className={styles.stars}>
             		<span className={`fa fa-star ${styles.checked}`}></span>
             		<span className={`fa fa-star ${styles.checked}`}></span>
@@ -229,7 +229,6 @@ export default withPageAuthRequired(
                             		show={editProfileModalShow}
                             		onHide={() => setEditProfileModalShow(false)}
                         		/> */}
-
 									{buttonsToggle ? (
 										<div className={styles.buttonsSet}>
 											<button
@@ -353,6 +352,7 @@ export default withPageAuthRequired(
 					</div>
 
 					{/* <div className={styles.profileTopContainer}>
+
                     <div className={styles.profileContainer}>
                         <div className={styles.imageContainer}>
                             <img
@@ -407,11 +407,11 @@ export default withPageAuthRequired(
                 <button className={styles.searchBtn}>Search Item</button>
             </div>
             <h2 className={styles.title}>My Listing</h2> */}
-
 					{/* <div className={`${styles.flexItems} ${styles.flexItem3}`}>
                 {/* USER ID FOR FETCHING ITEMS */}
 
 					{/* {updatedListings?.map((listing) => (
+
                     <Card
                         handleDelete={handleDelete}
                         item_id={listing.item_id}
@@ -449,3 +449,6 @@ export default withPageAuthRequired(
 	//     }
 	// }
 );
+
+export default Profile;
+

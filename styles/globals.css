@@ -49,19 +49,15 @@ body {
 }
 
 .menuItem > a {
-	/* color: white !important; */
-	text-decoration: none !important;
+  /* color: white !important; */
+  text-decoration: none !important;
 }
 
 * {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-	font-family: "Montserrat", sans-serif;
-	color: var(--navbar);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  /* color: var(--navbar); */
 }
 
-/* form {
-   display: inherit;
-   flex-direction: column;
-} */
