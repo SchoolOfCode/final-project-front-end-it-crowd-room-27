@@ -99,14 +99,28 @@ function GiveAwayModal(props) {
                   maxlength="17"
                 ></textarea>
                 <h6>Category</h6>
-                <textarea
-                  className={styles.textField}
-                  placeholder="Category?..."
-                  type="text"
+                <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   required
-                ></textarea>
+                  className={styles.category}
+                >
+                  <option value="Fruit">Fruit</option>
+                  <option value="Vegetables">Vegetables</option>
+                  <option value="Dairy">Dairy</option>
+                  <option value="Meat, Fish, Eggs">Meat, Fish, Eggs</option>
+                  <option value="Bakery">Bakery</option>
+                  <option value="Cakes">Cakes</option>
+                  <option value="Pantry items">Pantry items</option>
+                  <option value="Organic waste">Organic waste</option>
+                  <option value="Other">Other</option>
+                </select>
+
+                {/* <textarea
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  required
+                ></textarea> */}
                 <h6>Brief Description</h6>
                 <textarea
                   className={styles.textField}
