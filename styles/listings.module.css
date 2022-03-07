@@ -60,10 +60,14 @@
   right: 1rem;
 }
 
-/* .iconCirclePlus {
-  color: black;
-} */
+.iconContainer {
+  cursor: pointer;
+}
 
 .faIcon {
   color: #2dc9be;
+}
+
+.faIcon:hover {
+  color: #23a198;
 }
