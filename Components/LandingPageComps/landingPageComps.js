@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "../../styles/home.module.css";
 import ReadMoreButton from "../Buttons/ReadMoreButton/Index";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 export function Banner() {
   return (
@@ -19,6 +21,15 @@ export function Banner() {
 export function SectionOne() {
   return (
     <div className={styles.flexboxContainer}>
+      <div className={styles.iconContainer}>
+        <a href="#" className={styles.btn_up}>
+          <FontAwesomeIcon
+            icon={faChevronUp}
+            size={"3x"}
+            className={styles.faIcon}
+          />
+        </a>
+      </div>
       <div className={`${styles.flexItem1}`}>
         <h3 className={styles.arttitle}>Our Story!</h3>
         <p className={styles.article}>
