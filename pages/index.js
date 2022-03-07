@@ -1,5 +1,5 @@
 import { useUser } from "@auth0/nextjs-auth0";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Card from "../Components/Card/index";
@@ -9,34 +9,36 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { API_URL } from "../config";
 
 import {
-
   Banner,
   SectionOne,
   SectionTwo,
   SectionThree,
   SectionFour,
-
   ContactUs,
   Copyright,
-
-
 } from "../Components/LandingPageComps/landingPageComps.js";
 
 export default function Home({ users }) {
   const { user, error, isLoading } = useUser();
-//   const [showScroll, setShowScroll] = useState(true);
+  const [showScroll, setShowScroll] = useState(false);
 
-//   const checkScrollTop = () => {
-//     if (!showScroll && window.pageYOffset > 400) {
-//       setShowScroll(true);
-//     } else if (showScroll && window.pageYOffset <= 400) {
-//       setShowScroll(false);
-//     }
-//   };
-//   React.useEffect(() => {
-//     window.addEventListener("scroll", checkScrollTop);
-//     return;
-//   }, []);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    });
+  }, []);
+
+  //   const checkScrollTop = () => {
+  //     if (!showScroll && window.pageYOffset > 400) {
+  //       setShowScroll(true);
+  //     } else if (showScroll && window.pageYOffset <= 400) {
+  //       setShowScroll(false);
+  //     }
+  //   };
 
   if (isLoading)
     return (
@@ -76,17 +78,15 @@ export default function Home({ users }) {
         <SectionThree />
         <ContactUs />
         <SectionFour />
-        {/* <Copyright style={{ display: showScroll ? "fixed" : "none" }} /> */}
-        <Copyright />
+
+        <Copyright showScroll={showScroll} setShowScroll={setShowScroll} />
       </main>
     </div>
   );
 }
 
 export const getServerSideProps = async () => {
-  const usersRes = await fetch(
-    `${API_URL}/api/users`
-  );
+  const usersRes = await fetch(`${API_URL}/api/users`);
   const usersData = await usersRes.json();
 
   return {

@@ -178,7 +178,7 @@ export function ContactUs() {
   );
 }
 
-export function Copyright({ style }) {
+export function Copyright({ showScroll, setShowScroll }) {
   return (
     <div className={styles.footer}>
       <a href="#" className={styles.btn_up}>
@@ -188,7 +188,7 @@ export function Copyright({ style }) {
         created by <strong>IT-Crowd</strong>
         <br /> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy
       </p>
-      <ScrollArrow style={style} />
+      <ScrollArrow showScroll={showScroll} setShowScroll={setShowScroll} />
     </div>
   );
 }
