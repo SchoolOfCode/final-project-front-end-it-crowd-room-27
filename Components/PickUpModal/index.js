@@ -4,12 +4,6 @@ import styles from "../../styles/pickUpModal.module.css";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { User } from "@auth0/auth0-react";
 
-// is_active = { is_active };
-
-// email = { email };
-// item_image = { item_image };
-// is_reserved = { is_reserved };
-
 function PickUpModal(props) {
   const { user, error, isLoading } = useUser();
   const users = props.users;
@@ -82,6 +76,9 @@ function PickUpModal(props) {
           <p>{props.time_slot}</p>
         </div>
         <div className={styles.footerRight}> */}
+        {/*  {props.currentUser?.id !== props.user_id ? (
+						<button className={styles.btn}>Request Item</button>
+					) : null} */}
       {/* <button className={styles.btn} onClick={handleSubmit}>
             Request Item
           </button> */}

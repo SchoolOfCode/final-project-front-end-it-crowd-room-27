@@ -6,6 +6,7 @@ import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index";
 import styles from "../styles/home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { API_URL } from "../config";
 
 import {
 
@@ -84,7 +85,7 @@ export default function Home({ users }) {
 
 export const getServerSideProps = async () => {
   const usersRes = await fetch(
-    `https://it-crowd-project.herokuapp.com/api/users`
+    `${API_URL}/api/users`
   );
   const usersData = await usersRes.json();
 
