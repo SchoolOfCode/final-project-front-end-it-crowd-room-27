@@ -1,8 +1,6 @@
 import { useUser } from "@auth0/nextjs-auth0";
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
-import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index";
 import styles from "../styles/home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -47,11 +45,9 @@ export default function Home({ users }) {
 				avatar={!currentUser ? user?.picture : currentUser?.avatar}
 				users={users}
 			/>
-
 			<Banner />
 			<main className={styles.main}>
 				{/* {user ? <Reg/> : <List/>} */}
-
 				<SectionOne />
 				<SectionTwo />
 				<SectionThree />
