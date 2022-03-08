@@ -9,27 +9,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { API_URL } from "../config";
 
 import {
-  Banner,
-  SectionOne,
-  SectionTwo,
-  SectionThree,
-  SectionFour,
-  ContactUs,
-  Copyright,
+	Banner,
+	SectionOne,
+	SectionTwo,
+	SectionThree,
+	SectionFour,
+	ContactUs,
+	Copyright,
 } from "../Components/LandingPageComps/landingPageComps.js";
 
 export default function Home({ users }) {
-  const { user, error, isLoading } = useUser();
-  const [showScroll, setShowScroll] = useState(false);
+	const { user, error, isLoading } = useUser();
+	const [showScroll, setShowScroll] = useState(false);
 
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
-    });
-  });
+	useEffect(() => {
+		window.addEventListener("scroll", () => {
+			window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
+		});
+	});
 
-  // window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
-  
+	// window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
+
 	const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
 	return (
@@ -51,24 +51,22 @@ export default function Home({ users }) {
 			<Banner />
 			<main className={styles.main}>
 				{/* {user ? <Reg/> : <List/>} */}
-      <Banner />
-      <main className={styles.main}>
-        {/* {user ? <Reg/> : <List/>} */}
-        <SectionOne />
-        <SectionTwo />
-        <SectionThree />
-        <ContactUs />
-        <SectionFour />
 
-        <Copyright showScroll={showScroll} />
-      </main>
-    </div>
-  );
+				<SectionOne />
+				<SectionTwo />
+				<SectionThree />
+				<ContactUs />
+				<SectionFour />
+
+				<Copyright showScroll={showScroll} />
+			</main>
+		</div>
+	);
 }
 
 export const getServerSideProps = async () => {
-  const usersRes = await fetch(`${API_URL}/api/users`);
-  const usersData = await usersRes.json();
+	const usersRes = await fetch(`${API_URL}/api/users`);
+	const usersData = await usersRes.json();
 
 	return {
 		props: { users: usersData.payload },
