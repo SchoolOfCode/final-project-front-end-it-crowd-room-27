@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "../../styles/card.module.css";
 import PickUpModal from "../PickUpModal";
 import Link from "next/link";
+import EditCardModal from '../EditCardModal';
 
 function Card({
   user,
@@ -27,9 +28,11 @@ function Card({
   currentUser,
   handleDelete,
   users,
+  updatedListings
 }) {
   console.log(user_id);
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [editItemModalShow, setEditItemModalShow] = useState(false);
   return (
     <div className={styles.cardContainer}>
       <div className={styles.cardLeft}>
@@ -42,6 +45,7 @@ function Card({
           <div className={styles.username}>
           
           {/* link which takes us to the user profile page w/ dynamic routing */}
+            
             <Link href={`/users/${user_id}`} key={user_id}>
               <h5 className={styles.profileLink}>{full_name}</h5>
             </Link>
@@ -79,13 +83,22 @@ function Card({
           
           <div className={styles.cardRightBottomLeft}>
                         {user && currentUser?.email === user.email ? (
+                           <>
                             <button
                                 variant="primary"
-                                onClick={() => setModalShow(true)}
+                                onClick={() => setEditItemModalShow(true)}
                                 className={styles.editBtn}
                             >
                                 Edit
                             </button>
+                            <EditCardModal
+                            id={user_id}
+                            updatedListings={updatedListings}
+							              show={editItemModalShow}
+							              onHide={() => setEditItemModalShow(false)}
+						                />
+                          </>
+
                         ) : (
                             <button
                                 variant="primary"

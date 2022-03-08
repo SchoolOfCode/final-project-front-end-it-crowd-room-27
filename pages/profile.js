@@ -31,7 +31,7 @@ function profile({ users, listings }) {
     (items) => items.user_id === currentUser?.id
   );
 
-  const [updatedListings, setUpdatedListings] = useState(listings);
+  const [updatedListings, setUpdatedListings] = useState();
 
   const [previewSource, setPreviewSource] = useState(currentUser?.avatar);
   const [tempPreviewSource, setTempPreviewSource] = useState(user.picture);
@@ -39,6 +39,8 @@ function profile({ users, listings }) {
   const [fullName, setFullName] = useState(currentUser?.full_name);
   const [address, setAddress] = useState(currentUser?.address);
   const [deleteUserModalShow, setDeleteUserModalShow] = useState(false);
+  const [compProfile, setCompProfile] = useState();
+
 
   const email = user.email;
   // const [lastName, setLastName] = useState("");
@@ -53,6 +55,7 @@ function profile({ users, listings }) {
     image: previewSource,
     user_bio: userBio,
   };
+
 
   //when the user selects an image from their desktop, preview it in the browser
   const handleFileInputChange = (e) => {
@@ -83,7 +86,7 @@ function profile({ users, listings }) {
 
     setButtonsToggle(!buttonsToggle);
     setPreviewSource(null);
-    // setBtnVisible(false);
+    setCompProfile(true);
   };
 
   useEffect(() => {
@@ -149,7 +152,7 @@ function profile({ users, listings }) {
   }
 
   return (
-    <div>
+    <div className={styles.main}>
       <div className={styles.mainContainer}>
         <Head>
           <title>iGive</title>
@@ -251,7 +254,7 @@ function profile({ users, listings }) {
               </div>
 
               {/* EDIT PROFILE SET OF BUTTONS */}
-              {user && currentUser?.email === user.email ? (
+              {compProfile || user && currentUser?.email === user.email ? (
                 <div className={styles.buttons}>
                   
 				        {!buttonsToggle ? (
@@ -307,7 +310,7 @@ function profile({ users, listings }) {
               ) : null}
 
               {/* FINISH PROFILE SET OF BUTTONS */}
-              {!currentUser ? (
+              {!currentUser && !compProfile ? (
                 <div className={styles.buttons}>
                   {!buttonsToggle ? (
                     <button
@@ -401,6 +404,7 @@ function profile({ users, listings }) {
 						user_bio={listing.user_bio}
 						currentUser={currentUser}
 						handleDelete={handleDelete}
+            updatedListings={updatedListings}
 					/>
 				))}
 			</div>

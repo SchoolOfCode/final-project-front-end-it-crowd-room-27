@@ -21,7 +21,7 @@
 	box-shadow: 1px 5px 20px green;
 }
 
-/* .avatar img {
+.avatar img {
 	border-radius: 50%;
 	height: 50px;
 	width: 50px;
@@ -33,7 +33,7 @@
 	height: 80%;
 	width: 80%;
 	object-fit: cover;
-} */
+}
 
 .body {
 	display: flex;
@@ -45,12 +45,12 @@
 	max-width: 90%;
 	border: 7px solid var(--button);
 } */
-/* .bodyLeft .bodyRight {
+.bodyLeft .bodyRight {
 	max-width: 50%;
 	height: 100%;
 	border: 1px solid red;
-} */
-/* 
+}
+
 .imgContainer img {
 	align-items: center;
 	height: 98%;
@@ -68,18 +68,8 @@
 
 .bodyRight {
 	display: block;
-} */
+}
 .textField {
-	padding: .3em;
 	width: 100%;
 	background-color: var(--background);
-}
-
-.condition {
-	font-size: 1.1em;
-}
-
-.delete_title {
-	text-align: center;
-	margin: 0 2.5em;
 }

@@ -139,7 +139,7 @@ export default withPageAuthRequired(
 					></link>
 				</Head>
 				<Navbar
-					avatar={!currentUser ? user.picture : authUser.avatar}
+					avatar={!currentUser ? user.picture : authUser?.avatar}
 					users={users}
 				/>
 				{/* <div className={styles.flexboxContainer}> */}
