@@ -73,10 +73,14 @@ function Card({
 				<div className={styles.cardRightMiddle}>
 					<p className={styles.descriptionText}>{item_description}</p>
 				</div>
-				<div className={styles.location}>
-					<h6>Location:</h6>
-					<p>{address}</p>
-				</div>
+
+				{currentUser ? (
+					<div className={styles.location}>
+						<h6>Location:</h6>
+						<p>{address}</p>
+					</div>
+				) : null}
+
 				<div className={styles.cardRightBottom}>
 					<div className={styles.cardRightBottomLeft}>
 						{user && currentUser?.email === user.email ? (
@@ -87,7 +91,7 @@ function Card({
 							>
 								Edit
 							</button>
-						) : (
+						) : currentUser ? (
 							<button
 								variant="primary"
 								onClick={() => setModalShow(true)}
@@ -95,7 +99,7 @@ function Card({
 							>
 								Details
 							</button>
-						)}
+						) : null}
 					</div>
 					<div className={styles.cardRightBottomRight}>
 						{/* 1.only display the delete button if the user owns the card*/}

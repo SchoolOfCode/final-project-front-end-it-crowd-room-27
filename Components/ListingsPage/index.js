@@ -9,13 +9,8 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import GiveAwayModal from "../GiveAwayModal";
-import { useInView } from "react-intersection-observer";
 
 function ListingsPage({ users, listings }) {
-	const { ref: i, inView: isVisibile } = useInView({
-		threshold: 0.7,
-	});
-
 	const { user, error, isLoading } = useUser();
 	const [searchedListings, setSearchedListings] = useState(listings);
 
