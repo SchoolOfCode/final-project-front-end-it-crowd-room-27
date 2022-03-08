@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
 import Head from "next/head";
 import { API_URL } from "../config";
-import DeleteModal from '../Components/DeleteModal';
+import DeleteModal from "../Components/DeleteModal";
 
 function profile({ users, listings }) {
   const { user, error, isLoading } = useUser();
@@ -176,7 +176,6 @@ function profile({ users, listings }) {
         {/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
         {/* <div className={styles.userImg}> */}
         {/* <Link href="/">
-
               		<a>
                 		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               		</a>
@@ -369,7 +368,6 @@ function profile({ users, listings }) {
           </div>
 
           {/* <ProvideInfoForm
-
 						showEditModal={showEditModal}
 						setShowEditModal={setShowEditModal}
 					/> */}
