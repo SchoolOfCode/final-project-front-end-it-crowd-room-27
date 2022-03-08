@@ -37,9 +37,10 @@
    border-radius: 50%;
    height: 50px;
    width: 50px;
-   object-fit: cover;
+   object-fit: center top;
    transform: translate(25em, -0em);
    position: static;
+   display: flex;
 }
 
 .imgContainer {

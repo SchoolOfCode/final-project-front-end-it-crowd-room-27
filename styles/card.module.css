@@ -1,203 +1,203 @@
 /* -=-=-==-=-ONE PARENT CONTAINER WITH A LEFT AND RIGHT HALF=-=-=-=-=-=-=-=-=-=-==-=-=-=- */
 
 .cardContainer {
-  display: flex;
-  width: 32rem;
-  height: 20rem;
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  margin: 2em;
-  background-color: var(--card);
-  color: var(--text);
-  transition: box-shadow ease-in-out 250ms;
+   display: flex;
+   width: 32rem;
+   height: 20rem;
+   border-radius: 10px;
+   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+   margin: 2em;
+   background-color: var(--card);
+   color: var(--text);
+   transition: box-shadow ease-in-out 250ms;
 }
 .cardContainer:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 /* box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px; */
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=LEFT HALF OF CARD =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 .cardLeft {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   width: 50%;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .imgContainer {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  border-radius: 5%;
-  justify-content: center;
-  background: var(--navbar);
-  align-items: center;
+   width: 90%;
+   height: 90%;
+   display: flex;
+   border-radius: 5%;
+   justify-content: center;
+   background: var(--navbar);
+   align-items: center;
 }
 .imgContainer img {
-  align-items: center;
-  border-radius: 5%;
-  height: 98%;
-  width: 98%;
-  object-fit: cover;
+   align-items: center;
+   border-radius: 5%;
+   height: 98%;
+   width: 98%;
+   object-fit: cover;
 }
 
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=RIGHT HALF OF CARD =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-== */
 
 .cardRight {
-  margin: auto;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+   margin: auto;
+   width: 50%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
 }
 .checked {
-  color: orange;
+   color: orange;
 }
 .cardRightTop {
-  padding-top: 0.6em;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 25%;
+   padding-top: 0.6em;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   height: 25%;
 }
 
 .profileLink {
-  cursor: pointer;
+   cursor: pointer;
 }
 .cardRightMiddle {
-  min-height: 40%;
-  padding: 0.1em;
+   min-height: 40%;
+   padding: 0.1em;
 }
 .cardRightBottom {
-  min-height: 20%;
-  display: flex;
-  flex-direction: row;
+   min-height: 20%;
+   display: flex;
+   flex-direction: row;
 }
 .cardRightBottomRight,
 .cardRightBottomLeft {
-  width: 50%;
-  display: flex;
-  flex-direction: row;
+   width: 50%;
+   display: flex;
+   flex-direction: row;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
 /* -=-=-=-=-=-=-=-=-=-=-=-=-=-=-GET PRECISE POSITIONING OF TEXT-=-==-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-= */
 .username {
-  font-weight: 800;
-  font-weight: bolder;
+   font-weight: 800;
+   font-weight: bolder;
 }
 
 .userImgContainer {
-  height: 60px;
-  width: 60px;
+   height: 60px;
+   width: 60px;
 
-  align-self: end;
-  transform: translate(-0.2em, -3.3em);
-  border-radius: 50%;
+   align-self: end;
+   transform: translate(-0.2em, -3.3em);
+   border-radius: 50%;
 }
 
 .userImgContainer img {
-  border-radius: 50%;
-  height: 60px;
-  width: 60px;
-  object-fit: cover;
+   border-radius: 50%;
+   height: 60px;
+   width: 60px;
+   object-fit: cover;
 }
 
 .stars {
-  transform: translateY(-0.8em);
+   transform: translateY(-0.8em);
 }
 
 .itemName {
-  align-self: flex-start;
-  transform: translateY(-3.5em);
+   align-self: flex-start;
+   transform: translateY(-3.5em);
 }
 
 .location {
-  display: flex;
-  line-height: 20px;
-  height: 15%;
+   display: flex;
+   line-height: 20px;
+   height: 15%;
 }
 
 .descriptionText {
-  overflow: hidden;
-  line-height: 20px;
-  display: -webkit-box;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
+   overflow: hidden;
+   line-height: 20px;
+   display: -webkit-box;
+   -webkit-line-clamp: 6;
+   -webkit-box-orient: vertical;
 }
 .location p {
-  margin-top: 0.1em;
-  margin-left: 0.5em;
+   margin-top: 0.1em;
+   margin-left: 0.5em;
 }
 .location h6 {
-  margin-top: 0.1em;
+   margin-top: 0.1em;
 }
 
 .address {
-  padding: 0;
-  margin-left: 0.6em;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
+   padding: 0;
+   margin-left: 0.6em;
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-==--=---=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==--=-=-=-=-=- */
 /* =--====-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=BUTTON=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 .btn_container {
-  width: 8em;
-  height: 3em;
+   width: 8em;
+   height: 3em;
 }
 
 .btn {
-  background-color: var(--button);
-  height: 2em;
-  width: 6em;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  color: white;
-  font-size: 1em;
-  transition: all ease-in-out 200ms;
+   background-color: var(--button);
+   height: 2em;
+   width: 6em;
+   border-radius: 10px;
+   cursor: pointer;
+   border: none;
+   color: white;
+   font-size: 1em;
+   transition: all ease-in-out 200ms;
 }
 
 .btn:hover {
-  background-color: var(--button-hover);
+   background-color: var(--button-hover);
 }
 
 .deleteBtn {
-  background-color: var(--button-delete);
-  height: 2em;
-  width: 6em;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  color: white;
-  font-size: 1em;
-  transition: background-color ease-in-out 200ms;
+   background-color: var(--button-delete);
+   height: 2em;
+   width: 6em;
+   border-radius: 10px;
+   cursor: pointer;
+   border: none;
+   color: white;
+   font-size: 1em;
+   transition: background-color ease-in-out 200ms;
 }
 
 .deleteBtn:hover {
-  background-color: var(--button-delete-hover);
+   background-color: var(--button-delete-hover);
 }
 
 .editBtn {
-  background-color: var(--button-edit);
-  height: 2em;
-  width: 6em;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  color: white;
-  font-size: 1em;
-  transition: all ease-in-out 200ms;
+   background-color: var(--button-edit);
+   height: 2em;
+   width: 6em;
+   border-radius: 10px;
+   cursor: pointer;
+   border: none;
+   color: white;
+   font-size: 1em;
+   transition: all ease-in-out 200ms;
 }
 
 .editBtn:hover {
-  background-color: var(--button-edit-hover);
+   background-color: var(--button-edit-hover);
 }
