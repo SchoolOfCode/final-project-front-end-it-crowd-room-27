@@ -10,17 +10,17 @@ function Toast({ toastList, position, setList }) {
   //     },
   //     [toastList, setList]
   //   );
-  const [show, setShow] = useState(true);
-  useEffect(() => {
-    const timeId = setTimeout(() => {
-      setShow(false);
-      //after 3s the show value sets to false
-    }, 3000);
+//   const [show, setShow] = useState(true);
+//   useEffect(() => {
+//     const timeId = setTimeout(() => {
+//       setShow(false);
+//       //after 3s the show value sets to false
+//     }, 3000);
 
-    return () => {
-      clearTimeout(timeId);
-    };
-  }, []);
+//     return () => {
+//       clearTimeout(timeId);
+//     };
+//   }, []);
 
   return (
     <div className={`${styles.container} ${styles[position]}`}>

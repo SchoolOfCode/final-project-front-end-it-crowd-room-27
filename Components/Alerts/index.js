@@ -3,7 +3,7 @@ import styles from "../../styles/alert.module.css";
 import AlertButton from "../Buttons/AlertButtons";
 import Toast from "../Toast/index.js";
 
-function Alerts() {
+export function Alerts() {
   const [list, setList] = useState([]);
   console.log(list);
   let toastProperties = null;
@@ -43,6 +43,14 @@ function Alerts() {
           backgroundColor: "#f0ad4e",
         };
         break;
+      case "item_upload_success":
+        toastProperties = {
+          id: 5,
+          title: "success",
+          description: "Amazing! Your item has been successfully uploaded",
+          backgroundColor: "#5cb85c",
+        };
+        break;
       default:
         toastProperties = [];
     }
@@ -58,6 +66,9 @@ function Alerts() {
         <AlertButton handleClick={() => showToast("green")}>
           Success
         </AlertButton>
+        <AlertButton handleClick={() => showToast("item_upload_success")}>
+          Submit
+        </AlertButton>
         <AlertButton handleClick={() => showToast("red")}>Red</AlertButton>
         <AlertButton handleClick={() => showToast("blue")}>Blue</AlertButton>
         <AlertButton handleClick={() => showToast("orange")}>
@@ -68,5 +79,3 @@ function Alerts() {
     </div>
   );
 }
-
-export default Alerts;
