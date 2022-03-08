@@ -85,19 +85,19 @@
 	top: 14px;
 }
 .loaderLineWrap:nth-child(3) .loaderLine {
-	border-color: hsl(120, 80%, 60%);
+	border-color: var(--button);
 	height: 62px;
 	width: 62px;
 	top: 21px;
 }
 .loaderLineWrap:nth-child(4) .loaderLine {
-	border-color: hsl(180, 80%, 60%);
+	border-color: var(--button-hover);
 	height: 48px;
 	width: 48px;
 	top: 28px;
 }
 .loaderLineWrap:nth-child(5) .loaderLine {
-	border-color: hsl(240, 80%, 60%);
+	border-color: var(--card);
 	height: 34px;
 	width: 34px;
 	top: 35px;

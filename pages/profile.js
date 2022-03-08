@@ -1,385 +1,351 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Card from "../Components/Card/index";
 import Navbar from "../Components/Navbar/index.js";
-import styles from "../styles/profile.module.css";
 import Head from "next/head";
 import { API_URL } from "../config";
 import DeleteModal from "../Components/DeleteModal";
+import styles from "../styles/profile.module.css";
+import Router from "next/router";
 
 function profile({ users, listings }) {
-  const { user, error, isLoading } = useUser();
+	const { user, error, isLoading } = useUser();
 
-  if (isLoading)
-    return (
-      <div class="lds-ring">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    );
+	if (isLoading) return <div>Loading...</div>;
 
-  if (error) return <div>{error.message}</div>;
+	if (error) return <div>{error.message}</div>;
 
-  useEffect(() => {
-    setUpdatedListings(userListings);
-  }, []);
+	const [updatedListings, setUpdatedListings] = useState([]);
 
-  const currentUser = users.find((currUser) => currUser.email === user.email);
-  const userListings = listings.filter(
-    (items) => items.user_id === currentUser?.id
-  );
+	const currentUser = users.find((currUser) => currUser.email === user.email);
+	const userListings = listings.filter(
+		(items) => items.user_id === currentUser?.id
+	);
 
-  const [updatedListings, setUpdatedListings] = useState();
+	const [previewSource, setPreviewSource] = useState(currentUser?.avatar);
+	const [tempPreviewSource, setTempPreviewSource] = useState(user.picture);
+	// const [btnVisible, setBtnVisible] = useState(true);
+	const [fullName, setFullName] = useState(currentUser?.full_name);
+	const [address, setAddress] = useState(currentUser?.address);
+	const [deleteUserModalShow, setDeleteUserModalShow] = useState(false);
+	const [compProfile, setCompProfile] = useState();
 
-  const [previewSource, setPreviewSource] = useState(currentUser?.avatar);
-  const [tempPreviewSource, setTempPreviewSource] = useState(user.picture);
-  // const [btnVisible, setBtnVisible] = useState(true);
-  const [fullName, setFullName] = useState(currentUser?.full_name);
-  const [address, setAddress] = useState(currentUser?.address);
-  const [deleteUserModalShow, setDeleteUserModalShow] = useState(false);
-  const [compProfile, setCompProfile] = useState();
+	const email = user.email;
+	// const [lastName, setLastName] = useState("");
+	const [userBio, setUserBio] = useState(currentUser?.user_bio);
 
+	// an object which will represent the form data to send to the server (req.body)
+	const body = {
+		full_name: fullName,
+		email: email,
+		address: address,
+		is_active: true,
+		image: previewSource,
+		user_bio: userBio,
+	};
 
-  const email = user.email;
-  // const [lastName, setLastName] = useState("");
-  const [userBio, setUserBio] = useState(currentUser?.user_bio);
+	//when the user selects an image from their desktop, preview it in the browser
+	const handleFileInputChange = (e) => {
+		const file = e.target.files[0];
+		previewFile(file);
+		// console.log('Hello', e.target);
+	};
 
-  // an object which will represent the form data to send to the server (req.body)
-  const body = {
-    full_name: fullName,
-    email: email,
-    address: address,
-    is_active: true,
-    image: previewSource,
-    user_bio: userBio,
-  };
+	//convert to base64encoded image using new FileReader API
+	const previewFile = (file) => {
+		const reader = new FileReader();
+		reader.readAsDataURL(file);
 
+		reader.onloadend = () => {
+			setPreviewSource(reader.result);
+			setTempPreviewSource(reader.result);
+		};
+	};
 
-  //when the user selects an image from their desktop, preview it in the browser
-  const handleFileInputChange = (e) => {
-    const file = e.target.files[0];
-    previewFile(file);
-    // console.log('Hello', e.target);
-  };
+	// =-=-=-=-=-=-=- CREATE NEW PROFILE RECORD IN DATABASE =-==-=-=-=--=-=-
 
-  //convert to base64encoded image using new FileReader API
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
+	const handleRegistration = async () => {
+		await fetch(`${API_URL}/api/users`, {
+			method: "POST",
+			body: JSON.stringify(body),
+			headers: { "Content-Type": "application/json" },
+		});
 
-    reader.onloadend = () => {
-      setPreviewSource(reader.result);
-      setTempPreviewSource(reader.result);
-    };
-  };
+		setButtonsToggle(!buttonsToggle);
+		setPreviewSource(null);
+		setCompProfile(true);
+	};
 
-  // =-=-=-=-=-=-=- CREATE NEW PROFILE RECORD IN DATABASE =-==-=-=-=--=-=-
+	useEffect(() => {
+		setUpdatedListings(userListings);
+	}, []);
 
-  const handleRegistration = async () => {
-    await fetch(`${API_URL}/api/users`, {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: { "Content-Type": "application/json" },
-    });
+	const [buttonsToggle, setButtonsToggle] = useState(false);
 
-    setButtonsToggle(!buttonsToggle);
-    setPreviewSource(null);
-    setCompProfile(true);
-  };
+	// =-=-=-=-=-=-=- EDIT EXISTITNG PROFILE =-==-=-=-=--=-=-
+	const uID = currentUser?.id;
+	console.log(uID);
+	const handleEdit = async () => {
+		try {
+			await fetch(`${API_URL}/api/users/${uID}`, {
+				method: "PUT",
+				body: JSON.stringify(body),
+				headers: { "Content-Type": "application/json" },
+			});
+		} catch (error) {
+			console.log("error", error);
+			error ? showToast(failed_to_save) : null;
+		}
 
-  useEffect(() => {
-    setUpdatedListings(userListings);
-  }, []);
+		setButtonsToggle(!buttonsToggle);
+		setPreviewSource(null);
+		Router.reload(window.location);
+	};
 
-  const [buttonsToggle, setButtonsToggle] = useState(false);
+	// =-=-=-=-=-=-=- DELETE EXISTITNG CARD FROM DATABASE =-==-=-=-=--=-=-
 
-  console.log(currentUser);
+	const handleDelete = async (id) => {
+		console.log(id);
+		const res = await fetch(`${API_URL}/api/items/${id}`, {
+			method: "DELETE",
+		});
+		const data = await res.json();
+		console.log(data);
+		setUpdatedListings(
+			updatedListings.filter((listing) => listing.item_id !== id)
+		);
+	};
 
-  // =-=-=-=-=-=-=- EDIT EXISTITNG PROFILE =-==-=-=-=--=-=-
-  const uID = currentUser?.id;
-  console.log(uID);
-  const handleEdit = async () => {
-    await fetch(`${API_URL}/api/users/${uID}`, {
-      method: "PUT",
-      body: JSON.stringify(body),
-      headers: { "Content-Type": "application/json" },
-    });
+	// BUTTONS HANDLERS
+	const handleBackFromEdit = () => {
+		setButtonsToggle(!buttonsToggle);
+	};
 
-    setButtonsToggle(!buttonsToggle);
-    setPreviewSource(null);
-  };
+	const handleFinishProfile = () => {
+		setButtonsToggle(!buttonsToggle);
+	};
 
-  // =-=-=-=-=-=-=- DELETE EXISTITNG CARD FROM DATABASE =-==-=-=-=--=-=-
+	function handleName(event) {
+		const name = event.target.value;
+		setFullName(name);
+	}
+	function handleAddress(event) {
+		const address = event.target.value;
+		setAddress(address);
+	}
+	function handleBio(event) {
+		const bio = event.target.value;
+		setUserBio(bio);
+	}
 
-  const handleDelete = async (id) => {
-    console.log(id);
-    const res = await fetch(
-      `${API_URL}/api/items/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
-    const data = await res.json();
-    console.log(data);
-    setUpdatedListings(
-      updatedListings.filter((listing) => listing.item_id !== id)
-    );
-  };
+	return (
+		<div className={styles.main}>
+			<div className={styles.mainContainer}>
+				<Head>
+					<title>iGive</title>
+					<meta name="description" content="Generated by create next app" />
+					<link rel="icon" href="/favicon.ico" />
+					<style>
+						@import
+						url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+					</style>
+					<link
+						rel="stylesheet"
+						href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+					></link>
+					<link
+						href="https://fonts.googleapis.com/icon?family=Material+Icons"
+						rel="stylesheet"
+					/>
+				</Head>
+				<Navbar
+					avatar={!currentUser ? tempPreviewSource : currentUser.avatar}
+					users={users}
+				/>
 
+				<div className={styles.profileTopContainer}>
+					<div className={styles.topContainer}>
+						<div className={styles.bannerContainer}>
+							{/* <img
+								src="https://i0.wp.com/libg.s3.us-east-2.amazonaws.com/download/A-Sea-Of-Clouds-And-Mountains.jpg"
+								className={styles.bannerImage}
+							/> */}
+							<div className={styles.cover}>
+								<img
+									className={styles.userImg}
+									src={!currentUser ? tempPreviewSource : currentUser.avatar}
+								/>
+							</div>
+						</div>
 
-  // BUTTONS HANDLERS
-  const handleBackFromEdit = () => {
-    setButtonsToggle(!buttonsToggle);
-  };
+						<div className={styles.infoCover}>
+							<div className={styles.infoContainer}>
+								<p className={styles.profileTitle}>
+									{" "}
+									<strong>Full Name:</strong>{" "}
+									{!buttonsToggle ? (
+										fullName
+									) : (
+										<input type="text" onChange={handleName} value={fullName} />
+									)}
+								</p>
 
-  const handleFinishProfile = () => {
-    setButtonsToggle(!buttonsToggle);
-  };
+								<p className={styles.profileTitle}>
+									{" "}
+									<strong>Local Area:</strong>{" "}
+									{!buttonsToggle ? (
+										address
+									) : (
+										<input
+											type="text"
+											onChange={handleAddress}
+											value={address}
+										/>
+									)}
+								</p>
 
-  function handleName(event) {
-    const name = event.target.value;
-    setFullName(name);
-  }
-  function handleAddress(event) {
-    const address = event.target.value;
-    setAddress(address);
-  }
-  function handleBio(event) {
-    const bio = event.target.value;
-    setUserBio(bio);
-  }
+								<p className={styles.profileTitle}>
+									<strong>Email:</strong> {user.email}
+								</p>
 
-  return (
-    <div className={styles.main}>
-      <div className={styles.mainContainer}>
-        <Head>
-          <title>iGive</title>
-          <meta name="description" content="Generated by create next app" />
-          <link rel="icon" href="/favicon.ico" />
-          <style>
-            @import
-            url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-          </style>
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-          ></link>
-          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-        </Head>
-        <Navbar
-          avatar={!currentUser ? tempPreviewSource : currentUser.avatar}
-          users={users}
-        />
-        {/* <div className={styles.flexboxContainer}> */}
-        {/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
-        {/* <div className={styles.userImg}> */}
-        {/* <Link href="/">
-              		<a>
-                		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
-              		</a>
-            	</Link> */}
-				{/* </div> */}
-				{/* <span className={`fa fa-camera ${styles.camera}`}></span>
-          		<div className={styles.stars}>
-            		<span className={`fa fa-star ${styles.checked}`}></span>
-            		<span className={`fa fa-star ${styles.checked}`}></span>
-            		<span className={`fa fa-star ${styles.checked}`}></span>
-            		<span className={`fa fa-star ${styles.checked}`}></span>
-            		<span class="fa fa-star"></span>
-          		</div> */}
-        {/* </div> */}
-        <div className={styles.profileTopContainer}>
-          <div className={styles.topContainer}>
-            <div className={styles.bannerContainer}>
-              <img
-                src="https://i0.wp.com/libg.s3.us-east-2.amazonaws.com/download/A-Sea-Of-Clouds-And-Mountains.jpg"
-                className={styles.bannerImage}
-              />
-              <div className={styles.cover}>
-                <img
-                  className={styles.userImg}
-                  src={!currentUser ? tempPreviewSource : currentUser.avatar}
-                />
-              </div>
-            </div>
+								{!buttonsToggle ? null : (
+									<input type="file" onChange={handleFileInputChange}></input>
+								)}
+								{buttonsToggle ? (
+									<img
+										src={previewSource}
+										style={{
+											height: "125px",
+											width: "125px",
+											borderRadius: "50%",
+											objectFit: "cover",
+										}}
+									></img>
+								) : null}
+							</div>
 
-            <div className={styles.infoCover}>
-              <div className={styles.infoContainer}>
-                <p className={styles.profileTitle}>
-                  {" "}
-                  <strong>Full Name:</strong>{" "}
-                  {!buttonsToggle ? (
-                    fullName
-                  ) : (
-                    <input type="text" onChange={handleName} value={fullName} />
-                  )}
-                </p>
+							{/* EDIT PROFILE SET OF BUTTONS */}
+							{compProfile || (user && currentUser?.email === user.email) ? (
+								<div className={styles.buttons}>
+									{!buttonsToggle ? (
+										<button
+											variant="primary"
+											onClick={() => handleBackFromEdit()}
+											className={styles.editingBtn}
+										>
+											{" "}
+											<span class="material-icons-outlined material-icons">
+												{" "}
+												edit
+											</span>{" "}
+										</button>
+									) : null}
 
-                <p className={styles.profileTitle}>
-                  {" "}
-                  <strong>Address:</strong>{" "}
-                  {!buttonsToggle ? (
-                    address
-                  ) : (
-                    <input
-                      type="text"
-                      onChange={handleAddress}
-                      value={address}
-                    />
-                  )}
-                </p>
+									{buttonsToggle ? (
+										<div className={styles.buttonsSet}>
+											<button
+												variant="primary"
+												onClick={() => handleEdit()}
+												className={styles.btn}
+											>
+												{" "}
+												Save{" "}
+											</button>
 
-                <p className={styles.profileTitle}>
-                  <strong>Email:</strong> {user.email}
-                </p>
-                
-                
-                {!buttonsToggle ? null :
-                  <input type="file" onChange={handleFileInputChange}></input>
-                }
-                {buttonsToggle ? (
-                  <img
-                    src={previewSource}
-                    style={{
-                      height: "125px",
-                      width: "125px",
-                      borderRadius: "50%",
-                      objectFit: "cover",
-                    }}
-                  ></img>
-                ) : null}
-              </div>
+											<button
+												variant="primary"
+												onClick={() => handleBackFromEdit()}
+												className={styles.btn}
+											>
+												{" "}
+												Back{" "}
+											</button>
 
-              {/* EDIT PROFILE SET OF BUTTONS */}
-              {compProfile || user && currentUser?.email === user.email ? (
-                <div className={styles.buttons}>
-                  
-				        {!buttonsToggle ? (
-                    <button
-                      variant="primary"
-                      onClick={() => handleBackFromEdit()}
-                      className={styles.editingBtn}
-                    >
-                      {" "}
-                      <span class="material-icons-outlined material-icons"> edit</span>
-                      {" "}
-                    </button>
-                  ) : null}
+											<div className={styles.GiveItemButton}>
+												<button
+													variant="primary"
+													onClick={() => setDeleteUserModalShow(true)}
+													className={styles.deleteBtn}
+												>
+													{" "}
+													Delete Profile{" "}
+												</button>
+												<DeleteModal
+													id={uID}
+													show={deleteUserModalShow}
+													onHide={() => setDeleteUserModalShow(false)}
+												/>
+											</div>
+										</div>
+									) : null}
+								</div>
+							) : null}
 
-                  {buttonsToggle ? (
-                    <div className={styles.buttonsSet}>
-                      <button
-                        variant="primary"
-                        onClick={() => handleEdit()}
-                        className={styles.btn}
-                      >
-                        {" "}
-                        Save{" "}
-                      </button>
+							{/* FINISH PROFILE SET OF BUTTONS */}
+							{!currentUser && !compProfile ? (
+								<div className={styles.buttons}>
+									{!buttonsToggle ? (
+										<button
+											variant="primary"
+											onClick={() => handleFinishProfile()}
+											className={styles.finishProfile}
+										>
+											Finish profile
+										</button>
+									) : null}
 
-                      <button
-                        variant="primary"
-                        onClick={() => handleBackFromEdit()}
-                        className={styles.btn}
-                      >
-                        {" "}
-                        Back{" "}
-                      </button>
-                      
-                      <div className={styles.GiveItemButton}>
-                        <button
-                            variant="primary"
-                            onClick={() => setDeleteUserModalShow(true)}
-                            className={styles.deleteBtn}
-                        >{" "}
-                        Delete Profile{" "}
-                        </button>
-                        <DeleteModal
-                            id={uID}
-							              show={deleteUserModalShow}
-							              onHide={() => setDeleteUserModalShow(false)}
-						            />
-                      </div>
-                        
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
+									{buttonsToggle ? (
+										<div className={styles.buttonsSet}>
+											<button
+												variant="primary"
+												onClick={() => handleRegistration()}
+												className={styles.btn}
+											>
+												{" "}
+												Save{" "}
+											</button>
 
-              {/* FINISH PROFILE SET OF BUTTONS */}
-              {!currentUser && !compProfile ? (
-                <div className={styles.buttons}>
-                  {!buttonsToggle ? (
-                    <button
-                      variant="primary"
-                      onClick={() => handleFinishProfile()}
-                      className={styles.finishProfile}
-                    >
-                      Finish profile
-                    </button>
-                  ) : null}
+											<button
+												variant="primary"
+												onClick={() => handleFinishProfile()}
+												className={styles.btn}
+											>
+												{" "}
+												Back{" "}
+											</button>
+										</div>
+									) : null}
+								</div>
+							) : null}
+						</div>
+						<div className={styles.bioBox}>
+							<p className={styles.profileTitle}>
+								<strong>Bio</strong>
+							</p>
 
-                  {buttonsToggle ? (
-                    <div className={styles.buttonsSet}>
-                      <button
-                        variant="primary"
-                        onClick={() => handleRegistration()}
-                        className={styles.btn}
-                      >
-                        {" "}
-                        Save{" "}
-                      </button>
-
-                      <button
-                        variant="primary"
-                        onClick={() => handleFinishProfile()}
-                        className={styles.btn}
-                      >
-                        {" "}
-                        Back{" "}
-                      </button>
-                    </div>
-                  ) : null}
-                </div>
-              ) : null}
-            </div>
-            <div className={styles.bioBox}>
-              <p className={styles.profileTitle}>
-                <strong>Bio</strong>
-              </p>
-
-              <p>
-                {!buttonsToggle ? (
-                  userBio
-                ) : (
-                  <textarea
-                    type="text"
-                    onChange={handleBio}
-                    width="250px"
-                    height="150px"
-                    maxLength="75"
-                    value={userBio}
-                  />
-                )}
-              </p>
-            </div>
-          </div>
-
-          {/* <ProvideInfoForm
-						showEditModal={showEditModal}
-						setShowEditModal={setShowEditModal}
-					/> */}
+							<p>
+								{!buttonsToggle ? (
+									userBio
+								) : (
+									<textarea
+										type="text"
+										onChange={handleBio}
+										width="250px"
+										height="150px"
+										maxLength="75"
+										value={userBio}
+									/>
+								)}
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 
 			<h2 className={styles.title}>My Listings...</h2>
 
 			<div className={styles.itemsContainer}>
-				{/* USER ID FOR FETCHING ITEMS */}
-				{/* <Card userID={id} /> */}
-
 				{updatedListings?.map((listing) => (
 					<Card
 						user={user}
@@ -402,51 +368,13 @@ function profile({ users, listings }) {
 						user_bio={listing.user_bio}
 						currentUser={currentUser}
 						handleDelete={handleDelete}
-            updatedListings={updatedListings}
+						updatedListings={updatedListings}
 					/>
 				))}
 			</div>
-      
 		</div>
 	);
 }
-
-//Fetching data to PROPS
-// export async function getServerSideProps() {
-
-// <h4 className={styles.title}>My Listings</h4>
-//  <div className={styles.itemsContainer}>
-{
-	/* USER ID FOR FETCHING ITEMS */
-}
-
-//                 {updatedListings?.item_name ? updatedListings?.map((listing) => (
-//                     <Card
-// 						user={user}
-//                         handleDelete={handleDelete}
-//                         item_id={listing.item_id}
-//                         user_id={listing.user_id}
-//                         category={listing.category}
-//                         item_name={listing.item_name}
-//                         item_description={listing.item_description}
-//                         use_by_date={listing.use_by_date}
-//                         date_added={listing.date_added}
-//                         quantity={listing.quantity}
-//                         item_image={listing.item_image}
-//                         is_reserved={listing.is_reserved}
-//                         availability={listing.availability}
-//                         time_slot={listing.time_slot}
-//                         cloudinary_id={listing.cloudinary_id}
-//                         avatar={listing.avatar}
-//                         user_bio={listing.user_bio}
-//                         currentUser={currentUser}
-//                     />
-//                 )) : <h3 style={{textAlign: 'center', paddingTop: '.8em'}}>There are no items to give away yet... (((</h3>}
-//             </div>
-//         </div>
-//     </div>
-//     );
-// }
 
 export const getServerSideProps = withPageAuthRequired({
 	async getServerSideProps() {
