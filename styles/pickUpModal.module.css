@@ -1,68 +1,112 @@
 .body,
 .header,
 .footer {
-	background-color: var(--card);
-	color: var(--text);
+  background-color: var(--card);
+  color: var(--text);
 }
 
 .btn {
-	background-color: var(--button);
-	height: 3em;
-	width: 7em;
-	border-radius: 10px;
-	cursor: pointer;
-	border: none;
-	color: white;
-	font-size: 1em;
-	transform: translate(-1em, -0.1em);
-	transition: all ease-in-out 200ms;
+  background-color: var(--button);
+  height: 3em;
+  width: 7em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1em;
+  transform: translate(-1em, -0.1em);
+  transition: all ease-in-out 200ms;
 }
 
 .btn:hover {
-	background-color: var(--button-hover);
+  background-color: var(--button-hover);
 }
 
 .avatar img {
-	border-radius: 50%;
-	height: 50px;
-	width: 50px;
-	object-fit: cover;
-	transform: translate(25em, -0em);
-	position: static;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  transform: translate(25em, -0em);
+  position: static;
 }
 
 .imgContainer {
-	height: 80%;
-	width: 80%;
-	object-fit: cover;
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
 }
 
 .body {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .bodyLeft,
 .bodyRight {
-	width: 50%;
+  width: 50%;
 
-	text-align: left;
+  text-align: left;
 }
 
 .footer {
-	/* border: 1px solid green; */
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .footerRight,
 .footerLeft {
-	/* border: 1px solid red; */
-	width: 50%;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
-	justify-content: space-between;
+  /* border: 1px solid red; */
+  width: 50%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+}
+
+/* form */
+
+.formContainer {
+  /* margin: 3em; */
+  background-color: var(--card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formControl {
+  /* margin-left: 12em; */
+  height: 10em;
+  width: 25em;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--background);
+  margin-bottom: 1em;
+  padding: 0.5em;
+}
+
+.btn {
+  background-color: var(--button);
+  height: 2.5em;
+  width: 8em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1em;
+  transition: all ease-in-out 200ms;
+  margin-bottom: 1em;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
