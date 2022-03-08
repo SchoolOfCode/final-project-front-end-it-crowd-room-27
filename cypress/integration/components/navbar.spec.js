@@ -16,6 +16,12 @@ describe("user visits landing page", () => {
          cy.get("#__next").find("li").first().should("have.text", "Home");
       });
 
+      it("check all links on navbar", () => {
+         cy.visit("/");
+         cy.get("li").each((page) => {
+            cy.request(page.prop("href"));
+         });
+      });
       // it("should render the About page once clicking on About on navbar", () => {
       //    cy.get("#__next").find("li").should("have.text", "About");
       // });
