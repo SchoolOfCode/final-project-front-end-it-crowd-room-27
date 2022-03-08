@@ -29,9 +29,7 @@ export default function Home({ users }) {
   });
 
   // window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
-
-	if (error) return <div>{error.message}</div>;
-
+  
 	const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
 	return (
