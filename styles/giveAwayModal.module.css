@@ -1,75 +1,79 @@
 .body,
 .header,
 .footer {
-	background-color: var(--card);
-	color: var(--text);
+  background-color: var(--card);
+  color: var(--text);
 }
 
+.header {
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-bottom: none;
+}
+
+.footer {
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-top: none;
+}
 .btn {
-	background-color: var(--button);
-	height: 3em;
-	width: 7em;
-	border-radius: 10px;
-	cursor: pointer;
-	border: none;
-	color: white;
-	font-size: 1em;
+  background-color: var(--button);
+  height: 3em;
+  width: 7em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1em;
 }
-
 .btn:hover {
-	background-color: var(--button-hover);
-	box-shadow: 1px 5px 20px green;
+  background-color: var(--button-hover);
+  box-shadow: 1px 5px 20px green;
 }
-
 .avatar img {
-	border-radius: 50%;
-	height: 50px;
-	width: 50px;
-	object-fit: cover;
-	transform: translate(12em, -2.8em);
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  transform: translate(12em, -2.8em);
 }
-
 .imgContainer {
-	height: 80%;
-	width: 80%;
-	object-fit: cover;
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
 }
-
 .body {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-
 /* .bodyLeft img {
-	max-width: 90%;
-	border: 7px solid var(--button);
+    max-width: 90%;
+    border: 7px solid var(--button);
 } */
 .bodyLeft .bodyRight {
-	max-width: 50%;
-	height: 100%;
-	border: 1px solid red;
+  max-width: 50%;
+  height: 100%;
+  border: 1px solid red;
 }
-
 .imgContainer img {
-	align-items: center;
-	height: 98%;
-	width: 98%;
-	object-fit: cover;
+  align-items: center;
+  height: 98%;
+  width: 98%;
+  object-fit: cover;
 }
 .imgContainer {
-	width: 90%;
-	height: 90%;
-	display: flex;
-	justify-content: center;
-	background: var(--navbar);
-	align-items: center;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  background: var(--navbar);
+  align-items: center;
 }
-
 .bodyRight {
-	display: block;
+  display: block;
 }
 .textField {
-	width: 100%;
-	background-color: var(--background);
+  width: 100%;
+  background-color: var(--background);
 }

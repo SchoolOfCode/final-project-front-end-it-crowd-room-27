@@ -9,66 +9,66 @@ import GiveItemSubmitButton from "../Buttons/GiveItemSubmitButton/index";
 import { API_URL } from "../../config";
 
 function GiveAwayModal(props) {
-	const { user, error, isLoading } = useUser();
-	if (isLoading) return <div>Loading ...</div>;
-	if (error) return <div>{error.message}</div>;
+  const { user, error, isLoading } = useUser();
+  if (isLoading) return <div>Loading ...</div>;
+  if (error) return <div>{error.message}</div>;
 
-	const users = props.users;
+  const users = props.users;
 
-	//currentUser matches the authenticated user with their info in our db
-	const currentUser = users?.find((currUser) => currUser.email === user?.email);
+  //currentUser matches the authenticated user with their info in our db
+  const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
-	//capture form data
-	const [previewSource, setPreviewSource] = useState("");
-	const [itemName, setItemName] = useState("");
-	const [itemDesc, setItemDesc] = useState("");
-	const [quantity, setQuantity] = useState("");
-	const [category, setCategory] = useState("");
-	const [useByDate, setUseByDate] = useState("");
-	const [availability, setAvailability] = useState(true);
-	const [dateAdded, setDateAdded] = useState(Date.now());
-	const [isReserved, setIsReserved] = useState(false);
-	const [timeSlot, setTimeSlot] = useState("");
+  //capture form data
+  const [previewSource, setPreviewSource] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [itemDesc, setItemDesc] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [category, setCategory] = useState("");
+  const [useByDate, setUseByDate] = useState("");
+  const [availability, setAvailability] = useState(true);
+  const [dateAdded, setDateAdded] = useState(Date.now());
+  const [isReserved, setIsReserved] = useState(false);
+  const [timeSlot, setTimeSlot] = useState("");
 
-	//an object which will represent the form data to send to the server (req.body)
-	const body = {
-		user_id: currentUser?.id,
-		category: category,
-		item_name: itemName,
-		item_description: itemDesc,
-		use_by_date: useByDate,
-		date_added: Date.now(),
-		quantity: quantity,
-		is_reserved: true,
-		availability: false,
-		time_slot: timeSlot,
-		image: previewSource,
-	};
+  //an object which will represent the form data to send to the server (req.body)
+  const body = {
+    user_id: currentUser?.id,
+    category: category,
+    item_name: itemName,
+    item_description: itemDesc,
+    use_by_date: useByDate,
+    date_added: Date.now(),
+    quantity: quantity,
+    is_reserved: true,
+    availability: false,
+    time_slot: timeSlot,
+    image: previewSource,
+  };
 
-	//when the user selects an image from their desktop, preview it in the browser
-	const handleFileInputChange = (e) => {
-		const file = e.target.files[0];
-		previewFile(file);
-	};
+  //when the user selects an image from their desktop, preview it in the browser
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+  };
 
-	//convert to base64encoded image using new FileReader API
-	const previewFile = (file) => {
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
+  //convert to base64encoded image using new FileReader API
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-		reader.onloadend = () => {
-			setPreviewSource(reader.result);
-		};
-	};
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+    };
+  };
 
-	//stringify the body object defined above and send as req.body to server
-	const handleSubmit = async () => {
-		await fetch(`${API_URL}/api/items`, {
-			method: "POST",
-			body: JSON.stringify(body),
-			headers: { "Content-Type": "application/json" },
-		});
-	};
+  //stringify the body object defined above and send as req.body to server
+  const handleSubmit = async () => {
+    await fetch(`${API_URL}/api/items`, {
+      method: "POST",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
+    });
+  };
 
   return (
     <Modal

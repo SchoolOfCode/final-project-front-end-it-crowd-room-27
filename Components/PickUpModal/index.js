@@ -70,71 +70,74 @@ function PickUpModal(props) {
           </button> */}
         </div>
       </Modal.Body>
-      {/* <Modal.Footer className={styles.footer}>
+      <Modal.Footer className={styles.footer}>
+        {/* //{" "}
         <div className={styles.footerLeft}>
-          <p>{props.availability}</p>
-          <p>{props.time_slot}</p>
+          // <p>{props.availability}</p>
+          // <p>{props.time_slot}</p>
+          //{" "}
         </div>
+        //{" "}
         <div className={styles.footerRight}> */}
-      {/*  {props.currentUser?.id !== props.user_id ? (
+        {/*  {props.currentUser?.id !== props.user_id ? (
 						<button className={styles.btn}>Request Item</button>
 					) : null} */}
-      {/* <button className={styles.btn} onClick={handleSubmit}>
+        {/* <button className={styles.btn} onClick={handleSubmit}>
             Request Item
           </button> */}
 
-      <div className={styles.formContainer}>
-        <form
-          target="_blank"
-          action={`https://formsubmit.co/${props.email}`}
-          method="POST"
-        >
-          <div className="form-group">
-            <textarea
-              placeholder="Your Message"
-              className={styles.formControl}
-              name="message"
-              rows="10"
-              required
-            ></textarea>
-            <input
-              type="hidden"
-              name="_next"
-              value="http://localhost:3000/listings"
-            ></input>
-            <input
-              type="hidden"
-              name="_autoresponse"
-              value="your custom message"
-            ></input>
-            <input
-              hidden
-              type="email"
-              name="email"
-              value={user.email}
-              placeholder="Email Address"
-            ></input>
-            <input
-              hidden
-              type="name"
-              name="itemName"
-              value={`${currentUser?.full_name} has requested the following items: ${props.item_name}`}
-            ></input>
-            <form
-              action="https://formsubmit.co/your-random-string"
-              method="POST"
-            />
-          </div>
-          {/* <button onClick={handleSubmit} type="submit" className={styles.btn}> */}
-          <div className={styles.btnContainer}>
-            <button type="submit" className={styles.btn}>
-              Request item
-            </button>
-          </div>
-        </form>
-      </div>
-      {/* </div> */}
-      {/* //   </Modal.Footer> */}
+        <div className={styles.formContainer}>
+          <form
+            target="_blank"
+            action={`https://formsubmit.co/${props.email}`}
+            method="POST"
+          >
+            <div className="form-group">
+              <textarea
+                placeholder="Your Message"
+                className={styles.formControl}
+                name="message"
+                rows="10"
+                required
+              ></textarea>
+              <input
+                type="hidden"
+                name="_next"
+                value="http://localhost:3000/listings"
+              ></input>
+              <input
+                type="hidden"
+                name="_autoresponse"
+                value="your custom message"
+              ></input>
+              <input
+                hidden
+                type="email"
+                name="email"
+                value={user.email}
+                placeholder="Email Address"
+              ></input>
+              <input
+                hidden
+                type="name"
+                name="itemName"
+                value={`${currentUser?.full_name} has requested the following items: ${props.item_name}`}
+              ></input>
+              <form
+                action="https://formsubmit.co/your-random-string"
+                method="POST"
+              />
+            </div>
+            {/* <button onClick={handleSubmit} type="submit" className={styles.btn}> */}
+            <div className={styles.btnContainer}>
+              <button type="submit" className={styles.btn}>
+                Request item
+              </button>
+            </div>
+          </form>
+        </div>
+        {/* </div> */}
+      </Modal.Footer>
     </Modal>
   );
 }
