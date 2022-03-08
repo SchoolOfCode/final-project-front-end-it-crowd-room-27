@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
 import Modal from "react-bootstrap/Modal";
 import styles from '../../styles/deleteModal.module.css';
+import { API_URL } from "../../config.js";
 
 const DeleteModal = ( props ) => {
 const userId = props.id;
@@ -32,7 +33,7 @@ const handleDeleteProfile = async () => {
   
   {confirmDeleteProfile ? 
      await fetch(
-        `https://it-crowd-project.herokuapp.com/api/users/${userId}`,
+        `${API_URL}/api/users/${userId}`,
         {
           method: "DELETE",
         }
@@ -55,17 +56,17 @@ const handleDeleteProfile = async () => {
             centered
         >
         <Modal.Header closeButton className={styles.header}>
-            <h1>Give Away an Item</h1>
+            <h1 className={styles.delete_title}>Delete your currant profile</h1>
         </Modal.Header>
         <Modal.Body className={styles.body}>
             
 
             <div className={styles.bodyRight}>
             <div className={styles.container}>
-                <h1>Delete your currant profile</h1>
+                {/* <h1>Delete your currant profile</h1> */}
                 <div className={styles.form}>
                     <form>
-                        <h6>To delete your current profile type your email {user.email} bellow:</h6>
+                        <p className={styles.condition}>To delete your current profile type your email <strong>{user.email}</strong> bellow:</p>
                         <input
                             className={styles.textField}
                             placeholder="Your email here ..."

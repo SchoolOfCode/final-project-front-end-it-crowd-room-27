@@ -27,8 +27,7 @@
    font-size: 1em;
 }
 .btn:hover {
-   background-color: var(--button-hover);
-   box-shadow: 1px 5px 20px green;
+	background-color: var(--button-hover);
 }
 .avatar img {
    border-radius: 50%;
@@ -79,4 +78,7 @@
    background-color: var(--background);
    border-radius: 10px;
    padding: 0.2em;
+}
+.category {
+	background-color: var(--background);
 }

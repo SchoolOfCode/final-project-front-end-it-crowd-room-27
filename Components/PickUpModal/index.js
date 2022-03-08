@@ -57,14 +57,14 @@ function PickUpModal(props) {
             </div>
             <div className={styles.bodyRight}>
                <h4>{props.item_name}</h4>
-               <p>{props.category}</p>
-               <p>{props.date_added}</p>
-               <p>{props.item_description}</p>
-               <p>{props.quantity}</p>
-               <p>{props.use_by_date}</p>
-               <p>{props.address}</p>
+               <p><strong>Type:</strong>  {props.category}</p>
+               <p><strong>Date added:</strong>  {props.date_added}</p>
+               <p><strong>Description:</strong>  {props.item_description}</p>
+               <p><strong>Quantity:</strong>  {props.quantity}</p>
+               <p><strong>Use by:</strong>  {props.use_by_date}</p>
+               <p><strong>Address:</strong>  {props.address}</p>
                <p>{props.availability}</p>
-               <p>{props.time_slot}</p>
+               <p><strong>Timeslot:</strong>  {props.time_slot}</p>
                {/* <button onClick={props.onHide} className={styles.btn}>
             Close
           </button> */}

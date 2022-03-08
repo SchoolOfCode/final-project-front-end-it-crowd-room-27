@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./formInputs.module.css";
 import { useUser } from "@auth0/nextjs-auth0";
+import { API_URL } from "../../config.js";
 
 function FormInputs({ setShowEditModal, newFetchedUsers }) {
   const { user, error, isLoading } = useUser();
@@ -54,21 +55,21 @@ function FormInputs({ setShowEditModal, newFetchedUsers }) {
   const handleFormSubmit = async () => {
     setShowEditModal(false);
     // if(firstName && lastName && address) {
-    await fetch(`https://it-crowd-project.herokuapp.com/api/users`, {
+    await fetch(`${API_URL}/api/users`, {
       method: "POST",
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" },
     });
 
-    setTimeout(async () => {
-      const res = await fetch(
-        `https://it-crowd-project.herokuapp.com/api/users`
-      );
-      const data = await res.json();
-      setfetchedUsers(data.payload);
-    }, 1000);
+    // setTimeout(async () => {
+    //   const res = await fetch(
+    //     `https://it-crowd-project.herokuapp.com/api/users`
+    //   );
+    //   const data = await res.json();
+    //   setfetchedUsers(data.payload);
+    // }, 1000);
 
-    newFetchedUsers(fetchedUsers);
+    // newFetchedUsers(fetchedUsers);
 
     // }
   };
