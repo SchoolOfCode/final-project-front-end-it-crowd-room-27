@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "../Button";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { useState } from "react";
 import GiveItemSubmitButton from "../Buttons/GiveItemSubmitButton/index";
 import { API_URL } from "../../config";
+import Router from "next/router";
 
 function GiveAwayModal(props) {
 	const { user, error, isLoading } = useUser();
@@ -68,113 +69,118 @@ function GiveAwayModal(props) {
 			body: JSON.stringify(body),
 			headers: { "Content-Type": "application/json" },
 		});
+		Router.reload(window.location);
 	};
 
-  return (
-    <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton className={styles.header}>
-        <h1>Give Away an Item</h1>
-      </Modal.Header>
-      <Modal.Body className={styles.body}>
-        <div className={styles.bodyLeft}>
-          <div className={styles.imgContainer}>
-            {/* check that the user has selected a file and preview it to the left of the form */}
-            {previewSource ? <img src={previewSource}></img> : null}
-          </div>
-        </div>
-        <div className={styles.bodyRight}>
-          <div className={styles.container}>
-            <h1>Fill in the details below...</h1>
-            <div className={styles.form}>
-              <form>
-                <h6>Item</h6>
-                <textarea
-                  className={styles.textField}
-                  placeholder="What are you donating?"
-                  type="text"
-                  value={itemName}
-                  onChange={(e) => setItemName(e.target.value)}
-                  required
-                  maxlength="17"
-                ></textarea>
-                <h6>Category</h6>
-                <select
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  required
-                  className={styles.category}
-                >
-                  <option value="Fruit">Fruit</option>
-                  <option value="Vegetables">Vegetables</option>
-                  <option value="Dairy">Dairy</option>
-                  <option value="Meat, Fish, Eggs">Meat, Fish, Eggs</option>
-                  <option value="Bakery">Bakery</option>
-                  <option value="Cakes">Cakes</option>
-                  <option value="Pantry items">Pantry items</option>
-                  <option value="Organic waste">Organic waste</option>
-                  <option value="Other">Other</option>
-                </select>
+	return (
+		<Modal
+			{...props}
+			size="lg"
+			aria-labelledby="contained-modal-title-vcenter"
+			centered
+		>
+			<Modal.Header closeButton className={styles.header}>
+				<h1>Give Away an Item</h1>
+			</Modal.Header>
+			<Modal.Body className={styles.body}>
+				<div className={styles.bodyLeft}>
+					<div className={styles.imgContainer}>
+						{/* check that the user has selected a file and preview it to the left of the form */}
+						{previewSource ? <img src={previewSource}></img> : null}
+					</div>
+				</div>
+				<div className={styles.bodyRight}>
+					<div className={styles.container}>
+						<h1>Fill in the details below...</h1>
+						<div className={styles.form}>
+							<form>
+								<h6>Item</h6>
+								<textarea
+									className={styles.textField}
+									placeholder="What are you donating?"
+									type="text"
+									value={itemName}
+									onChange={(e) => setItemName(e.target.value)}
+									required
+									maxlength="17"
+								></textarea>
+								<h6>Category</h6>
+								<select
+									value={category}
+									onChange={(e) => setCategory(e.target.value)}
+									required
+									className={styles.category}
+								>
+									<option value="Fruit">Fruit</option>
+									<option value="Vegetables">Vegetables</option>
+									<option value="Dairy">Dairy</option>
+									<option value="Meat, Fish, Eggs">Meat, Fish, Eggs</option>
+									<option value="Bakery">Bakery</option>
+									<option value="Cakes">Cakes</option>
+									<option value="Pantry items">Pantry items</option>
+									<option value="Organic waste">Organic waste</option>
+									<option value="Other">Other</option>
+								</select>
 
-                {/* <textarea
+								{/* <textarea
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   required
                 ></textarea> */}
-                <h6>Brief Description</h6>
-                <textarea
-                  className={styles.textField}
-                  placeholder="Briefly describe your donation.."
-                  type="text"
-                  value={itemDesc}
-                  onChange={(e) => setItemDesc(e.target.value)}
-                  required
-                ></textarea>
-                <h6>Best before date</h6>
-                <textarea
-                  className={styles.textField}
-                  placeholder="Best before date..."
-                  type="text"
-                  value={useByDate}
-                  onChange={(e) => setUseByDate(e.target.value)}
-                  required
-                ></textarea>
-                <h6>Quantity</h6>
-                <textarea
-                  className={styles.textField}
-                  placeholder="How much/many?"
-                  type="text"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
-                  required
-                ></textarea>
-                <h6>My Availability</h6>
-                <textarea
-                  className={styles.textField}
-                  placeholder="Please write times when you're available.."
-                  type="text"
-                  value={timeSlot}
-                  onChange={(e) => setTimeSlot(e.target.value)}
-                  required
-                ></textarea>
-                <h6>Choose an image</h6>
-                <input type="file" onChange={handleFileInputChange}></input>
-              </form>
-            </div>
-          </div>
-        </div>
-      </Modal.Body>
-      <Modal.Footer className={styles.footer}>
-        <button onClick={(props.onHide, handleSubmit)} className={styles.btn}>
-          Submit
-        </button>
-      </Modal.Footer>
-    </Modal>
-  );
+								<h6>Brief Description</h6>
+								<textarea
+									className={styles.textField}
+									placeholder="Briefly describe your donation.."
+									type="text"
+									value={itemDesc}
+									onChange={(e) => setItemDesc(e.target.value)}
+									required
+								></textarea>
+								<h6>Best before date</h6>
+								<textarea
+									className={styles.textField}
+									placeholder="Best before date..."
+									type="text"
+									value={useByDate}
+									onChange={(e) => setUseByDate(e.target.value)}
+									required
+								></textarea>
+								<h6>Quantity</h6>
+								<textarea
+									className={styles.textField}
+									placeholder="How much/many?"
+									type="text"
+									value={quantity}
+									onChange={(e) => setQuantity(e.target.value)}
+									required
+								></textarea>
+								<h6>My Availability</h6>
+								<textarea
+									className={styles.textField}
+									placeholder="Please write times when you're available.."
+									type="text"
+									value={timeSlot}
+									onChange={(e) => setTimeSlot(e.target.value)}
+									required
+								></textarea>
+								<h6>Choose an image</h6>
+								<input type="file" onChange={handleFileInputChange}></input>
+							</form>
+						</div>
+					</div>
+				</div>
+			</Modal.Body>
+			<Modal.Footer className={styles.footer}>
+				<button
+					type="submit"
+					onClick={(e) => handleSubmit(e)}
+					className={styles.btn}
+				>
+					Submit
+				</button>
+			</Modal.Footer>
+		</Modal>
+	);
 }
 
 export default GiveAwayModal;
