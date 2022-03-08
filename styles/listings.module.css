@@ -18,15 +18,6 @@
 	align-items: center;
 }
 
-/* .card {
-	transition: transform 600ms ease-in;
-	transform: translateX(-100%);
-}
-
-.card.appear {
-	transform: translateX(0);
-} */
-
 .iconContainer {
 	position: fixed;
 	bottom: 1rem;
