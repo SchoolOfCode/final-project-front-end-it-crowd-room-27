@@ -406,6 +406,7 @@ function profile({ users, listings }) {
 					/>
 				))}
 			</div>
+      
 		</div>
 	);
 }
