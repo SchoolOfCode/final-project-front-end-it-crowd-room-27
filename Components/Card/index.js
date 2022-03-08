@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styles from "../../styles/card.module.css";
 import PickUpModal from "../PickUpModal";
 import Link from "next/link";
-import EditCardModal from '../EditCardModal';
+import EditCardModal from "../EditCardModal";
 
 function Card({
   user,
@@ -28,7 +28,7 @@ function Card({
   currentUser,
   handleDelete,
   users,
-  updatedListings
+  updatedListings,
 }) {
   console.log(user_id);
   const [modalShow, setModalShow] = useState(false);
@@ -43,9 +43,8 @@ function Card({
       <div className={styles.cardRight}>
         <div className={styles.cardRightTop}>
           <div className={styles.username}>
-          
-          {/* link which takes us to the user profile page w/ dynamic routing */}
-            
+            {/* link which takes us to the user profile page w/ dynamic routing */}
+
             <Link href={`/users/${user_id}`} key={user_id}>
               <h5 className={styles.profileLink}>{full_name}</h5>
             </Link>
@@ -56,7 +55,7 @@ function Card({
                 }`}
               ></div>
             </div>
-            
+
             {/* stars to show how a user rating could look if we ever develop this feature */}
             <div className={styles.stars}>
               <span className={`fa fa-star ${styles.checked}`}></span>
@@ -80,49 +79,68 @@ function Card({
           <p>{address}</p>
         </div>
         <div className={styles.cardRightBottom}>
-          
           <div className={styles.cardRightBottomLeft}>
-                        {user && currentUser?.email === user.email ? (
-                           <>
-                            <button
-                                variant="primary"
-                                onClick={() => setEditItemModalShow(true)}
-                                className={styles.editBtn}
-                            >
-                                Edit
-                            </button>
-                            <EditCardModal
-                            id={user_id}
-                            updatedListings={updatedListings}
-							              show={editItemModalShow}
-							              onHide={() => setEditItemModalShow(false)}
-						                />
-                          </>
+            {user && currentUser?.email === user.email ? (
+              <>
+                <button
+                  variant="primary"
+                  onClick={() => setEditItemModalShow(true)}
+                  className={styles.editBtn}
+                >
+                  Edit
+                </button>
+                <EditCardModal
+                  item_id={item_id}
+                  full_name={full_name}
+                  email={email}
+                  address={address}
+                  is_active={is_active}
+                  category={category}
+                  item_name={item_name}
+                  item_description={item_description}
+                  use_by_date={use_by_date}
+                  date_added={date_added}
+                  quantity={quantity}
+                  item_image={item_image}
+                  is_reserved={is_reserved}
+                  availability={availability}
+                  time_slot={time_slot}
+                  cloudinary_id={cloudinary_id}
+                  avatar={avatar}
+                  user_bio={user_bio}
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                  users={users}
+                  id={user_id}
+                  updatedListings={updatedListings}
+                  show={editItemModalShow}
+                  onHide={() => setEditItemModalShow(false)}
+                />
+              </>
+            ) : (
+              <button
+                variant="primary"
+                onClick={() => setModalShow(true)}
+                className={styles.btn}
+              >
+                Details
+              </button>
+            )}
+          </div>
+          <div className={styles.cardRightBottomRight}>
+            {/* 1.only display the delete button if the user owns the card*/}
+            {/* 2.'user' is here because we only pass the user prop to the card on the profile page - user can't delete from any other page */}
+            {user && currentUser?.email === user.email ? (
+              <button
+                variant="primary"
+                onClick={() => handleDelete(item_id)}
+                className={styles.deleteBtn}
+              >
+                Delete
+              </button>
+            ) : null}
+          </div>
 
-                        ) : (
-                            <button
-                                variant="primary"
-                                onClick={() => setModalShow(true)}
-                                className={styles.btn}
-                            >
-                                Details
-                            </button>
-                        )}
-                    </div>
-                    <div className={styles.cardRightBottomRight}>
-                        {/* 1.only display the delete button if the user owns the card*/}
-                        {/* 2.'user' is here because we only pass the user prop to the card on the profile page - user can't delete from any other page */}
-                        {user && currentUser?.email === user.email ? (
-                            <button
-                                variant="primary"
-                                onClick={() => handleDelete(item_id)}
-                                className={styles.deleteBtn}
-                            >
-                                Delete
-                            </button>
-                        ) : null}
-                    </div>
-          
           <PickUpModal
             item_id={item_id}
             user_id={user_id}

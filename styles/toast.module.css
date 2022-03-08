@@ -6,7 +6,7 @@
 
 .top-right {
   top: 1rem;
-  right: 1rem;
+  right: 5rem;
   animation: toast-left-to-right 0.7s;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .toast {
-  height: 80px;
+  height: 100px;
   width: 365px;
   color: white;
   padding: 20px 15px 10px 10px;
@@ -61,4 +61,23 @@
   to {
     transform: translateX(0);
   }
+}
+
+/* .alert_shown {
+  opacity: 1;
+  transition: all ease-in 250ms;
+}
+
+.alert_hidden {
+  opacity: 0;
+  transition: all ease-out 250ms;
+} */
+.alert_shown {
+  opacity: 1;
+  transition: all 250ms ease-in;
+}
+
+.alert_hidden {
+  opacity: 0;
+  transition: all 250ms ease-out 2s;
 }

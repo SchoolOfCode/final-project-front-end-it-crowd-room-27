@@ -1,7 +1,6 @@
-import React, { useCallback, useState, useEffect } from "react";
 import styles from "../../styles/toast.module.css";
 
-function Toast({ toastList, position, setList }) {
+function Toast({ toastList, position, isShowAlert, setIsShowAlert }) {
   //   const deleteToast = useCallback(
   //     (id) => {
   //       // console.log(id);
@@ -10,17 +9,17 @@ function Toast({ toastList, position, setList }) {
   //     },
   //     [toastList, setList]
   //   );
-//   const [show, setShow] = useState(true);
-//   useEffect(() => {
-//     const timeId = setTimeout(() => {
-//       setShow(false);
-//       //after 3s the show value sets to false
-//     }, 3000);
+  //   const [show, setShow] = useState(true);
+  //   useEffect(() => {
+  //     const timeId = setTimeout(() => {
+  //       setShow(false);
+  //       //after 3s the show value sets to false
+  //     }, 3000);
 
-//     return () => {
-//       clearTimeout(timeId);
-//     };
-//   }, []);
+  //     return () => {
+  //       clearTimeout(timeId);
+  //     };
+  //   }, []);
 
   return (
     <div className={`${styles.container} ${styles[position]}`}>
@@ -28,9 +27,12 @@ function Toast({ toastList, position, setList }) {
         <div
           key={i}
           style={{ backgroundColor: toast.backgroundColor }}
-          className={`${styles.alert} ${styles.toast} ${styles[position]}`}
+          className={`${styles.alert} ${styles.toast} ${styles[position]} ${
+            isShowAlert ? styles.alert_shown : styles.alert_hidden
+          }`}
+          onTransitionEnd={() => setIsShowAlert(false)}
         >
-          <button onClick={() => deleteToast(toast.id)}>X</button>
+          {/* <button onClick={() => deleteToast(toast.id)}>X</button> */}
           <div>
             <p className={styles.title}>{toast.title}</p>
             <p className={styles.description}>{toast.description}</p>

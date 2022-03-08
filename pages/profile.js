@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import React, { useEffect, useState } from "react";
 import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Card from "../Components/Card/index";
@@ -41,7 +42,6 @@ function profile({ users, listings }) {
   const [deleteUserModalShow, setDeleteUserModalShow] = useState(false);
   const [compProfile, setCompProfile] = useState();
 
-
   const email = user.email;
   // const [lastName, setLastName] = useState("");
   const [userBio, setUserBio] = useState(currentUser?.user_bio);
@@ -55,7 +55,6 @@ function profile({ users, listings }) {
     image: previewSource,
     user_bio: userBio,
   };
-
 
   //when the user selects an image from their desktop, preview it in the browser
   const handleFileInputChange = (e) => {
@@ -115,19 +114,15 @@ function profile({ users, listings }) {
 
   const handleDelete = async (id) => {
     console.log(id);
-    const res = await fetch(
-      `${API_URL}/api/items/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const res = await fetch(`${API_URL}/api/items/${id}`, {
+      method: "DELETE",
+    });
     const data = await res.json();
     console.log(data);
     setUpdatedListings(
       updatedListings.filter((listing) => listing.item_id !== id)
     );
   };
-
 
   // BUTTONS HANDLERS
   const handleBackFromEdit = () => {
@@ -166,7 +161,10 @@ function profile({ users, listings }) {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
           ></link>
-          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+          <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+          />
         </Head>
         <Navbar
           avatar={!currentUser ? tempPreviewSource : currentUser.avatar}
@@ -180,8 +178,8 @@ function profile({ users, listings }) {
                 		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               		</a>
             	</Link> */}
-				{/* </div> */}
-				{/* <span className={`fa fa-camera ${styles.camera}`}></span>
+        {/* </div> */}
+        {/* <span className={`fa fa-camera ${styles.camera}`}></span>
           		<div className={styles.stars}>
             		<span className={`fa fa-star ${styles.checked}`}></span>
             		<span className={`fa fa-star ${styles.checked}`}></span>
@@ -234,11 +232,10 @@ function profile({ users, listings }) {
                 <p className={styles.profileTitle}>
                   <strong>Email:</strong> {user.email}
                 </p>
-                
-                
-                {!buttonsToggle ? null :
+
+                {!buttonsToggle ? null : (
                   <input type="file" onChange={handleFileInputChange}></input>
-                }
+                )}
                 {buttonsToggle ? (
                   <img
                     src={previewSource}
@@ -253,18 +250,19 @@ function profile({ users, listings }) {
               </div>
 
               {/* EDIT PROFILE SET OF BUTTONS */}
-              {compProfile || user && currentUser?.email === user.email ? (
+              {compProfile || (user && currentUser?.email === user.email) ? (
                 <div className={styles.buttons}>
-                  
-				        {!buttonsToggle ? (
+                  {!buttonsToggle ? (
                     <button
                       variant="primary"
                       onClick={() => handleBackFromEdit()}
                       className={styles.editingBtn}
                     >
                       {" "}
-                      <span class="material-icons-outlined material-icons"> edit</span>
-                      {" "}
+                      <span class="material-icons-outlined material-icons">
+                        {" "}
+                        edit
+                      </span>{" "}
                     </button>
                   ) : null}
 
@@ -287,22 +285,22 @@ function profile({ users, listings }) {
                         {" "}
                         Back{" "}
                       </button>
-                      
+
                       <div className={styles.GiveItemButton}>
                         <button
-                            variant="primary"
-                            onClick={() => setDeleteUserModalShow(true)}
-                            className={styles.deleteBtn}
-                        >{" "}
-                        Delete Profile{" "}
+                          variant="primary"
+                          onClick={() => setDeleteUserModalShow(true)}
+                          className={styles.deleteBtn}
+                        >
+                          {" "}
+                          Delete Profile{" "}
                         </button>
                         <DeleteModal
-                            id={uID}
-							              show={deleteUserModalShow}
-							              onHide={() => setDeleteUserModalShow(false)}
-						            />
+                          id={uID}
+                          show={deleteUserModalShow}
+                          onHide={() => setDeleteUserModalShow(false)}
+                        />
                       </div>
-                        
                     </div>
                   ) : null}
                 </div>
@@ -371,44 +369,43 @@ function profile({ users, listings }) {
 						showEditModal={showEditModal}
 						setShowEditModal={setShowEditModal}
 					/> */}
-				</div>
-			</div>
+        </div>
+      </div>
 
-			<h2 className={styles.title}>My Listings...</h2>
+      <h2 className={styles.title}>My Listings...</h2>
 
-			<div className={styles.itemsContainer}>
-				{/* USER ID FOR FETCHING ITEMS */}
-				{/* <Card userID={id} /> */}
+      <div className={styles.itemsContainer}>
+        {/* USER ID FOR FETCHING ITEMS */}
+        {/* <Card userID={id} /> */}
 
-				{updatedListings?.map((listing) => (
-					<Card
-						user={user}
-						full_name={listing.full_name}
-						item_id={listing.item_id}
-						user_id={listing.user_id}
-						category={listing.category}
-						item_name={listing.item_name}
-						item_description={listing.item_description}
-						use_by_date={listing.use_by_date}
-						date_added={listing.date_added}
-						quantity={listing.quantity}
-						item_image={listing.item_image}
-						is_reserved={listing.is_reserved}
-						availability={listing.availability}
-						time_slot={listing.time_slot}
-						cloudinary_id={listing.cloudinary_id}
-						avatar={listing.avatar}
-						address={listing.address}
-						user_bio={listing.user_bio}
-						currentUser={currentUser}
-						handleDelete={handleDelete}
+        {updatedListings?.map((listing) => (
+          <Card
+            user={user}
+            full_name={listing.full_name}
+            item_id={listing.item_id}
+            user_id={listing.user_id}
+            category={listing.category}
+            item_name={listing.item_name}
+            item_description={listing.item_description}
+            use_by_date={listing.use_by_date}
+            date_added={listing.date_added}
+            quantity={listing.quantity}
+            item_image={listing.item_image}
+            is_reserved={listing.is_reserved}
+            availability={listing.availability}
+            time_slot={listing.time_slot}
+            cloudinary_id={listing.cloudinary_id}
+            avatar={listing.avatar}
+            address={listing.address}
+            user_bio={listing.user_bio}
+            currentUser={currentUser}
+            handleDelete={handleDelete}
             updatedListings={updatedListings}
-					/>
-				))}
-			</div>
-      
-		</div>
-	);
+          />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 //Fetching data to PROPS
@@ -417,7 +414,7 @@ function profile({ users, listings }) {
 // <h4 className={styles.title}>My Listings</h4>
 //  <div className={styles.itemsContainer}>
 {
-	/* USER ID FOR FETCHING ITEMS */
+  /* USER ID FOR FETCHING ITEMS */
 }
 
 //                 {updatedListings?.item_name ? updatedListings?.map((listing) => (
@@ -449,16 +446,16 @@ function profile({ users, listings }) {
 // }
 
 export const getServerSideProps = withPageAuthRequired({
-	async getServerSideProps() {
-		const usersRes = await fetch(`${API_URL}/api/users`);
-		const usersData = await usersRes.json();
-		const listingsRes = await fetch(`${API_URL}/api/listings`);
-		const listingsData = await listingsRes.json();
-		// By returning { props: { allUsers } }, the PostAuth component
-		// will receive `allUsers` as a prop at BUILD time
-		return {
-			props: { users: usersData.payload, listings: listingsData.payload },
-		};
-	},
+  async getServerSideProps() {
+    const usersRes = await fetch(`${API_URL}/api/users`);
+    const usersData = await usersRes.json();
+    const listingsRes = await fetch(`${API_URL}/api/listings`);
+    const listingsData = await listingsRes.json();
+    // By returning { props: { allUsers } }, the PostAuth component
+    // will receive `allUsers` as a prop at BUILD time
+    return {
+      props: { users: usersData.payload, listings: listingsData.payload },
+    };
+  },
 });
 export default profile;

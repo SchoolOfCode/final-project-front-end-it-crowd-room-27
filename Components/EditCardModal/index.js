@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import styles from "../../styles/giveAwayModal.module.css";
@@ -7,100 +6,98 @@ import { API_URL } from "../../config.js";
 import Router from "next/router";
 
 function EditCardModal(props) {
-	const { user, error, isLoading } = useUser();
-	if (isLoading) return <div>Loading ...</div>;
-	if (error) return <div>{error.message}</div>;
+  const { user, error, isLoading } = useUser();
+  if (isLoading) return <div>Loading ...</div>;
+  if (error) return <div>{error.message}</div>;
 
-	const uId = props.id;
-    const itId = props.updatedListings[0].item_id;
-    const reserved = props.updatedListings[0].is_reserved;
-    const listings = props.updatedListings[0];
-console.log(uId)
-console.log(itId)
-console.log(reserved)
-console.log(listings)
-	//currentUser matches the authenticated user with their info in our db
-	// const currentUser = users?.find((currUser) => currUser.email === user?.email);
+  const uId = props.id;
+  const itId = props.updatedListings[0].item_id;
+  const reserved = props.updatedListings[0].is_reserved;
+  const listings = props.updatedListings[0];
+  console.log(uId);
+  console.log(itId);
+  console.log(reserved);
+  console.log(listings);
+  //currentUser matches the authenticated user with their info in our db
+  // const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
-	//capture form data
+  //capture form data
 
-	const [previewSource, setPreviewSource] = useState(listings.item_image);
-	const [itemName, setItemName] = useState(listings.item_name);
-	const [itemDesc, setItemDesc] = useState(listings.item_description);
-	const [quantity, setQuantity] = useState(listings.quantity);
-	const [category, setCategory] = useState(listings.category);
-	const [useByDate, setUseByDate] = useState(listings.use_by_date);
-	const [timeSlot, setTimeSlot] = useState(listings.time_slot);
+  const [previewSource, setPreviewSource] = useState(props.item_image);
+  const [itemName, setItemName] = useState(props.item_name);
+  const [itemDesc, setItemDesc] = useState(props.item_description);
+  const [quantity, setQuantity] = useState(props.quantity);
+  const [category, setCategory] = useState(props.category);
+  const [useByDate, setUseByDate] = useState(props.use_by_date);
+  const [timeSlot, setTimeSlot] = useState(props.time_slot);
 
-	//an object which will represent the form data to send to the server (req.body)
-	const body = {
-		user_id: uId,
-		category: category,
-		item_name: itemName,
-		item_description: itemDesc,
-		use_by_date: useByDate,
-		date_added: Date.now(),
-		quantity: quantity,
-        image: previewSource,
-		is_reserved: reserved,
-		availability: true,
-		time_slot: timeSlot,
-	};
+  //an object which will represent the form data to send to the server (req.body)
+  const body = {
+    user_id: uId,
+    category: category,
+    item_name: itemName,
+    item_description: itemDesc,
+    use_by_date: useByDate,
+    date_added: Date.now(),
+    quantity: quantity,
+    image: previewSource,
+    is_reserved: reserved,
+    availability: true,
+    time_slot: timeSlot,
+  };
 
-	//when the user selects an image from their desktop, preview it in the browser
-	const handleFileInputChange = (e) => {
-		const file = e.target.files[0];
-		previewFile(file);
-	};
+  //when the user selects an image from their desktop, preview it in the browser
+  const handleFileInputChange = (e) => {
+    const file = e.target.files[0];
+    previewFile(file);
+  };
 
-	//convert to base64encoded image using new FileReader API
-	const previewFile = (file) => {
-		const reader = new FileReader();
-		reader.readAsDataURL(file);
+  //convert to base64encoded image using new FileReader API
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-		reader.onloadend = () => {
-			setPreviewSource(reader.result);
-		};
-	};
+    reader.onloadend = () => {
+      setPreviewSource(reader.result);
+    };
+  };
 
-	//stringify the body object defined above and send as req.body to server
-	const handleSubmit = async () => {
-		await fetch(`${API_URL}/api/items/${itId}`, {
-			method: "PUT",
-			body: JSON.stringify(body),
-			headers: { "Content-Type": "application/json" },
-		});
-        Router.reload(window.location.pathname);
-	};
+  //stringify the body object defined above and send as req.body to server
+  const handleSubmit = async () => {
+    await fetch(`${API_URL}/api/items/${itId}`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+      headers: { "Content-Type": "application/json" },
+    });
+    Router.reload(window.location.pathname);
+  };
 
-    // BUTTONS HANDLERS
+  // BUTTONS HANDLERS
 
-    function handleItemName(event) {
-        const name = event.target.value;
-        setItemName(name);
-    }
-    function handleItemDesc(event) {
-        const description = event.target.value;
-        setItemDesc(description);
-    }
-    function handleQuantity(event) {
-        const quantity = event.target.value;
-        setQuantity(quantity);
-    }
-    function handleCategory(event) {
-        const itemCategory = event.target.value;
-        setCategory(itemCategory);
-    }
-    function handleUseByDate(event) {
-        const byDate = event.target.value;
-        setUseByDate(byDate);
-    }
-    function handleTimeSlot(event) {
-        const slot = event.target.value;
-        setTimeSlot(slot);
-    }
-
-
+  function handleItemName(event) {
+    const name = event.target.value;
+    setItemName(name);
+  }
+  function handleItemDesc(event) {
+    const description = event.target.value;
+    setItemDesc(description);
+  }
+  function handleQuantity(event) {
+    const quantity = event.target.value;
+    setQuantity(quantity);
+  }
+  function handleCategory(event) {
+    const itemCategory = event.target.value;
+    setCategory(itemCategory);
+  }
+  function handleUseByDate(event) {
+    const byDate = event.target.value;
+    setUseByDate(byDate);
+  }
+  function handleTimeSlot(event) {
+    const slot = event.target.value;
+    setTimeSlot(slot);
+  }
 
   return (
     <Modal
@@ -127,7 +124,7 @@ console.log(listings)
                 <h6>Item</h6>
                 <textarea
                   className={styles.textField}
-                //   placeholder="What are you donating?"
+                  //   placeholder="What are you donating?"
                   type="text"
                   value={itemName}
                   onChange={(e) => handleItemName(e)}
@@ -160,7 +157,7 @@ console.log(listings)
                 <h6>Brief Description</h6>
                 <textarea
                   className={styles.textField}
-                //   placeholder="Briefly describe your donation.."
+                  //   placeholder="Briefly describe your donation.."
                   type="text"
                   value={itemDesc}
                   onChange={(e) => handleItemDesc(e)}
@@ -169,7 +166,7 @@ console.log(listings)
                 <h6>Best before date</h6>
                 <textarea
                   className={styles.textField}
-                //   placeholder="Best before date..."
+                  //   placeholder="Best before date..."
                   type="text"
                   value={useByDate}
                   onChange={(e) => handleUseByDate(e)}
@@ -178,7 +175,7 @@ console.log(listings)
                 <h6>Quantity</h6>
                 <textarea
                   className={styles.textField}
-                //   placeholder="How much/many?"
+                  //   placeholder="How much/many?"
                   type="text"
                   value={quantity}
                   onChange={(e) => handleQuantity(e)}
@@ -187,7 +184,7 @@ console.log(listings)
                 <h6>My Availability</h6>
                 <textarea
                   className={styles.textField}
-                //   placeholder="Please write times when you're available.."
+                  //   placeholder="Please write times when you're available.."
                   type="text"
                   value={timeSlot}
                   onChange={(e) => handleTimeSlot(e)}

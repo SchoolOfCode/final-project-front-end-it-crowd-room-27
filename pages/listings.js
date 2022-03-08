@@ -7,8 +7,11 @@ import Toast from "../Components/Toast/index.js";
 import styles from "../styles/alert.module.css";
 
 console.log(API_URL);
+
 export default function Listings({ users, listings }) {
   const [list, setList] = useState([]);
+  const [isShowAlert, setIsShowAlert] = useState(false);
+
   console.log(list);
   let toastProperties = null;
 
@@ -66,9 +69,20 @@ export default function Listings({ users, listings }) {
   return (
     <>
       <div className={styles.alert}>
-        <ListingsPage users={users} listings={listings} showToast={showToast} />
+        <ListingsPage
+          users={users}
+          listings={listings}
+          showToast={showToast}
+          isShowAlert={isShowAlert}
+          setIsShowAlert={setIsShowAlert}
+        />
 
-        <Toast toastList={list} position="top-right" setList={setList} />
+        <Toast
+          toastList={list}
+          position="top-right"
+          isShowAlert={isShowAlert}
+          setIsShowAlert={setIsShowAlert}
+        />
       </div>
     </>
   );

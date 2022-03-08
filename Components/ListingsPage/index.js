@@ -10,7 +10,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import GiveAwayModal from "../GiveAwayModal";
 
-function ListingsPage({ users, listings, showToast }) {
+function ListingsPage({
+  users,
+  listings,
+  showToast,
+  isShowAlert,
+  setIsShowAlert,
+}) {
   const { user, error, isLoading } = useUser();
   const [searchedListings, setSearchedListings] = useState(listings);
 
@@ -112,6 +118,8 @@ function ListingsPage({ users, listings, showToast }) {
           show={giveItemModalShow}
           onHide={() => setGiveItemModalShow(false)}
           showToast={showToast}
+          isShowAlert={isShowAlert}
+          setIsShowAlert={setIsShowAlert}
         />
       </div>
     </>
