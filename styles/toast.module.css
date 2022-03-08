@@ -1,0 +1,64 @@
+.container {
+  font-size: 14px;
+  position: fixed;
+  z-index: 10;
+}
+
+.top-right {
+  top: 1rem;
+  right: 1rem;
+  animation: toast-left-to-right 0.7s;
+}
+
+.alert {
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 0 10px #999;
+  color: black;
+  opacity: 0.9;
+  transition: 0.3s ease;
+}
+
+.alert:hover {
+  box-shadow: 0 0 12px white;
+  opacity: 1;
+}
+
+.toast {
+  height: 80px;
+  width: 365px;
+  color: white;
+  padding: 20px 15px 10px 10px;
+}
+
+.container button {
+  float: right;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 16px;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 6px;
+  width: 300px;
+  height: 18px;
+}
+
+.description {
+  margin: 0;
+  text-align: left;
+}
+
+@keyframes toast-left-to-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
