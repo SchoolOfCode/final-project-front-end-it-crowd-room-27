@@ -5,7 +5,7 @@ import Navbar from "../Components/Navbar/index.js";
 import styles from "../styles/profile.module.css";
 import Head from "next/head";
 import { API_URL } from "../config";
-import DeleteModal from '../Components/DeleteModal';
+import DeleteModal from "../Components/DeleteModal";
 
 function profile({ users, listings }) {
   const { user, error, isLoading } = useUser();
@@ -31,7 +31,7 @@ function profile({ users, listings }) {
     (items) => items.user_id === currentUser?.id
   );
 
-  const [updatedListings, setUpdatedListings] = useState(listings);
+  const [updatedListings, setUpdatedListings] = useState();
 
   const [previewSource, setPreviewSource] = useState(currentUser?.avatar);
   const [tempPreviewSource, setTempPreviewSource] = useState(user.picture);
@@ -39,6 +39,8 @@ function profile({ users, listings }) {
   const [fullName, setFullName] = useState(currentUser?.full_name);
   const [address, setAddress] = useState(currentUser?.address);
   const [deleteUserModalShow, setDeleteUserModalShow] = useState(false);
+  const [compProfile, setCompProfile] = useState();
+
 
   const email = user.email;
   // const [lastName, setLastName] = useState("");
@@ -53,6 +55,7 @@ function profile({ users, listings }) {
     image: previewSource,
     user_bio: userBio,
   };
+
 
   //when the user selects an image from their desktop, preview it in the browser
   const handleFileInputChange = (e) => {
@@ -83,7 +86,7 @@ function profile({ users, listings }) {
 
     setButtonsToggle(!buttonsToggle);
     setPreviewSource(null);
-    // setBtnVisible(false);
+    setCompProfile(true);
   };
 
   useEffect(() => {
@@ -149,7 +152,7 @@ function profile({ users, listings }) {
   }
 
   return (
-    <div>
+    <div className={styles.main}>
       <div className={styles.mainContainer}>
         <Head>
           <title>iGive</title>
@@ -173,7 +176,6 @@ function profile({ users, listings }) {
         {/* <div className={`${styles.flexItems} ${styles.flexItem1}`}> */}
         {/* <div className={styles.userImg}> */}
         {/* <Link href="/">
-
               		<a>
                 		<img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" />
               		</a>
@@ -251,7 +253,7 @@ function profile({ users, listings }) {
               </div>
 
               {/* EDIT PROFILE SET OF BUTTONS */}
-              {user && currentUser?.email === user.email ? (
+              {compProfile || user && currentUser?.email === user.email ? (
                 <div className={styles.buttons}>
                   
 				        {!buttonsToggle ? (
@@ -307,7 +309,7 @@ function profile({ users, listings }) {
               ) : null}
 
               {/* FINISH PROFILE SET OF BUTTONS */}
-              {!currentUser ? (
+              {!currentUser && !compProfile ? (
                 <div className={styles.buttons}>
                   {!buttonsToggle ? (
                     <button
@@ -366,7 +368,6 @@ function profile({ users, listings }) {
           </div>
 
           {/* <ProvideInfoForm
-
 						showEditModal={showEditModal}
 						setShowEditModal={setShowEditModal}
 					/> */}
@@ -401,9 +402,11 @@ function profile({ users, listings }) {
 						user_bio={listing.user_bio}
 						currentUser={currentUser}
 						handleDelete={handleDelete}
+            updatedListings={updatedListings}
 					/>
 				))}
 			</div>
+      
 		</div>
 	);
 }
