@@ -94,11 +94,6 @@
   background: var(--button-delete-hover);
 }
 
-.title {
-  font-size: 3em;
-  margin: 1em;
-}
-
 /* -=-=-=-==-==-=-=-=-=-=-=-==-=-=-=-= NOW */
 .lds-ring {
   display: inline-block;
@@ -174,7 +169,7 @@
 .infoCover {
   display: flex;
   justify-content: space-between;
-  margin-left: 10em;
+  margin-left: 15em;
 }
 
 .imageContainer {
@@ -198,7 +193,7 @@
   background: #ecf0f1;
   border-radius: 4px;
   margin-top: 2em;
-  margin-left: 10em;
+  margin-left: 15em;
   border: 1px dotted gray;
   padding: 0 0 0 0.7em;
 }
@@ -257,7 +252,7 @@
   display: flex;
   flex-direction: column;
   width: 95%;
-  background: var(--card);
+  /* background: var(--card); */
   border-radius: 15px;
   margin: 0 auto;
   margin-top: 1em;
@@ -269,13 +264,14 @@
 .title {
   text-align: center;
   margin: 1em 0 0.3em 0;
+  font-size: 3em;
 }
 
 /*-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-= PROFILE IMAGE BLOCK */
 
 .cover {
-  top: 70%;
-  left: 3%;
+  top: 75%;
+  left: 2.5%;
   position: absolute;
   max-width: 10%;
 }
@@ -284,8 +280,8 @@
   border: 3px solid var(--card);
   border-radius: 50%;
   object-fit: cover;
-  width: 135px;
-  height: 135px;
+  width: 190px;
+  height: 190px;
 
   /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.5); */
 }
@@ -340,6 +336,10 @@
   /* grid-area: info; */
 }
 
-.mainContainer {
+/* .mainContainer {
+  background: var(--background);
+} */
+
+.main {
   background: var(--background);
 }

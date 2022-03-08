@@ -1,5 +1,5 @@
 import { useUser } from "@auth0/nextjs-auth0";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Card from "../Components/Card/index";
@@ -9,35 +9,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { API_URL } from "../config";
 
 import {
-	Banner,
-	SectionOne,
-	SectionTwo,
-	SectionThree,
-	SectionFour,
-	ContactUs,
-	Copyright,
+  Banner,
+  SectionOne,
+  SectionTwo,
+  SectionThree,
+  SectionFour,
+  ContactUs,
+  Copyright,
 } from "../Components/LandingPageComps/landingPageComps.js";
 
 export default function Home({ users }) {
-	const { user, error, isLoading } = useUser();
-	//   const [showScroll, setShowScroll] = useState(true);
+  const { user, error, isLoading } = useUser();
+  const [showScroll, setShowScroll] = useState(false);
 
-	//   const checkScrollTop = () => {
-	//     if (!showScroll && window.pageYOffset > 400) {
-	//       setShowScroll(true);
-	//     } else if (showScroll && window.pageYOffset <= 400) {
-	//       setShowScroll(false);
-	//     }
-	//   };
-	//   React.useEffect(() => {
-	//     window.addEventListener("scroll", checkScrollTop);
-	//     return;
-	//   }, []);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
+    });
+  });
 
-	if (isLoading) return <div>...Loading</div>;
-
-	if (error) return <div>{error.message}</div>;
-
+  // window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
+  
 	const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
 	return (
@@ -59,22 +51,24 @@ export default function Home({ users }) {
 			<Banner />
 			<main className={styles.main}>
 				{/* {user ? <Reg/> : <List/>} */}
+      <Banner />
+      <main className={styles.main}>
+        {/* {user ? <Reg/> : <List/>} */}
+        <SectionOne />
+        <SectionTwo />
+        <SectionThree />
+        <ContactUs />
+        <SectionFour />
 
-				<SectionOne />
-				<SectionTwo />
-				<SectionThree />
-				<ContactUs />
-				<SectionFour />
-				{/* <Copyright style={{ display: showScroll ? "fixed" : "none" }} /> */}
-				<Copyright />
-			</main>
-		</div>
-	);
+        <Copyright showScroll={showScroll} />
+      </main>
+    </div>
+  );
 }
 
 export const getServerSideProps = async () => {
-	const usersRes = await fetch(`${API_URL}/api/users`);
-	const usersData = await usersRes.json();
+  const usersRes = await fetch(`${API_URL}/api/users`);
+  const usersData = await usersRes.json();
 
 	return {
 		props: { users: usersData.payload },

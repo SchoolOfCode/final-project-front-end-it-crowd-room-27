@@ -219,17 +219,17 @@ export function ContactUs() {
 	);
 }
 
-export function Copyright({ style }) {
-	return (
-		<div className={styles.footer}>
-			<a href="#" className={styles.btn_up}>
-				Pop Up
-			</a>
-			<p className={styles.cast}>
-				created by <strong>IT-Crowd</strong>
-				<br /> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy
-			</p>
-			<ScrollArrow style={style} />
-		</div>
-	);
+export function Copyright({ showScroll}) {
+  return (
+    <div className={styles.footer}>
+      <a href="#" className={styles.btn_up}>
+        Pop Up
+      </a>
+      <p className={styles.cast}>
+        created by <strong>IT-Crowd</strong>
+        <br /> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy
+      </p>
+      <ScrollArrow showScroll={showScroll} />
+    </div>
+  );
 }
