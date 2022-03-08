@@ -32,7 +32,7 @@ export default function Home({ users }) {
 
   if (isLoading)
     return (
-      <div class="lds-ring">
+      <div className="lds-ring">
         <div></div>
         <div></div>
         <div></div>
