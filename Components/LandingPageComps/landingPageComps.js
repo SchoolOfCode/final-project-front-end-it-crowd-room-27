@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../../styles/home.module.css";
-import ReadMoreButton from "../Buttons/ReadMoreButton/Index";
+
 import { ScrollArrow } from "../ScrollToTop/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useInView } from "react-intersection-observer";
@@ -219,17 +219,14 @@ export function ContactUs() {
 	);
 }
 
-export function Copyright({ showScroll}) {
-  return (
-    <div className={styles.footer}>
-      <a href="#" className={styles.btn_up}>
-        Pop Up
-      </a>
-      <p className={styles.cast}>
-        created by <strong>IT-Crowd</strong>
-        <br /> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy
-      </p>
-      <ScrollArrow showScroll={showScroll} />
-    </div>
-  );
+export function Copyright({ showScroll }) {
+	return (
+		<div className={styles.footer}>
+			<p className={styles.cast}>
+				created by <strong>IT-Crowd</strong>
+				<br /> Simren, Lilly-Ane, Irfan, Thuan, Rory, Dmitriy
+			</p>
+			<ScrollArrow showScroll={showScroll} />
+		</div>
+	);
 }
