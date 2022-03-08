@@ -65,9 +65,9 @@ function PickUpModal(props) {
           <p>{props.address}</p>
           <p>{props.availability}</p>
           <p>{props.time_slot}</p>
-          <button onClick={props.onHide} className={styles.btn}>
+          {/* <button onClick={props.onHide} className={styles.btn}>
             Close
-          </button>
+          </button> */}
         </div>
       </Modal.Body>
       {/* <Modal.Footer className={styles.footer}>
@@ -76,14 +76,14 @@ function PickUpModal(props) {
           <p>{props.time_slot}</p>
         </div>
         <div className={styles.footerRight}> */}
-        {/*  {props.currentUser?.id !== props.user_id ? (
+      {/*  {props.currentUser?.id !== props.user_id ? (
 						<button className={styles.btn}>Request Item</button>
 					) : null} */}
       {/* <button className={styles.btn} onClick={handleSubmit}>
             Request Item
           </button> */}
 
-      <div>
+      <div className={styles.formContainer}>
         <form
           target="_blank"
           action={`https://formsubmit.co/${props.email}`}
@@ -92,7 +92,7 @@ function PickUpModal(props) {
           <div className="form-group">
             <textarea
               placeholder="Your Message"
-              className="form-control"
+              className={styles.formControl}
               name="message"
               rows="10"
               required
@@ -126,9 +126,11 @@ function PickUpModal(props) {
             />
           </div>
           {/* <button onClick={handleSubmit} type="submit" className={styles.btn}> */}
-          <button type="submit" className={styles.btn}>
-            Request item
-          </button>
+          <div className={styles.btnContainer}>
+            <button type="submit" className={styles.btn}>
+              Request item
+            </button>
+          </div>
         </form>
       </div>
       {/* </div> */}
