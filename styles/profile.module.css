@@ -3,337 +3,272 @@
 /* flexbox */
 
 .flexboxContainer {
-  margin-top: 5em;
-  height: 700px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+	margin-top: 5em;
+	height: 700px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
 
 /* PROFILE CARD */
 
 .profileTitle {
-  margin-top: 0.8em;
-  margin-bottom: 0.3em;
-  /* margin-left: 1em; */
+	margin-top: 0.8em;
+	margin-bottom: 0.3em;
+	/* margin-left: 1em; */
 
-  font-size: 1em;
+	font-size: 1em;
 }
 
 .infoLine {
-  /* text-decoration: underline black; */
-  margin-top: 1em;
-  margin-bottom: 0.3em;
-  margin-left: 0.5em;
+	/* text-decoration: underline black; */
+	margin-top: 1em;
+	margin-bottom: 0.3em;
+	margin-left: 0.5em;
 
-  font-size: 1em;
+	font-size: 1em;
 }
-/* 
-.block1,
-.block2,
-.block3,
-.block4 {
-  display: flex;
-} */
-
-/* .editBtn { */
-  /* position: absolute; */
-  /* background-color: var(--button); */
-  /* height: 2em; */
-  /* width: 6em; */
-  /* border-radius: 7px;
-  cursor: pointer; */
-  /* border: 1px solid black; */
-  /* padding: .8em 1em;
-
-  color: white;
-  font-size: 1em;
-  transform: translate(17.5em, 1em);
-} */
-
-/* .editBtn:hover {
-  background-color: blueviolet;
-  box-shadow: 1px 5px 20px green;
-} */
 
 /* BIO BOX */
 
 .btnSection {
-  margin-top: 2em;
-  margin-bottom: 2em;
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	display: flex;
+	width: 100%;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
 }
 
 .giveBtn,
 .searchBtn {
-  background-color: var(--button);
-  height: 2em;
-  width: 8em;
-  border-radius: 10px;
-  cursor: pointer;
-  border: none;
-  color: white;
-  font-size: 1.5em;
+	background-color: var(--button);
+	height: 2em;
+	width: 8em;
+	border-radius: 10px;
+	cursor: pointer;
+	border: none;
+	color: white;
+	font-size: 1.5em;
 }
 
 .finishProfile {
-  color: white;
-  cursor: pointer;
-  margin: 0.3em 0;
-  padding: 0.5em 0.7em;
-  border: 0.5px solid gray;
-  border-radius: 10px;
-  background: var(--button-delete);
-  transition: all ease-in-out 200ms;
+	color: white;
+	cursor: pointer;
+	margin: 0.3em 0;
+	padding: 0.5em 0.7em;
+	border: 0.5px solid gray;
+	border-radius: 10px;
+	background: var(--button-delete);
+	transition: all ease-in-out 200ms;
 }
 
 .finishProfile:hover {
-  background: var(--button-delete-hover);
+	background: var(--button-delete-hover);
 }
-
-/* -=-=-=-==-==-=-=-=-=-=-=-==-=-=-=-= NOW */
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-}
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid #000;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #000 transparent transparent transparent;
-}
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 .profileTopContainer {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  background: var(--back);
-  margin: 0;
-  padding: 0;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+	background: var(--back);
+	margin: 0;
+	padding: 0;
 }
 
 .topContainer {
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-  background: var(--card);
-  border-radius: 15px;
-  margin: 0 auto;
-  margin-top: 1em;
-  padding-bottom: 3em;
+	display: flex;
+	flex-direction: column;
+	width: 95%;
+	background: var(--card);
+	border-radius: 15px;
+	margin: 0 auto;
+	margin-top: 1em;
+	padding-bottom: 3em;
 }
 
 .bannerContainer {
-  border-radius: 15px;
-  position: relative;
-  display: inline;
+	border-radius: 15px;
+	position: relative;
+	display: inline;
+	height: 30%;
 }
 
 .bannerImage {
-  width: 100%;
-  object-fit: cover;
-  border-radius: 15px;
+	width: 100%;
+	object-fit: cover;
+	border-radius: 15px;
 }
 
 .infoCover {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 15em;
+	display: flex;
+	justify-content: space-between;
+	margin-left: 15em;
 }
 
 .imageContainer {
-  width: 30%;
-  top: 50%;
+	width: 30%;
+	top: 50%;
 }
 
 .infoContainer p input {
-  padding: 0.2em;
+	padding: 0.2em;
 }
 
 .infoContainer {
-  padding: 2em 0;
-  width: auto;
+	padding: 2em 0;
+	width: auto;
 }
 
 .bioBox {
-  width: 70%;
-  height: 10em;
-  float: right;
-  background: #ecf0f1;
-  border-radius: 4px;
-  margin-top: 2em;
-  margin-left: 15em;
-  border: 1px dotted gray;
-  padding: 0 0 0 0.7em;
+	width: 70%;
+	height: 10em;
+	float: right;
+	background: #ecf0f1;
+	border-radius: 4px;
+	margin-top: 2em;
+	margin-left: 15em;
+	border: 1px dotted gray;
+	padding: 0 0 0 0.7em;
 }
 
 .bioBox p textarea {
-  width: 450px;
-  height: 100px;
-  padding: 0.5em;
-  margin-left: 1.2em;
+	width: 450px;
+	height: 100px;
+	padding: 0.5em;
+	margin-left: 1.2em;
 }
 
 .btn {
-  cursor: pointer;
-  margin: .3em .5em;
-  padding: .5em .7em;
-  border: .5px solid gray;
-  border-radius: 10px;
-  background: var(--button);
-  transition: all ease-in-out 200ms;
+	cursor: pointer;
+	margin: 0.3em 0.5em;
+	padding: 0.5em 0.7em;
+	border: 0.5px solid gray;
+	border-radius: 10px;
+	background: var(--button);
+	transition: all ease-in-out 200ms;
 }
 
 .btn:hover {
-  background: var(--button-hover);
+	background: var(--button-hover);
 }
 
 .editingBtn {
-  cursor: pointer;
-  margin: .3em .6em;
-  padding: .5em .7em;
-  border: .5px solid gray;
-  border-radius: 10px;
-  background: var(--button-edit);
-  transition: all ease-in-out 200ms;
+	cursor: pointer;
+	margin: 0.3em 0.6em;
+	padding: 0.5em 0.7em;
+	border: 0.5px solid gray;
+	border-radius: 10px;
+	background: var(--button-edit);
+	transition: all ease-in-out 200ms;
 }
 
 .editingBtn:hover {
-  background: var(--button-edit-hover);
+	background: var(--button-edit-hover);
 }
 
 .deleteBtn {
-  color: white;
-  cursor: pointer;
-  margin: .3em .6em;
-  padding: .5em .7em;
-  border: .5px solid gray;
-  border-radius: 10px;
-  background: var(--button-delete);
-  transition: all ease-in-out 200ms;
+	color: white;
+	cursor: pointer;
+	margin: 0.3em 0.6em;
+	padding: 0.5em 0.7em;
+	border: 0.5px solid gray;
+	border-radius: 10px;
+	background: var(--button-delete);
+	transition: all ease-in-out 200ms;
 }
 
 .deleteBtn:hover {
-  background: var(--button-delete-hover);
+	background: var(--button-delete-hover);
 }
 
 .itemsContainer {
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-  /* background: var(--card); */
-  border-radius: 15px;
-  margin: 0 auto;
-  margin-top: 1em;
-  margin-bottom: 2.3em;
-  padding-bottom: 3em;
-  padding-top: 2em;
+	display: flex;
+	flex-direction: column;
+	width: 95%;
+	/* background: var(--card); */
+	border-radius: 15px;
+	margin: 0 auto;
+	margin-top: 1em;
+	margin-bottom: 2.3em;
+	padding-bottom: 3em;
+	padding-top: 2em;
 }
 
 .title {
-  text-align: center;
-  margin: 1em 0 0.3em 0;
-  font-size: 3em;
+	text-align: center;
+	margin: 1em 0 0.3em 0;
+	font-size: 3em;
 }
 
 /*-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-= PROFILE IMAGE BLOCK */
 
 .cover {
-  top: 75%;
-  left: 2.5%;
-  position: absolute;
-  max-width: 10%;
+	top: 75%;
+	left: 2.5%;
+	position: absolute;
+	max-width: 10%;
 }
 
 .userImg {
-  border: 3px solid var(--card);
-  border-radius: 50%;
-  object-fit: cover;
-  width: 190px;
-  height: 190px;
+	border: 3px solid var(--card);
+	border-radius: 50%;
+	object-fit: cover;
+	width: 190px;
+	height: 190px;
 
-  /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.5); */
+	/* box-shadow: 0 3px 10px rgb(0 0 0 / 0.5); */
 }
 
 .stars {
-  /* position: relative; */
-  display: flex;
-  justify-content: center;
+	/* position: relative; */
+	display: flex;
+	justify-content: center;
 
-  /* width: 100%;
+	/* width: 100%;
   height: 70%; */
 
-  color: #f7d310;
-  font-size: 3em;
+	color: #f7d310;
+	font-size: 3em;
 }
 
 .camera {
-  /* position: absolute; */
+	/* position: absolute; */
 
-  font-size: 3rem;
+	font-size: 3rem;
 
-  left: 6em;
+	left: 6em;
 }
 
 .buttons {
-  margin-top: 1em;
-  margin-right: .5em;
-  padding: 0;
-  /* margin: 0; */
+	margin-top: 1em;
+	margin-right: 0.5em;
+	padding: 0;
+	/* margin: 0; */
 }
 
 .buttonsSet {
-  /* margin-top: 1em; */
-  width: 133px;
-  display: flex;
-  padding: 0;
-  flex-wrap: wrap;
+	/* margin-top: 1em; */
+	width: 133px;
+	display: flex;
+	padding: 0;
+	flex-wrap: wrap;
 }
 
 .profileInfoBox {
-  height: 50%;
-  width: 30%;
-  padding: 2em 0;
-  /* width: 400px; */
-  display: flex;
-  flex-direction: column;
-  /* flex-wrap: wrap; */
-  box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
-  background: var(--back);
-  /* opacity: 0.7; */
-  border-radius: 4px;
-  /* grid-area: info; */
+	height: 50%;
+	width: 30%;
+	padding: 2em 0;
+	/* width: 400px; */
+	display: flex;
+	flex-direction: column;
+	/* flex-wrap: wrap; */
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.5);
+	background: var(--back);
+	/* opacity: 0.7; */
+	border-radius: 4px;
+	/* grid-area: info; */
 }
 
 /* .mainContainer {
@@ -341,5 +276,5 @@
 } */
 
 .main {
-  background: var(--background);
+	background: var(--background);
 }
