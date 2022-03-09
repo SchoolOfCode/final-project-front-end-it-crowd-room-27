@@ -100,20 +100,24 @@ function profile({
       // setIsShowAlert(true);
       // showToast("profile_update_success");
       await fetch(`${API_URL}/api/users/${uID}`, {
-        method: "PUT",
-        // method: "asdasjdnaskjdnaknsj",
+        // method: "PUT",
+        method: "asdasjdnaskjdnaknsj",
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" },
       });
+      if (!error) {
+        showToast("profile_update_success");
+      }
     } catch (error) {
       showToast("profile_update_failed");
       console.log("error", error);
-    } finally {
-      // setIsShowAlert(true);
-      // if (!error) {
-      //   showToast("profile_update_success");
-      // }
     }
+    // finally {
+    //   // setIsShowAlert(true);
+    //   // if (!error) {
+    //   //   showToast("profile_update_success");
+    //   // }
+    // }
 
     setButtonsToggle(!buttonsToggle);
     setPreviewSource(null);
