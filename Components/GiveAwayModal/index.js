@@ -189,20 +189,19 @@ function GiveAwayModal(props) {
                   onChange={handleFileInputChange}
                   required
                 ></input>
+                <button
+                  type="submit"
+                  onClick={(e) => handleSubmit(e)}
+                  className={styles.btn}
+                >
+                  Submit
+                </button>
               </form>
             </div>
           </div>
         </div>
       </Modal.Body>
-      <Modal.Footer className={styles.footer}>
-        <button
-          type="submit"
-          onClick={(e) => handleSubmit(e)}
-          className={styles.btn}
-        >
-          Submit
-        </button>
-      </Modal.Footer>
+      <Modal.Footer className={styles.footer}></Modal.Footer>
     </Modal>
   );
 }

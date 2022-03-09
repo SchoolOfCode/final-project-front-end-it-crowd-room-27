@@ -127,7 +127,7 @@ function profile({
         method: "DELETE",
         // method: "asdasdasdasd",
       });
-      const data = await res.json();
+      // const data = await res.json();
       // console.log(data);
       setUpdatedListings(
         updatedListings.filter((listing) => listing.item_id !== id)
