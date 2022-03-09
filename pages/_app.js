@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }) {
         toastProperties = {
           id: 5,
           title: "success",
-          description: "Amazing! Your item has been successfully uploaded",
+          description: "Amazing! Your item uploaded successfully",
           backgroundColor: "#5cb85c",
         };
         break;
@@ -79,6 +79,22 @@ function MyApp({ Component, pageProps }) {
           title: "danger",
           description: "Uh-oh! profile failed to save",
           backgroundColor: "#d9534f",
+        };
+        break;
+      case "item_update_failed":
+        toastProperties = {
+          id: 7,
+          title: "danger",
+          description: "Uh-oh! item failed to save",
+          backgroundColor: "#d9534f",
+        };
+        break;
+      case "item_update_success":
+        toastProperties = {
+          id: 8,
+          title: "success",
+          description: "Amazing! Your item updated successfully",
+          backgroundColor: "#5cb85c",
         };
         break;
       default:

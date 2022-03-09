@@ -389,6 +389,9 @@ function profile({
               currentUser={currentUser}
               handleDelete={handleDelete}
               updatedListings={updatedListings}
+              showToast={showToast}
+              isShowAlert={isShowAlert}
+              setIsShowAlert={setIsShowAlert}
             />
           ))}
         </div>
