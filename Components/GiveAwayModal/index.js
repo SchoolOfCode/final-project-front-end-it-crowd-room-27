@@ -30,6 +30,12 @@ function GiveAwayModal(props) {
 	const [dateAdded, setDateAdded] = useState(Date.now());
 	const [isReserved, setIsReserved] = useState(false);
 	const [timeSlot, setTimeSlot] = useState("");
+  
+  // ADDING A CORRECT ADDING DATE 
+  const dated = Date.now();
+  const today = new Date(dated);
+
+  const addedDate = today.toUTCString();
 
 	//an object which will represent the form data to send to the server (req.body)
 	const body = {
@@ -38,14 +44,14 @@ function GiveAwayModal(props) {
 		item_name: itemName,
 		item_description: itemDesc,
 		use_by_date: useByDate,
-		date_added: Date.now(),
+		date_added: addedDate,
 		quantity: quantity,
 		is_reserved: true,
 		availability: false,
 		time_slot: timeSlot,
 		image: previewSource,
 	};
-
+console.log(body)
 	//when the user selects an image from their desktop, preview it in the browser
 	const handleFileInputChange = (e) => {
 		const file = e.target.files[0];

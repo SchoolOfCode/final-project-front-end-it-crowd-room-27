@@ -33,6 +33,8 @@ function Card({
 }) {
 	const [modalShow, setModalShow] = useState(false);
 	const [editItemModalShow, setEditItemModalShow] = useState(false);
+
+
 	return (
 		<div className={styles.cardContainer}>
 			<div className={styles.cardLeft}>
