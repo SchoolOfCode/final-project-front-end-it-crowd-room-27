@@ -106,13 +106,14 @@ function ListingsPage({
 			</div>
 
 			<div className={styles.iconContainer}>
-				<FontAwesomeIcon
-					icon={faCirclePlus}
-					size={"5x"}
-					className={styles.faIcon}
-					onClick={() => setGiveItemModalShow(true)}
-				/>
-
+				{currentUser ? (
+					<FontAwesomeIcon
+						icon={faCirclePlus}
+						size={"5x"}
+						className={styles.faIcon}
+						onClick={() => setGiveItemModalShow(true)}
+					/>
+				) : null}
 				<GiveAwayModal
 					users={users}
 					show={giveItemModalShow}

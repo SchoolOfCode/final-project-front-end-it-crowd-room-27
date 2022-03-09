@@ -75,6 +75,7 @@ function profile({ users, listings }) {
 		setButtonsToggle(!buttonsToggle);
 		setPreviewSource(null);
 		setCompProfile(true);
+		Router.reload(window.location);
 	};
 
 	useEffect(() => {
@@ -159,7 +160,7 @@ function profile({ users, listings }) {
 					/>
 				</Head>
 				<Navbar
-					avatar={!currentUser ? tempPreviewSource : currentUser.avatar}
+					avatar={!currentUser ? user.picture : currentUser.avatar}
 					users={users}
 				/>
 

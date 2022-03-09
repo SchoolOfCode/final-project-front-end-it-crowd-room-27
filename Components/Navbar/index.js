@@ -14,6 +14,9 @@ function Navbar({ avatar, users }) {
 
 	const [giveItemModalShow, setGiveItemModalShow] = React.useState(false);
 
+	//currentUser matches the authenticated user with their info in our db
+	const currentUser = users.find((currUser) => currUser.email === user?.email);
+
 	return (
 		<div className={styles.top_container}>
 			<div className={styles.logo}>
@@ -24,13 +27,15 @@ function Navbar({ avatar, users }) {
 				</Link>
 
 				<div className={styles.GiveItemButton}>
-					<button
-						variant="primary"
-						onClick={() => setGiveItemModalShow(true)}
-						className={styles.btn}
-					>
-						Give Item
-					</button>
+					{currentUser ? (
+						<button
+							variant="primary"
+							onClick={() => setGiveItemModalShow(true)}
+							className={styles.btn}
+						>
+							Give Item
+						</button>
+					) : null}
 					<GiveAwayModal
 						users={users}
 						show={giveItemModalShow}

@@ -4,7 +4,6 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { API_URL } from "../config";
 
 import Toast from "../Components/Toast/index.js";
-import styles from "../styles/alert.module.css";
 
 export default function Listings({ users, listings }) {
 	const [list, setList] = useState([]);
@@ -65,7 +64,7 @@ export default function Listings({ users, listings }) {
 
 	return (
 		<>
-			<div className={styles.alert}>
+			<div>
 				<ListingsPage
 					users={users}
 					listings={listings}
