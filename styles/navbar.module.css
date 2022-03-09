@@ -45,52 +45,42 @@
 
 .menuItem a:hover {
 	/* color: rgba(255, 255, 255, 0.6); */
-  color: var(--button);
+	color: var(--button);
 }
 
 .logo {
-  float: left;
-  display: flex;
-  flex-direction: row;
+	float: left;
+	display: flex;
+	flex-direction: row;
 }
 
 .userImg img {
-  border: 1.3px solid var(--button);
-  border-radius: 50%;
-  height: 6em;
-  width: 6em;
-  object-fit: cover;
+	border: 1.3px solid var(--button);
+	border-radius: 50%;
+	height: 6em;
+	width: 6em;
+	object-fit: cover;
 }
 
-/* .middle_container {
-  display: flex;
-  align-items: center;
-  margin-left: 2em;
-	/* padding-top: 10%; */
-  /* height: 100%; */
-  /* position: sticky; */
-  /* border: 1px solid red; */
-/* } */
-
 .GiveItemButton {
-  display: flex;
-  align-items: center;
-  padding: 3.2em;
-  height: 50%;
+	display: flex;
+	align-items: center;
+	padding: 3.2em;
+	height: 50%;
 }
 
 .btn {
-  border: none;
-  cursor: pointer;
-  font-size: 1em;
+	border: none;
+	cursor: pointer;
+	font-size: 1em;
 	text-decoration: none;
-  color: white;
+	color: white;
 	transition: all ease-in-out 150ms;
-  background: inherit;
-  align-items: center;
+	background: inherit;
+	align-items: center;
 }
 
 .btn:hover {
-  /* color: rgba(255, 255, 255, 0.6); */
-  color: var(--button);
+	/* color: rgba(255, 255, 255, 0.6); */
+	color: var(--button);
 }

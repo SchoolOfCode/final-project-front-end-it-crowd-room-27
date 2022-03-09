@@ -41,6 +41,7 @@ function Toast({ toastList, position, isShowAlert, setIsShowAlert }) {
       ))}
     </div>
   );
+
 }
 
 export default Toast;
