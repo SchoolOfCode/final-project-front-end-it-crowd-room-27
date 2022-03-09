@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import PickUpModal from "../PickUpModal";
 import Link from "next/link";
 import EditCardModal from "../EditCardModal";
@@ -168,6 +169,7 @@ function Card({
 			</div>
 		</div>
 	);
+
 }
 
 export default Card;

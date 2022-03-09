@@ -10,6 +10,7 @@ import styles from "../styles/profile.module.css";
 import Router from "next/router";
 
 function profile({ users, listings }) {
+
 	const { user, error, isLoading } = useUser();
 
 	if (isLoading) return <div>Loading...</div>;
@@ -376,17 +377,18 @@ function profile({ users, listings }) {
 	);
 }
 
+
 export const getServerSideProps = withPageAuthRequired({
-	async getServerSideProps() {
-		const usersRes = await fetch(`${API_URL}/api/users`);
-		const usersData = await usersRes.json();
-		const listingsRes = await fetch(`${API_URL}/api/listings`);
-		const listingsData = await listingsRes.json();
-		// By returning { props: { allUsers } }, the PostAuth component
-		// will receive `allUsers` as a prop at BUILD time
-		return {
-			props: { users: usersData.payload, listings: listingsData.payload },
-		};
-	},
+  async getServerSideProps() {
+    const usersRes = await fetch(`${API_URL}/api/users`);
+    const usersData = await usersRes.json();
+    const listingsRes = await fetch(`${API_URL}/api/listings`);
+    const listingsData = await listingsRes.json();
+    // By returning { props: { allUsers } }, the PostAuth component
+    // will receive `allUsers` as a prop at BUILD time
+    return {
+      props: { users: usersData.payload, listings: listingsData.payload },
+    };
+  },
 });
 export default profile;

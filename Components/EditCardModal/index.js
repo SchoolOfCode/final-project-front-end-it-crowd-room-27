@@ -6,6 +6,7 @@ import { API_URL } from "../../config.js";
 import Router from "next/router";
 
 function EditCardModal(props) {
+
 	const { user, error, isLoading } = useUser();
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
@@ -156,10 +157,12 @@ function EditCardModal(props) {
 								</select>
 
 								{/* <textarea
+
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
                   required
                 ></textarea> */}
+
 								<h6>Brief Description</h6>
 								<textarea
 									className={styles.textField}
@@ -210,6 +213,7 @@ function EditCardModal(props) {
 			</Modal.Footer>
 		</Modal>
 	);
+
 }
 
 export default EditCardModal;
