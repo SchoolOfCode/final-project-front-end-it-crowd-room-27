@@ -65,6 +65,14 @@ function MyApp({ Component, pageProps }) {
           backgroundColor: "#5cb85c",
         };
         break;
+      case "item_upload_failed":
+        toastProperties = {
+          id: 11,
+          title: "danger",
+          description: "Uh-oh! item failed to upload",
+          backgroundColor: "#d9534f",
+        };
+        break;
       case "profile_update_success":
         toastProperties = {
           id: 6,

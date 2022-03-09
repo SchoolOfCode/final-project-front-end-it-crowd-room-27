@@ -70,15 +70,21 @@ function GiveAwayModal(props) {
 
   //stringify the body object defined above and send as req.body to server
   const handleSubmit = async () => {
-    await fetch(`${API_URL}/api/items`, {
-      method: "POST",
-      body: JSON.stringify(body),
-      headers: { "Content-Type": "application/json" },
-    });
-    Router.reload(window.location);
-    //  console.log("post reload");
     props?.setIsShowAlert(true);
-    props?.showToast("item_upload_success");
+    try {
+      await fetch(`${API_URL}/api/items`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (!error) {
+        props?.showToast("item_upload_success");
+      }
+    } catch (error) {
+      console.log("error", error);
+      //  console.log("post reload");
+      Router.reload(window.location);
+    }
   };
   //stringify the body object defined above and send as req.body to server
   // 	const handleSubmit = async () => {
