@@ -30,9 +30,10 @@ function Card({
 	users,
 	updatedListings,
 }) {
-	console.log(user_id);
 	const [modalShow, setModalShow] = useState(false);
 	const [editItemModalShow, setEditItemModalShow] = useState(false);
+
+
 	return (
 		<div className={styles.cardContainer}>
 			<div className={styles.cardLeft}>
@@ -109,7 +110,7 @@ function Card({
 									cloudinary_id={cloudinary_id}
 									avatar={avatar}
 									user_bio={user_bio}
-									show={modalShow}
+									// show={modalShow}
 									users={users}
 									updatedListings={updatedListings}
 									show={editItemModalShow}

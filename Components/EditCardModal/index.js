@@ -13,6 +13,7 @@ function EditCardModal(props) {
 	const uId = props.id;
 	const itId = props.item_id;
 	const reserved = props.is_reserved;
+    const originDate = props.date_added;
 	// const listings = props.updatedListings[0];
 	console.log(uId);
 	console.log(itId);
@@ -22,7 +23,7 @@ function EditCardModal(props) {
 	// const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
 	//capture form data
-
+    
 	const [previewSource, setPreviewSource] = useState(props.item_image);
 	const [itemName, setItemName] = useState(props.item_name);
 	const [itemDesc, setItemDesc] = useState(props.item_description);
@@ -38,7 +39,7 @@ function EditCardModal(props) {
 		item_name: itemName,
 		item_description: itemDesc,
 		use_by_date: useByDate,
-		date_added: Date.now(),
+		date_added: originDate,
 		quantity: quantity,
 		image: previewSource,
 		is_reserved: reserved,
