@@ -23,10 +23,6 @@ const DeleteModal = (props) => {
 		}
 	};
 
-	console.log(confirmDeleteProfile);
-	console.log(user.email);
-	console.log(logOff);
-
 	const handleDeleteProfile = async () => {
 		showToast(delete_profile_warning);
 

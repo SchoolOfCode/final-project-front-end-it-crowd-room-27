@@ -26,7 +26,6 @@ export const getStaticProps = async (ctx) => {
 	const dbUsersData = await dbUsersRes.json();
 	const dbListingsRes = await fetch(`${API_URL}/api/listings`);
 	const dbListingsData = await dbListingsRes.json();
-	console.log(dbListingsData);
 	const staticRes = await fetch(`${API_URL}/api/users/` + id);
 	const staticData = await staticRes.json();
 	return {
@@ -81,11 +80,11 @@ export default withPageAuthRequired(function Profile({
 		setButtonsToggle(!buttonsToggle);
 	};
 
-	const sign = false;
-	const nameLine = currentUser ? `  ${currentUser.full_name}` : null;
-	const addressLine = currentUser ? `  ${currentUser.address}` : null;
-	const emailLine = currentUser ? `  ${currentUser.email}` : null;
-	const bioLine = currentUser ? `  ${currentUser.user_bio}` : null;
+	// const sign = false;
+	// const nameLine = currentUser ? `  ${currentUser.full_name}` : null;
+	// const addressLine = currentUser ? `  ${currentUser.address}` : null;
+	// const emailLine = currentUser ? `  ${currentUser.email}` : null;
+	// const bioLine = currentUser ? `  ${currentUser.user_bio}` : null;
 
 	return (
 		<div className={styles.mainContainer}>

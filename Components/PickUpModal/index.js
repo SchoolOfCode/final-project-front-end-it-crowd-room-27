@@ -6,7 +6,9 @@ import { User } from "@auth0/auth0-react";
 
 function PickUpModal(props) {
 	const { user, error, isLoading } = useUser();
+
 	const users = props.users;
+
 	// find the user in our database who matches the auth user
 	const currentUser = users?.find((currUser) => currUser.email === user.email);
 
@@ -103,7 +105,6 @@ function PickUpModal(props) {
 								method="POST"
 							/>
 						</div>
-						{/* <button onClick={handleSubmit} type="submit" className={styles.btn}> */}
 						<div className={styles.btnContainer}>
 							<button type="submit" className={styles.btn}>
 								Request item
@@ -111,7 +112,6 @@ function PickUpModal(props) {
 						</div>
 					</form>
 				</div>
-				{/* </div> */}
 			</Modal.Footer>
 		</Modal>
 	);

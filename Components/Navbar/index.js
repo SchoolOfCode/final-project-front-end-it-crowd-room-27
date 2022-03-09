@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
-
 import styles from "../../styles/navbar.module.css";
-
 import Link from "next/link";
 import Logo from "../../assets/logo-main.png";
 import Image from "next/image";
@@ -13,8 +11,6 @@ function Navbar({ avatar, users }) {
 
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
-
-	//  const userInOurDb = users.find(dbuser => dbuser.email === user.email);
 
 	const [giveItemModalShow, setGiveItemModalShow] = React.useState(false);
 
@@ -52,9 +48,6 @@ function Navbar({ avatar, users }) {
 						<li className={styles.menuItem}>
 							<Link href="/">About</Link>
 						</li>
-						{/* <li className={styles.menuItem}>
-                     <Link href="/blog">Blog</Link>
-                  </li> */}
 						{/* if user isn't logged in  - display the login button */}
 						{!user && (
 							<li className={styles.menuItem}>
@@ -73,9 +66,7 @@ function Navbar({ avatar, users }) {
 					{/* if user is logged in, let their profile picture link to their profile */}
 					<Link href="/profile">
 						<a>
-							{user ? (
-								<img src={avatar || user.picture} alt={user.first_name} />
-							) : null}
+							{user ? <img src={avatar || user.picture} alt="avatar" /> : null}
 						</a>
 					</Link>
 				</div>

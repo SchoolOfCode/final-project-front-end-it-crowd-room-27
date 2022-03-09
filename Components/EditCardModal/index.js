@@ -6,7 +6,6 @@ import { API_URL } from "../../config.js";
 import Router from "next/router";
 
 function EditCardModal(props) {
-
 	const { user, error, isLoading } = useUser();
 	if (isLoading) return <div>Loading ...</div>;
 	if (error) return <div>{error.message}</div>;
@@ -14,13 +13,6 @@ function EditCardModal(props) {
 	const uId = props.id;
 	const itId = props.item_id;
 	const reserved = props.is_reserved;
-	// const listings = props.updatedListings[0];
-	console.log(uId);
-	console.log(itId);
-	// console.log(reserved);
-	// console.log(listings);
-	//currentUser matches the authenticated user with their info in our db
-	// const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
 	//capture form data
 
@@ -131,7 +123,6 @@ function EditCardModal(props) {
 								<h6>Item</h6>
 								<textarea
 									className={styles.textField}
-									//   placeholder="What are you donating?"
 									type="text"
 									value={itemName}
 									onChange={(e) => handleItemName(e)}
@@ -156,17 +147,9 @@ function EditCardModal(props) {
 									<option value="Other">Other</option>
 								</select>
 
-								{/* <textarea
-
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  required
-                ></textarea> */}
-
 								<h6>Brief Description</h6>
 								<textarea
 									className={styles.textField}
-									//   placeholder="Briefly describe your donation.."
 									type="text"
 									value={itemDesc}
 									onChange={(e) => handleItemDesc(e)}
@@ -175,7 +158,6 @@ function EditCardModal(props) {
 								<h6>Best before date</h6>
 								<textarea
 									className={styles.textField}
-									//   placeholder="Best before date..."
 									type="text"
 									value={useByDate}
 									onChange={(e) => handleUseByDate(e)}
@@ -184,7 +166,6 @@ function EditCardModal(props) {
 								<h6>Quantity</h6>
 								<textarea
 									className={styles.textField}
-									//   placeholder="How much/many?"
 									type="text"
 									value={quantity}
 									onChange={(e) => handleQuantity(e)}
@@ -193,7 +174,6 @@ function EditCardModal(props) {
 								<h6>My Availability</h6>
 								<textarea
 									className={styles.textField}
-									//   placeholder="Please write times when you're available.."
 									type="text"
 									value={timeSlot}
 									onChange={(e) => handleTimeSlot(e)}
@@ -213,7 +193,6 @@ function EditCardModal(props) {
 			</Modal.Footer>
 		</Modal>
 	);
-
 }
 
 export default EditCardModal;
