@@ -96,6 +96,8 @@ function profile({
   console.log(uID);
   const handleEdit = async () => {
     try {
+      setIsShowAlert(true);
+      showToast("profile_update_success");
       await fetch(`${API_URL}/api/users/${uID}`, {
         method: "PUT",
         body: JSON.stringify(body),
@@ -103,7 +105,7 @@ function profile({
       });
     } catch (error) {
       console.log("error", error);
-      error ? showToast(failed_to_save) : null;
+      // error ? showToast(failed_to_save) : null;
     }
 
     setButtonsToggle(!buttonsToggle);
