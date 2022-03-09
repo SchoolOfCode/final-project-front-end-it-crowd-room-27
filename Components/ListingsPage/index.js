@@ -10,18 +10,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import GiveAwayModal from "../GiveAwayModal";
 
-function ListingsPage({ users, listings }) {
+function ListingsPage({
+	users,
+	listings,
+	showToast,
+	isShowAlert,
+	setIsShowAlert,
+}) {
 	const { user, error, isLoading } = useUser();
 	const [searchedListings, setSearchedListings] = useState(listings);
 
 	const [giveItemModalShow, setGiveItemModalShow] = React.useState(false);
 
 	if (isLoading) return <div>Loading...</div>;
-
 	if (error) return <div>{error.message}</div>;
 
 	//currentUser matches the authenticated user with their info in our db
 	const currentUser = users.find((currUser) => currUser.email === user.email);
+
 	//this function is passed down to the searchbar component below
 	// it fires each time a key is pressed
 	const filterListings = (e) => {
@@ -100,17 +106,21 @@ function ListingsPage({ users, listings }) {
 			</div>
 
 			<div className={styles.iconContainer}>
-				<FontAwesomeIcon
-					icon={faCirclePlus}
-					size={"5x"}
-					className={styles.faIcon}
-					onClick={() => setGiveItemModalShow(true)}
-				/>
-
+				{currentUser ? (
+					<FontAwesomeIcon
+						icon={faCirclePlus}
+						size={"5x"}
+						className={styles.faIcon}
+						onClick={() => setGiveItemModalShow(true)}
+					/>
+				) : null}
 				<GiveAwayModal
 					users={users}
 					show={giveItemModalShow}
 					onHide={() => setGiveItemModalShow(false)}
+					showToast={showToast}
+					isShowAlert={isShowAlert}
+					setIsShowAlert={setIsShowAlert}
 				/>
 			</div>
 		</>

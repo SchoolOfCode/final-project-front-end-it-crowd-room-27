@@ -70,19 +70,31 @@ console.log(body)
 
 	//stringify the body object defined above and send as req.body to server
 	const handleSubmit = async () => {
-		try {
-			await fetch(`${API_URL}/api/items`, {
-				method: "POST",
-				body: JSON.stringify(body),
-				headers: { "Content-Type": "application/json" },
-			});
-		} catch (error) {
-			console.log("error", error);
-			error ? showToast(item_upload_failed) : null;
-		}
-
+		await fetch(`${API_URL}/api/items`, {
+			method: "POST",
+			body: JSON.stringify(body),
+			headers: { "Content-Type": "application/json" },
+		});
 		Router.reload(window.location);
+		//  console.log("post reload");
+		props?.setIsShowAlert(true);
+		props?.showToast("item_upload_success");
 	};
+	//stringify the body object defined above and send as req.body to server
+	// 	const handleSubmit = async () => {
+	// 		try {
+	// 			await fetch(`${API_URL}/api/items`, {
+	// 				method: "POST",
+	// 				body: JSON.stringify(body),
+	// 				headers: { "Content-Type": "application/json" },
+	// 			});
+	// 		} catch (error) {
+	// 			console.log("error", error);
+	// 			error ? showToast(item_upload_failed) : null;
+	// 		}
+
+	// 		Router.reload(window.location);
+	// 	};
 
 	return (
 		<Modal
@@ -134,11 +146,6 @@ console.log(body)
 									<option value="Other">Other</option>
 								</select>
 
-								{/* <textarea
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  required
-                ></textarea> */}
 								<h6>Brief Description</h6>
 								<textarea
 									className={styles.textField}

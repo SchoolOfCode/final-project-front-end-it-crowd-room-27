@@ -80,7 +80,6 @@
 	width: 50%;
 	display: flex;
 	flex-direction: row;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -96,7 +95,6 @@
 .userImgContainer {
 	height: 60px;
 	width: 60px;
-
 	align-self: end;
 	transform: translate(-0.2em, -3.3em);
 	border-radius: 50%;
@@ -110,6 +108,7 @@
 }
 
 .stars {
+	float: left;
 	transform: translateY(-0.8em);
 }
 

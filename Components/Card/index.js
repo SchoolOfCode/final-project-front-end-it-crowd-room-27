@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import PickUpModal from "../PickUpModal";
 import Link from "next/link";
 import EditCardModal from "../EditCardModal";
@@ -46,9 +47,14 @@ function Card({
 					<div className={styles.username}>
 						{/* link which takes us to the user profile page w/ dynamic routing */}
 
-						<Link href={`/users/${user_id}`} key={user_id}>
+						{currentUser ? (
+							<Link href={`/users/${user_id}`} key={user_id}>
+								<h5 className={styles.profileLink}>{full_name}</h5>
+							</Link>
+						) : (
 							<h5 className={styles.profileLink}>{full_name}</h5>
-						</Link>
+						)}
+
 						<div>
 							<div
 								className={`${styles.offline} ${
@@ -117,7 +123,7 @@ function Card({
 									onHide={() => setEditItemModalShow(false)}
 								/>
 							</>
-						) : (
+						) : currentUser ? (
 							<button
 								variant="primary"
 								onClick={() => setModalShow(true)}
@@ -125,7 +131,7 @@ function Card({
 							>
 								Details
 							</button>
-						)}
+						) : null}
 					</div>
 					<div className={styles.cardRightBottomRight}>
 						{/* 1.only display the delete button if the user owns the card*/}

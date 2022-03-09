@@ -75,6 +75,7 @@ function profile({ users, listings }) {
 		setButtonsToggle(!buttonsToggle);
 		setPreviewSource(null);
 		setCompProfile(true);
+		Router.reload(window.location);
 	};
 
 	useEffect(() => {
@@ -85,7 +86,6 @@ function profile({ users, listings }) {
 
 	// =-=-=-=-=-=-=- EDIT EXISTITNG PROFILE =-==-=-=-=--=-=-
 	const uID = currentUser?.id;
-	console.log(uID);
 	const handleEdit = async () => {
 		try {
 			await fetch(`${API_URL}/api/users/${uID}`, {
@@ -111,7 +111,7 @@ function profile({ users, listings }) {
 			method: "DELETE",
 		});
 		const data = await res.json();
-		console.log(data);
+		console.log("deleted card:", data);
 		setUpdatedListings(
 			updatedListings.filter((listing) => listing.item_id !== id)
 		);
@@ -160,7 +160,7 @@ function profile({ users, listings }) {
 					/>
 				</Head>
 				<Navbar
-					avatar={!currentUser ? tempPreviewSource : currentUser.avatar}
+					avatar={!currentUser ? user.picture : currentUser.avatar}
 					users={users}
 				/>
 

@@ -3,6 +3,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import Modal from "react-bootstrap/Modal";
 import styles from "../../styles/deleteModal.module.css";
 import { API_URL } from "../../config.js";
+import Router from "next/router";
 
 const DeleteModal = (props) => {
 	const userId = props.id;
@@ -23,12 +24,8 @@ const DeleteModal = (props) => {
 		}
 	};
 
-	console.log(confirmDeleteProfile);
-	console.log(user.email);
-	console.log(logOff);
-
 	const handleDeleteProfile = async () => {
-		showToast(delete_profile_warning);
+		// showToast(delete_profile_warning);
 
 		{
 			confirmDeleteProfile
@@ -43,6 +40,7 @@ const DeleteModal = (props) => {
 		// setUpdatedListings(
 		//   updatedListings.filter((listing) => listing.item_id !== id)
 		// );
+		Router.reload(window.location);
 	};
 
 	return (
@@ -53,17 +51,17 @@ const DeleteModal = (props) => {
 			centered
 		>
 			<Modal.Header closeButton className={styles.header}>
-				<h1 className={styles.delete_title}>Delete your currant profile</h1>
+				<h1 className={styles.delete_title}>Delete your current profile</h1>
 			</Modal.Header>
 			<Modal.Body className={styles.body}>
 				<div className={styles.bodyRight}>
 					<div className={styles.container}>
-						{/* <h1>Delete your currant profile</h1> */}
+						{/* <h1>Delete your current profile</h1> */}
 						<div className={styles.form}>
 							<form>
 								<p className={styles.condition}>
 									To delete your current profile type your email{" "}
-									<strong>{user.email}</strong> bellow:
+									<strong>{user.email}</strong> below:
 								</p>
 								<input
 									className={styles.textField}

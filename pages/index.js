@@ -26,8 +26,6 @@ export default function Home({ users }) {
 		});
 	});
 
-	// window.pageYOffset > 300 ? setShowScroll(true) : setShowScroll(false);
-
 	const currentUser = users?.find((currUser) => currUser.email === user?.email);
 
 	return (
@@ -47,7 +45,6 @@ export default function Home({ users }) {
 			/>
 			<Banner />
 			<main className={styles.main}>
-				{/* {user ? <Reg/> : <List/>} */}
 				<SectionOne />
 				<SectionTwo />
 				<SectionThree />
