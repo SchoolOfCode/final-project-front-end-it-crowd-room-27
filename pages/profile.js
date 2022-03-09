@@ -98,11 +98,9 @@ function profile({
   const handleEdit = async () => {
     try {
       setIsShowAlert(true);
-      // setIsShowAlert(true);
-      // showToast("profile_update_success");
       await fetch(`${API_URL}/api/users/${uID}`, {
-        // method: "PUT",
-        method: "asdasjdnaskjdnaknsj",
+        method: "PUT",
+        // method: "asdasjdnaskjdnaknsj",
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" },
       });
@@ -113,16 +111,10 @@ function profile({
       showToast("profile_update_failed");
       console.log("error", error);
     }
-    // finally {
-    //   // setIsShowAlert(true);
-    //   // if (!error) {
-    //   //   showToast("profile_update_success");
-    //   // }
-    // }
 
     setButtonsToggle(!buttonsToggle);
     setPreviewSource(null);
-    // Router.reload(window.location);
+    Router.reload(window.location);
   };
 
   // =-=-=-=-=-=-=- DELETE EXISTITNG CARD FROM DATABASE =-==-=-=-=--=-=-
@@ -412,16 +404,16 @@ function profile({
 }
 
 export const getServerSideProps = withPageAuthRequired({
-	async getServerSideProps() {
-		const usersRes = await fetch(`${API_URL}/api/users`);
-		const usersData = await usersRes.json();
-		const listingsRes = await fetch(`${API_URL}/api/listings`);
-		const listingsData = await listingsRes.json();
-		// By returning { props: { allUsers } }, the PostAuth component
-		// will receive `allUsers` as a prop at BUILD time
-		return {
-			props: { users: usersData.payload, listings: listingsData.payload },
-		};
-	},
+  async getServerSideProps() {
+    const usersRes = await fetch(`${API_URL}/api/users`);
+    const usersData = await usersRes.json();
+    const listingsRes = await fetch(`${API_URL}/api/listings`);
+    const listingsData = await listingsRes.json();
+    // By returning { props: { allUsers } }, the PostAuth component
+    // will receive `allUsers` as a prop at BUILD time
+    return {
+      props: { users: usersData.payload, listings: listingsData.payload },
+    };
+  },
 });
 export default profile;

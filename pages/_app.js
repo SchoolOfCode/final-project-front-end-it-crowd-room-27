@@ -4,7 +4,6 @@ import { UserProvider } from "@auth0/nextjs-auth0";
 import Router from "next/router";
 import { useState } from "react";
 import Loader from "../Components/Loader";
-import styles from "../styles/alert.module.css";
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
