@@ -74,6 +74,14 @@ function MyApp({ Component, pageProps }) {
           backgroundColor: "#5cb85c",
         };
         break;
+      case "profile_update_failed":
+        toastProperties = {
+          id: 6,
+          title: "danger",
+          description: "Uh-oh! profile failed to save",
+          backgroundColor: "#d9534f",
+        };
+        break;
       default:
         toastProperties = [];
     }

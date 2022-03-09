@@ -97,20 +97,27 @@ function profile({
   const handleEdit = async () => {
     try {
       setIsShowAlert(true);
-      showToast("profile_update_success");
+      // setIsShowAlert(true);
+      // showToast("profile_update_success");
       await fetch(`${API_URL}/api/users/${uID}`, {
         method: "PUT",
+        // method: "asdasjdnaskjdnaknsj",
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" },
       });
     } catch (error) {
+      showToast("profile_update_failed");
       console.log("error", error);
-      // error ? showToast(failed_to_save) : null;
+    } finally {
+      // setIsShowAlert(true);
+      // if (!error) {
+      //   showToast("profile_update_success");
+      // }
     }
 
     setButtonsToggle(!buttonsToggle);
     setPreviewSource(null);
-    Router.reload(window.location);
+    // Router.reload(window.location);
   };
 
   // =-=-=-=-=-=-=- DELETE EXISTITNG CARD FROM DATABASE =-==-=-=-=--=-=-
