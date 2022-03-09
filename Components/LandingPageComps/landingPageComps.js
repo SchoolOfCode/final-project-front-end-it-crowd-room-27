@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "../../styles/home.module.css";
-
 import { ScrollArrow } from "../ScrollToTop/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useInView } from "react-intersection-observer";
-import { style } from "dom-helpers";
 
 export function Banner() {
 	return (
@@ -26,7 +24,6 @@ export function SectionOne() {
 	});
 	return (
 		<>
-			{/* <h1>WELCOME TO iGIVE</h1> */}
 			<div className={styles.flexboxContainer} ref={secOne}>
 				<div className={styles.flexItem1}>
 					<h1 className={styles.welcome}>Welcome to iGive</h1>
@@ -50,7 +47,6 @@ export function SectionOne() {
 						unwanted products which could be useful elsewhere. Unwanted food
 						items can be shared through the community by using our app.
 					</p>
-					{/* <ReadMoreButton /> */}
 				</div>
 			</div>
 		</>
@@ -79,7 +75,6 @@ export function SectionTwo() {
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 					allowfullscreen
 				></iframe>
-				{/* width="480" height="315" */}
 			</div>
 		</div>
 	);
@@ -168,8 +163,6 @@ export function SectionFour() {
 		</div>
 	);
 }
-
-// export function Copyright({ style }) {
 
 export function ContactUs() {
 	return (

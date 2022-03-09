@@ -4,9 +4,6 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { API_URL } from "../config";
 
 import Toast from "../Components/Toast/index.js";
-import styles from "../styles/alert.module.css";
-
-console.log(API_URL);
 
 export default function Listings({
   users,
@@ -81,16 +78,16 @@ export default function Listings({
   //   setList([toastProperties]);
   // };
 
-  return (
-    <>
-      <div className={styles.alert}>
-        <ListingsPage
-          users={users}
-          listings={listings}
-          showToast={showToast}
-          isShowAlert={isShowAlert}
-          setIsShowAlert={setIsShowAlert}
-        />
+	return (
+		<>
+			<div>
+				<ListingsPage
+					users={users}
+					listings={listings}
+					showToast={showToast}
+					isShowAlert={isShowAlert}
+					setIsShowAlert={setIsShowAlert}
+				/>
 
         <Toast
           toastList={toastList}
@@ -101,19 +98,20 @@ export default function Listings({
       </div>
     </>
   );
+
 }
 
 export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps() {
-    const usersRes = await fetch(`${API_URL}/api/users`);
-    const usersData = await usersRes.json();
+	async getServerSideProps() {
+		const usersRes = await fetch(`${API_URL}/api/users`);
+		const usersData = await usersRes.json();
 
-    const listingsRes = await fetch(`${API_URL}/api/listings`);
-    const listingsData = await listingsRes.json();
-    // By returning { props: { allUsers } }, the PostAuth component
-    // will receive `allUsers` as a prop at BUILD time
-    return {
-      props: { users: usersData.payload, listings: listingsData.payload },
-    };
-  },
+		const listingsRes = await fetch(`${API_URL}/api/listings`);
+		const listingsData = await listingsRes.json();
+		// By returning { props: { allUsers } }, the PostAuth component
+		// will receive `allUsers` as a prop at BUILD time
+		return {
+			props: { users: usersData.payload, listings: listingsData.payload },
+		};
+	},
 });

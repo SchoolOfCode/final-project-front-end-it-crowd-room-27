@@ -8,6 +8,7 @@ import { API_URL } from "../config";
 import DeleteModal from "../Components/DeleteModal";
 import styles from "../styles/profile.module.css";
 import Router from "next/router";
+
 import Toast from "../Components/Toast/index.js";
 
 function profile({
@@ -190,6 +191,7 @@ function profile({
             <div className={styles.topContainer}>
               <div className={styles.bannerContainer}>
                 {/* <img
+
 								src="https://i0.wp.com/libg.s3.us-east-2.amazonaws.com/download/A-Sea-Of-Clouds-And-Mountains.jpg"
 								className={styles.bannerImage}
 							/> */}
@@ -410,16 +412,16 @@ function profile({
 }
 
 export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps() {
-    const usersRes = await fetch(`${API_URL}/api/users`);
-    const usersData = await usersRes.json();
-    const listingsRes = await fetch(`${API_URL}/api/listings`);
-    const listingsData = await listingsRes.json();
-    // By returning { props: { allUsers } }, the PostAuth component
-    // will receive `allUsers` as a prop at BUILD time
-    return {
-      props: { users: usersData.payload, listings: listingsData.payload },
-    };
-  },
+	async getServerSideProps() {
+		const usersRes = await fetch(`${API_URL}/api/users`);
+		const usersData = await usersRes.json();
+		const listingsRes = await fetch(`${API_URL}/api/listings`);
+		const listingsData = await listingsRes.json();
+		// By returning { props: { allUsers } }, the PostAuth component
+		// will receive `allUsers` as a prop at BUILD time
+		return {
+			props: { users: usersData.payload, listings: listingsData.payload },
+		};
+	},
 });
 export default profile;

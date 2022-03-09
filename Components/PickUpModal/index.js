@@ -6,7 +6,9 @@ import { User } from "@auth0/auth0-react";
 
 function PickUpModal(props) {
 	const { user, error, isLoading } = useUser();
+
 	const users = props.users;
+
 	// find the user in our database who matches the auth user
 	const currentUser = users?.find((currUser) => currUser.email === user.email);
 
@@ -18,19 +20,31 @@ function PickUpModal(props) {
 			centered
 		>
 			<Modal.Header closeButton className={styles.header}>
-				<h1>{props.full_name}</h1>
-				<p>{props.is_active}</p>
-
-				<div className={styles.avatar}>
-					<img src={props.avatar}></img>
+				<div className={styles.nameContainer}>
+					<div className={styles.nameBox}>
+						<h1>{props.full_name}</h1>
+						<p>{props.is_active}</p>
+						<div className={styles.avatar}>
+							<img src={props.avatar}></img>
+						</div>
+					</div>
+					{/* <div className={styles.avatar}>
+            <img src={props.avatar}></img>
+          </div> */}
 				</div>
 			</Modal.Header>
 			<Modal.Body className={styles.body}>
 				<div className={styles.bodyLeft}>
+					{/* <div className={styles.imgContainer}>
+            <img src={props.item_image} className={styles.userImage}></img>
+          </div>
+        </div> */}
+
 					<div className={styles.imgContainer}>
-						<img src={props.item_image} height="100%" width="100%"></img>
+						<img className={styles.imgItem} src={props.item_image}></img>
 					</div>
 				</div>
+
 				<div className={styles.bodyRight}>
 					<h4>{props.item_name}</h4>
 					<p>
@@ -103,7 +117,6 @@ function PickUpModal(props) {
 								method="POST"
 							/>
 						</div>
-						{/* <button onClick={handleSubmit} type="submit" className={styles.btn}> */}
 						<div className={styles.btnContainer}>
 							<button type="submit" className={styles.btn}>
 								Request item
@@ -111,7 +124,6 @@ function PickUpModal(props) {
 						</div>
 					</form>
 				</div>
-				{/* </div> */}
 			</Modal.Footer>
 		</Modal>
 	);
