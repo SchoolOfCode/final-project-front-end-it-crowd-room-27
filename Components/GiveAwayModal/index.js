@@ -69,7 +69,8 @@ function GiveAwayModal(props) {
   };
 
   //stringify the body object defined above and send as req.body to server
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     props?.setIsShowAlert(true);
     try {
       await fetch(`${API_URL}/api/items`, {
@@ -77,15 +78,17 @@ function GiveAwayModal(props) {
         body: JSON.stringify(body),
         headers: { "Content-Type": "application/json" },
       });
+
       if (!error) {
         props?.showToast("item_upload_success");
       }
     } catch (error) {
       console.log("error", error);
       //  console.log("post reload");
-      Router.reload(window.location);
     }
+    Router.reload(window.location);
   };
+
   //stringify the body object defined above and send as req.body to server
   // 	const handleSubmit = async () => {
   // 		try {
@@ -123,7 +126,11 @@ function GiveAwayModal(props) {
           <div className={styles.container}>
             <h1>Fill in the details below...</h1>
             <div className={styles.form}>
-              <form>
+              <form
+                onSubmit={(e) => {
+                  handleSubmit(e);
+                }}
+              >
                 <h6>Item</h6>
                 <textarea
                   className={styles.textField}
@@ -197,7 +204,7 @@ function GiveAwayModal(props) {
                 ></input>
                 <button
                   type="submit"
-                  onClick={(e) => handleSubmit(e)}
+                  // onClick={(e) => (e)}
                   className={styles.btn}
                 >
                   Submit
