@@ -97,6 +97,22 @@ function MyApp({ Component, pageProps }) {
           backgroundColor: "#5cb85c",
         };
         break;
+      case "item_delete_success":
+        toastProperties = {
+          id: 9,
+          title: "success",
+          description: "Amazing! Your item deleted successfully",
+          backgroundColor: "#5cb85c",
+        };
+        break;
+      case "item_delete_failed":
+        toastProperties = {
+          id: 10,
+          title: "danger",
+          description: "Uh-oh! item failed to delete",
+          backgroundColor: "#d9534f",
+        };
+        break;
       default:
         toastProperties = [];
     }

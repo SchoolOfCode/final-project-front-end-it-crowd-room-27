@@ -120,15 +120,27 @@ function profile({
   // =-=-=-=-=-=-=- DELETE EXISTITNG CARD FROM DATABASE =-==-=-=-=--=-=-
 
   const handleDelete = async (id) => {
-    console.log(id);
-    const res = await fetch(`${API_URL}/api/items/${id}`, {
-      method: "DELETE",
-    });
-    const data = await res.json();
-    console.log(data);
-    setUpdatedListings(
-      updatedListings.filter((listing) => listing.item_id !== id)
-    );
+    // console.log(id);
+    try {
+      setIsShowAlert(true);
+      const res = await fetch(`${API_URL}/api/items/${id}`, {
+        method: "DELETE",
+        // method: "asdasdasdasd",
+      });
+      const data = await res.json();
+      // console.log(data);
+      setUpdatedListings(
+        updatedListings.filter((listing) => listing.item_id !== id)
+      );
+
+      if (!error) {
+        showToast("item_delete_success");
+      }
+    } catch (error) {
+      showToast("item_delete_failed");
+      console.log("error", error);
+    }
+    Router.reload(window.location);
   };
 
   // BUTTONS HANDLERS
