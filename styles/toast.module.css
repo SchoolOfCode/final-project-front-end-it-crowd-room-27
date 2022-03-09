@@ -79,5 +79,5 @@
 
 .alert_hidden {
   opacity: 0;
-  transition: all 250ms ease-out 2s;
+  transition: all 300ms ease-out 1s;
 }

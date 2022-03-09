@@ -69,8 +69,8 @@ function GiveAwayModal(props) {
       body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" },
     });
-   //  Router.reload(window.location);
-    console.log("post reload");
+    Router.reload(window.location);
+   //  console.log("post reload");
     props?.setIsShowAlert(true);
     props?.showToast("item_upload_success");
   };
