@@ -59,12 +59,12 @@
 	padding: 0.5em 0.7em;
 	border: 0.5px solid gray;
 	border-radius: 10px;
-	background: var(--button-delete);
+	background: var(--button-edit);
 	transition: all ease-in-out 200ms;
 }
 
 .finishProfile:hover {
-	background: var(--button-delete-hover);
+	background: var(--button-edit-hover);
 }
 
 .profileTopContainer {
@@ -105,6 +105,7 @@
 	display: flex;
 	justify-content: space-between;
 	margin-left: 15em;
+	color: var(--text);
 }
 
 .imageContainer {
@@ -125,12 +126,13 @@
 	width: 70%;
 	height: 10em;
 	float: right;
-	background: #ecf0f1;
+	background: var(--background);
 	border-radius: 4px;
 	margin-top: 2em;
 	margin-left: 15em;
 	border: 1px dotted gray;
 	padding: 0 0 0 0.7em;
+	color: var(--text);
 }
 
 .bioBox p textarea {

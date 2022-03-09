@@ -10,7 +10,6 @@ import styles from "../styles/profile.module.css";
 import Router from "next/router";
 
 function profile({ users, listings }) {
-
 	const { user, error, isLoading } = useUser();
 
 	if (isLoading) return <div>Loading...</div>;
@@ -76,6 +75,7 @@ function profile({ users, listings }) {
 		setButtonsToggle(!buttonsToggle);
 		setPreviewSource(null);
 		setCompProfile(true);
+		Router.reload(window.location);
 	};
 
 	useEffect(() => {
@@ -86,7 +86,6 @@ function profile({ users, listings }) {
 
 	// =-=-=-=-=-=-=- EDIT EXISTITNG PROFILE =-==-=-=-=--=-=-
 	const uID = currentUser?.id;
-	console.log(uID);
 	const handleEdit = async () => {
 		try {
 			await fetch(`${API_URL}/api/users/${uID}`, {
@@ -112,7 +111,7 @@ function profile({ users, listings }) {
 			method: "DELETE",
 		});
 		const data = await res.json();
-		console.log(data);
+		console.log("deleted card:", data);
 		setUpdatedListings(
 			updatedListings.filter((listing) => listing.item_id !== id)
 		);
@@ -161,7 +160,7 @@ function profile({ users, listings }) {
 					/>
 				</Head>
 				<Navbar
-					avatar={!currentUser ? tempPreviewSource : currentUser.avatar}
+					avatar={!currentUser ? user.picture : currentUser.avatar}
 					users={users}
 				/>
 
@@ -377,18 +376,17 @@ function profile({ users, listings }) {
 	);
 }
 
-
 export const getServerSideProps = withPageAuthRequired({
-  async getServerSideProps() {
-    const usersRes = await fetch(`${API_URL}/api/users`);
-    const usersData = await usersRes.json();
-    const listingsRes = await fetch(`${API_URL}/api/listings`);
-    const listingsData = await listingsRes.json();
-    // By returning { props: { allUsers } }, the PostAuth component
-    // will receive `allUsers` as a prop at BUILD time
-    return {
-      props: { users: usersData.payload, listings: listingsData.payload },
-    };
-  },
+	async getServerSideProps() {
+		const usersRes = await fetch(`${API_URL}/api/users`);
+		const usersData = await usersRes.json();
+		const listingsRes = await fetch(`${API_URL}/api/listings`);
+		const listingsData = await listingsRes.json();
+		// By returning { props: { allUsers } }, the PostAuth component
+		// will receive `allUsers` as a prop at BUILD time
+		return {
+			props: { users: usersData.payload, listings: listingsData.payload },
+		};
+	},
 });
 export default profile;
