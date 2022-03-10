@@ -189,6 +189,9 @@ function profile({
           <Navbar
             avatar={!currentUser ? tempPreviewSource : currentUser.avatar}
             users={users}
+            showToast={showToast}
+            isShowAlert={isShowAlert}
+            setIsShowAlert={setIsShowAlert}
           />
 
           <div className={styles.profileTopContainer}>

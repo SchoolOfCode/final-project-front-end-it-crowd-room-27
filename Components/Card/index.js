@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-
+import { API_URL } from "../../config";
 import PickUpModal from "../PickUpModal";
 import Link from "next/link";
 import EditCardModal from "../EditCardModal";
 import styles from "../../styles/card.module.css";
+import Router from "next/router";
 
 function Card({
   user,
@@ -37,6 +38,15 @@ function Card({
   const [modalShow, setModalShow] = useState(false);
   const [editItemModalShow, setEditItemModalShow] = useState(false);
 
+  const [isReserved, setIsReserved] = useState(is_reserved);
+  const handleReserved = async (item_id, isReserved) => {
+    await fetch(`${API_URL}/items/${item_id}`, {
+      method: "PATCH",
+      body: JSON.stringify(isReserved),
+      headers: { "Content-Type": "application/json" },
+    });
+    Router.reload(window.location);
+  };
   return (
     <div className={styles.cardContainer}>
       <div className={styles.cardLeft}>
@@ -135,6 +145,17 @@ function Card({
                 className={styles.btn}
               >
                 Details
+              </button>
+            ) : null}{" "}
+            {user && currentUser?.email === user.email ? (
+              <button
+                variant="primary"
+                onClick={() => (
+                  setIsReserved(isReserved), handleReserved(item_id, isReserved)
+                )}
+                className={styles.btn}
+              >
+                Reserved
               </button>
             ) : null}
           </div>
