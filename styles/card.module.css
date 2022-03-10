@@ -68,7 +68,7 @@
 }
 .cardRightMiddle {
 	min-height: 40%;
-	padding: 0.1em;
+	padding-right: 0.9em;
 }
 .cardRightBottom {
 	min-height: 20%;
@@ -118,21 +118,26 @@
 }
 
 .location {
-	display: flex;
-	line-height: 20px;
-	height: 15%;
+	/* display: flex; */
+	line-height: 5px;
+	text-align: left;
+	/* height: 15%; */
 }
 
 .descriptionText {
+	width: 100%;
+	padding-right: 0.3em;
+	word-wrap: break-word;
 	overflow: hidden;
 	line-height: 20px;
+	letter-spacing: 0.7px;
 	display: -webkit-box;
 	-webkit-line-clamp: 6;
 	-webkit-box-orient: vertical;
 }
 .location p {
 	margin-top: 0.1em;
-	margin-left: 0.5em;
+	/* margin-left: 0.5em; */
 }
 .location h6 {
 	margin-top: 0.1em;

@@ -81,6 +81,7 @@ function Card({
 				</div>
 				<div className={styles.location}>
 					<h6>Local Area:</h6>
+					<br />
 					<p>{address}</p>
 				</div>
 				<div className={styles.cardRightBottom}>
