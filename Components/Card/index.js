@@ -37,16 +37,29 @@ function Card({
 }) {
   const [modalShow, setModalShow] = useState(false);
   const [editItemModalShow, setEditItemModalShow] = useState(false);
-
   const [isReserved, setIsReserved] = useState(is_reserved);
-  const handleReserved = async (item_id, isReserved) => {
-    await fetch(`${API_URL}/items/${item_id}`, {
+
+  console.log(is_reserved);
+
+  const handleReserved = async (item_id) => {
+    const card = updatedListings.find(card => card.item_id === item_id);
+    // setIsReserved(card.is_reserved);
+    setIsReserved(card.is_reserved);
+    const body = {
+      is_reserved: !isReserved
+    };
+
+
+    await fetch(`${API_URL}/api/items/${item_id}`, {
       method: "PATCH",
-      body: JSON.stringify(isReserved),
+      body: JSON.stringify(body),
       headers: { "Content-Type": "application/json" },
     });
-    Router.reload(window.location);
+    // Router.reload(window.location);
+    // console.log(body);
   };
+
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.cardLeft}>
@@ -154,7 +167,8 @@ function Card({
               <button
                 variant="primary"
                 onClick={() => (
-                  setIsReserved(isReserved), handleReserved(item_id, isReserved)
+                  //  setIsReserved(!is_reserved),
+                   handleReserved(item_id)
                 )}
                 className={styles.btn}
               >
