@@ -160,8 +160,8 @@ function ListingsPage({
 					users={users}
 				/>
 				<Card
-					item_id={525855325}
-					user_id={53404532}
+					item_id={52}
+					user_id={656}
 					full_name={"Bourneville Bakers"}
 					email={"bournevillewest@gmail.com"}
 					address={"Bourneville, Birmingham"}
