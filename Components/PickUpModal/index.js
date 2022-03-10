@@ -82,13 +82,16 @@ function PickUpModal(props) {
 						method="POST"
 					>
 						<div className="form-group">
-							<textarea
-								placeholder="Your Message"
-								className={styles.formControl}
-								name="message"
-								rows="10"
-								required
-							></textarea>
+							{currentUser?.id !== props.user_id ? (
+								<textarea
+									placeholder="Your Message"
+									className={styles.formControl}
+									name="message"
+									rows="10"
+									required
+								></textarea>
+							) : null}
+
 							<input
 								type="hidden"
 								name="_next"
@@ -118,9 +121,11 @@ function PickUpModal(props) {
 							/>
 						</div>
 						<div className={styles.btnContainer}>
-							<button type="submit" className={styles.btn}>
-								Request item
-							</button>
+							{currentUser?.id !== props.user_id ? (
+								<button type="submit" className={styles.btn}>
+									Request item
+								</button>
+							) : null}
 						</div>
 					</form>
 				</div>

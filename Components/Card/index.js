@@ -75,6 +75,8 @@ function Card({
               ></div>
             </div>
 
+
+
             {/* stars to show how a user rating could look if we ever develop this feature */}
             <div className={styles.stars}>
               <span className={`fa fa-star ${styles.checked}`}></span>
@@ -89,6 +91,7 @@ function Card({
           </div>
           <h5 className={styles.itemName}>{item_name}</h5>
         </div>
+
 
         <div className={styles.cardRightMiddle}>
           <p className={styles.descriptionText}>{item_description}</p>
