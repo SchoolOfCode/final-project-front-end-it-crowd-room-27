@@ -46,7 +46,7 @@ function GiveAwayModal(props) {
     use_by_date: useByDate,
     date_added: addedDate,
     quantity: quantity,
-    is_reserved: true,
+    is_reserved: false,
     availability: false,
     time_slot: timeSlot,
     image: previewSource,
