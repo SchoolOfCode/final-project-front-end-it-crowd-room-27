@@ -133,8 +133,8 @@ function ListingsPage({
 					users={users}
 				/>
 				<Card
-					item_id={"12439408242424214124"}
-					user_id={"32424241432412341234"}
+					item_id={468395}
+					user_id={18496}
 					full_name={"Granger's Farm"}
 					email={"grangersfarm@gmail.com"}
 					address={"Bellbroughton, Stourbridge"}
@@ -160,8 +160,8 @@ function ListingsPage({
 					users={users}
 				/>
 				<Card
-					item_id={"52503248593285325"}
-					user_id={"53409258235834532hjdfhdsjg"}
+					item_id={52503248593285325}
+					user_id={53409258235834532}
 					full_name={"Bourneville Bakers"}
 					email={"bournevillewest@gmail.com"}
 					address={"Bourneville, Birmingham"}
