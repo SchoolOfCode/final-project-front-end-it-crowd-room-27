@@ -70,7 +70,7 @@
 .profileTopContainer {
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	/* height: 100%; */
 	width: 100%;
 	background: var(--back);
 	margin: 0;
@@ -92,13 +92,21 @@
 	border-radius: 15px;
 	position: relative;
 	display: inline;
-	height: 30%;
+	/* height: 10%; */
 }
 
 .bannerImage {
-	width: 100%;
+	width: 40%;
 	object-fit: cover;
 	border-radius: 15px;
+  height: 40%;
+  
+  /* background-image: url("../assets/banner.png");
+	background-color: #a5a5a5;
+  /* height: 500px;  */
+  /* background-position: top;  */
+  /* background-repeat: no-repeat; 
+  background-size: cover; */
 }
 
 .infoCover {

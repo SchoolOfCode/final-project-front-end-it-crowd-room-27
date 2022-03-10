@@ -8,6 +8,8 @@ import { API_URL } from "../config";
 import DeleteModal from "../Components/DeleteModal";
 import styles from "../styles/profile.module.css";
 import Router from "next/router";
+import pic from "../banner.png";
+import Image from "next/image";
 
 import Toast from "../Components/Toast/index.js";
 
@@ -182,11 +184,12 @@ function profile({
           <div className={styles.profileTopContainer}>
             <div className={styles.topContainer}>
               <div className={styles.bannerContainer}>
-                {/* <img
-
-								src="https://i0.wp.com/libg.s3.us-east-2.amazonaws.com/download/A-Sea-Of-Clouds-And-Mountains.jpg"
-								className={styles.bannerImage}
-							/> */}
+                
+                <Image
+                  className={styles.bannerImage}
+								  src={pic}
+                  alt="banner"
+							  />
                 <div className={styles.cover}>
                   <img
                     className={styles.userImg}
