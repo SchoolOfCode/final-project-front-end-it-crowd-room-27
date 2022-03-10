@@ -104,7 +104,7 @@ function ListingsPage({
 					</div>
 				))}
 				<Card
-					item_id={4525245242}
+					item_id={45252242}
 					user_id={132313}
 					full_name={"Granger's Farm"}
 					email={"grangersfarm@gmail.com"}
@@ -160,8 +160,8 @@ function ListingsPage({
 					users={users}
 				/>
 				<Card
-					item_id={52503248593285325}
-					user_id={53409258235834532}
+					item_id={525855325}
+					user_id={53404532}
 					full_name={"Bourneville Bakers"}
 					email={"bournevillewest@gmail.com"}
 					address={"Bourneville, Birmingham"}
