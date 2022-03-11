@@ -14,7 +14,7 @@
 }
 
 .cardContainer.reserved {
-	opacity: 0.3;
+	opacity: 0.1;
 	border: var(--navbar) 2px solid;
 }
 .cardContainer:hover {
@@ -70,6 +70,9 @@
 
 .profileLink {
 	cursor: pointer;
+}
+.profileLink.reserved {
+	cursor: text;
 }
 .cardRightMiddle {
 	min-height: 40%;
