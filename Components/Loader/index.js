@@ -6,20 +6,20 @@ function Loader() {
 		<div className={styles.container}>
 			<div className={styles.loader}>
 				<div className={styles.loaderInner}>
-					<div class={styles.loaderLineWrap}>
-						<div class={styles.loaderLine}></div>
+					<div className={styles.loaderLineWrap}>
+						<div className={styles.loaderLine}></div>
 					</div>
-					<div class={styles.loaderLineWrap}>
-						<div class={styles.loaderLine}></div>
+					<div className={styles.loaderLineWrap}>
+						<div className={styles.loaderLine}></div>
 					</div>
-					<div class={styles.loaderLineWrap}>
-						<div class={styles.loaderLine}></div>
+					<div className={styles.loaderLineWrap}>
+						<div className={styles.loaderLine}></div>
 					</div>
-					<div class={styles.loaderLineWrap}>
-						<div class={styles.loaderLine}></div>
+					<div className={styles.loaderLineWrap}>
+						<div className={styles.loaderLine}></div>
 					</div>
-					<div class={styles.loaderLineWrap}>
-						<div class={styles.loaderLine}></div>
+					<div className={styles.loaderLineWrap}>
+						<div className={styles.loaderLine}></div>
 					</div>
 				</div>
 			</div>

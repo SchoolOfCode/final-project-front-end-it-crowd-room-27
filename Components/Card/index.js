@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { API_URL } from "../../config";
 import PickUpModal from "../PickUpModal";
 import Link from "next/link";
@@ -37,30 +37,53 @@ function Card({
 }) {
 	const [modalShow, setModalShow] = useState(false);
 	const [editItemModalShow, setEditItemModalShow] = useState(false);
+
+	//take value of is_reserved from database, and store it in state to be used locally
 	const [isReserved, setIsReserved] = useState(is_reserved);
 
-	// const card = updatedListings.find(card => card.item_id === item_id);
-	// // setIsReserved(card.is_reserved);
-	// setIsReserved(card.is_reserved);
-
-	const handleReserved = async (item_id) => {
-		setIsReserved(!isReserved);
+	const handleReservation = async (item_id) => {
+		//when this function fires onClick, it will toggle the opposite boolean
 		const body = {
-			is_reserved: isReserved,
+			is_reserved: !isReserved,
 		};
-		console.log(body);
-		console.log(item_id);
-
+		console.log("within fn ", body);
 		await fetch(`${API_URL}/api/items/${item_id}`, {
 			method: "PATCH",
 			body: JSON.stringify(body),
 			headers: { "Content-Type": "application/json" },
 		});
-		// Router.reload(window.location);
+		Router.reload(window.location);
 	};
 
+	// --=-==-=-=-=-=-==-=-=-=-=-=-=-=-=-=ARSHI'S VERSION=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+	// const [isReserved, setIsReserved] = useState(is_reserved);
+
+	// console.log("outside fn ", isReserved);
+
+	// const handleReservation = async (item_id) => {
+	// 	const newState = !isReserved;
+	// 	setIsReserved(newState);
+	// 	const body = {
+	// 		is_reserved: newState,
+	// 	};
+
+	// 	console.log("within fn ", body);
+	// 	await fetch(`${API_URL}/api/items/${item_id}`, {
+	// 		method: "PATCH",
+	// 		body: JSON.stringify(body),
+	// 		headers: { "Content-Type": "application/json" },
+	// 	});
+	// 	// Router.reload(window.location);
+	// };
+
+	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 	return (
-		<div className={styles.cardContainer}>
+		<div
+			className={`${styles.cardContainer} 
+		${is_reserved === true ? styles.reserved : ""}`}
+		>
 			<div className={styles.cardLeft}>
 				<div className={styles.imgContainer}>
 					<img src={item_image}></img>
@@ -71,12 +94,17 @@ function Card({
 					<div className={styles.username}>
 						{/* link which takes us to the user profile page w/ dynamic routing */}
 
-						{currentUser ? (
+						{currentUser && is_reserved === false ? (
 							<Link href={`/users/${user_id}`} key={user_id}>
 								<h5 className={styles.profileLink}>{full_name}</h5>
 							</Link>
 						) : (
-							<h5 className={styles.profileLink}>{full_name}</h5>
+							<h5
+								className={`${styles.profileLink} 
+		${is_reserved === true ? styles.reserved : ""}`}
+							>
+								{full_name}
+							</h5>
 						)}
 
 						<div>
@@ -150,7 +178,7 @@ function Card({
 									setIsShowAlert={setIsShowAlert}
 								/>
 							</>
-						) : currentUser ? (
+						) : is_reserved === false && currentUser ? (
 							<button
 								variant="primary"
 								onClick={() => setModalShow(true)}
@@ -162,7 +190,9 @@ function Card({
 						{user && currentUser?.email === user.email ? (
 							<button
 								variant="primary"
-								onClick={() => handleReserved(item_id)}
+								onClick={() => {
+									handleReservation(item_id);
+								}}
 								className={styles.btn}
 							>
 								Reserved
