@@ -152,7 +152,7 @@
 	transform: translateX(0);
 	opacity: 1;
 
-	transition: all ease-in-out 250ms;
+	/* transition: all ease-in-out 250ms; */
 }
 .video.appear:hover {
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
