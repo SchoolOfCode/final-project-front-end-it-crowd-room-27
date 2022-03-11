@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config";
 import PickUpModal from "../PickUpModal";
 import Link from "next/link";
@@ -37,30 +37,31 @@ function Card({
 }) {
 	const [modalShow, setModalShow] = useState(false);
 	const [editItemModalShow, setEditItemModalShow] = useState(false);
-	const [isReserved, setIsReserved] = useState(is_reserved);
+	const [isReserved, setIsReserved] = useState(true);
 
 	// const card = updatedListings.find(card => card.item_id === item_id);
 	// // setIsReserved(card.is_reserved);
 	// setIsReserved(card.is_reserved);
+	const body = {
+		is_reserved: isReserved,
+	};
 
-	const handleReserved = async (item_id) => {
+	console.log("outside fn ", body);
+	const handleReservation = async (item_id) => {
 		setIsReserved(!isReserved);
-		const body = {
-			is_reserved: isReserved,
-		};
-		console.log(body);
-		console.log(item_id);
-
+		console.log("within fn ", body);
 		await fetch(`${API_URL}/api/items/${item_id}`, {
 			method: "PATCH",
 			body: JSON.stringify(body),
 			headers: { "Content-Type": "application/json" },
 		});
-		// Router.reload(window.location);
 	};
 
 	return (
-		<div className={styles.cardContainer}>
+		<div
+			className={`${styles.cardContainer} 
+		${is_reserved === true ? styles.reserved : ""}`}
+		>
 			<div className={styles.cardLeft}>
 				<div className={styles.imgContainer}>
 					<img src={item_image}></img>
@@ -150,7 +151,7 @@ function Card({
 									setIsShowAlert={setIsShowAlert}
 								/>
 							</>
-						) : currentUser ? (
+						) : is_reserved === false && currentUser ? (
 							<button
 								variant="primary"
 								onClick={() => setModalShow(true)}
@@ -162,7 +163,9 @@ function Card({
 						{user && currentUser?.email === user.email ? (
 							<button
 								variant="primary"
-								onClick={() => handleReserved(item_id)}
+								onClick={() => {
+									handleReservation(item_id);
+								}}
 								className={styles.btn}
 							>
 								Reserved
