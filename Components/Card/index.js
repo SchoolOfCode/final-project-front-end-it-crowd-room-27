@@ -47,6 +47,19 @@ function Card({
     });
     Router.reload(window.location);
   };
+  console.log(full_name)
+  console.log(`${full_name.length}`)
+  console.log(`${full_name.indexOf(" ")}`)
+  
+  let short_name = '';
+  if(full_name.length >= 14) {
+    let num = full_name.indexOf(" ");
+    short_name = full_name.slice(0, num);
+    
+  } 
+console.log(short_name)
+
+
   return (
     <div className={styles.cardContainer}>
       <div className={styles.cardLeft}>
@@ -61,10 +74,10 @@ function Card({
 
             {currentUser ? (
               <Link href={`/users/${user_id}`} key={user_id}>
-                <h5 className={styles.profileLink}>{full_name}</h5>
+                <h5 className={styles.profileLink}>{short_name ? short_name : full_name}</h5>
               </Link>
             ) : (
-              <h5 className={styles.profileLink}>{full_name}</h5>
+              <h5 className={styles.profileLink}>{short_name ? short_name : full_name}</h5>
             )}
 
             <div>
@@ -145,7 +158,7 @@ function Card({
               <button
                 variant="primary"
                 onClick={() => setModalShow(true)}
-                className={styles.btn}
+                className={styles.detailsBtn}
               >
                 Details
               </button>

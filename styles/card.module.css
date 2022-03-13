@@ -79,11 +79,11 @@
 }
 .cardRightBottomRight,
 .cardRightBottomLeft {
-  width: 50%;
+  /* width: 50%; */
+  font-size: .8rem;
   display: flex;
   flex-direction: row;
-  display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
@@ -98,7 +98,7 @@
   height: 60px;
   width: 60px;
   align-self: end;
-  transform: translate(-0.2em, -3.3em);
+  transform: translate(-1em, -3.5em);
   border-radius: 50%;
 }
 
@@ -115,6 +115,7 @@
 }
 
 .itemName {
+  margin-top: .1em;
   align-self: flex-start;
   transform: translateY(-3.5em);
 }
@@ -128,6 +129,7 @@
 }
 
 .descriptionText {
+  margin-top: .1em;
 	width: 100%;
 	padding-right: 0.3em;
 	word-wrap: break-word;
@@ -172,6 +174,7 @@
   color: white;
   font-size: 1em;
   transition: all ease-in-out 200ms;
+  margin: 0 .4em;
 }
 
 .btn:hover {
@@ -186,7 +189,7 @@
   cursor: pointer;
   border: none;
   color: white;
-  font-size: 1em;
+  /* font-size: 1em; */
   transition: background-color ease-in-out 200ms;
 }
 
@@ -208,4 +211,18 @@
 
 .editBtn:hover {
   background-color: var(--button-edit-hover);
+}
+
+
+.detailsBtn {
+  background-color: var(--button);
+  height: 2em;
+  width: 6em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1em;
+  transition: all ease-in-out 200ms;
+  margin-left: 12.5em;
 }
