@@ -5,6 +5,8 @@ import Navbar from "../../Components/Navbar/index.js";
 import styles from "../../styles/profile.module.css";
 import Head from "next/head";
 import { API_URL } from "../../config";
+import pic from "../../banner.png";
+import Image from "next/image";
 
 export const getStaticPaths = async () => {
 	const res = await fetch(`${API_URL}/api/users`);
@@ -109,9 +111,10 @@ export default withPageAuthRequired(function Profile({
 			<div className={styles.profileTopContainer}>
 				<div className={styles.topContainer}>
 					<div className={styles.bannerContainer}>
-						<img
-							src="https://i0.wp.com/libg.s3.us-east-2.amazonaws.com/download/A-Sea-Of-Clouds-And-Mountains.jpg"
-							className={styles.bannerImage}
+						<Image
+                  			className={styles.bannerImage}
+							src={pic}
+                  			alt="banner"
 						/>
 						<div className={styles.cover}>
 							<img

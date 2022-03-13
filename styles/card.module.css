@@ -85,12 +85,12 @@
 }
 .cardRightBottomRight,
 .cardRightBottomLeft {
-	width: 50%;
-	display: flex;
-	flex-direction: row;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  /* width: 50%; */
+  font-size: .8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 /* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= */
 
@@ -101,11 +101,11 @@
 }
 
 .userImgContainer {
-	height: 60px;
-	width: 60px;
-	align-self: end;
-	transform: translate(-0.2em, -3.3em);
-	border-radius: 50%;
+  height: 60px;
+  width: 60px;
+  align-self: end;
+  transform: translate(-1em, -3.5em);
+  border-radius: 50%;
 }
 
 .userImgContainer img {
@@ -121,8 +121,9 @@
 }
 
 .itemName {
-	align-self: flex-start;
-	transform: translateY(-3.5em);
+  margin-top: .1em;
+  align-self: flex-start;
+  transform: translateY(-3.5em);
 }
 
 .location {
@@ -133,6 +134,7 @@
 }
 
 .descriptionText {
+  margin-top: .1em;
 	width: 100%;
 	padding-right: 0.3em;
 	word-wrap: break-word;
@@ -167,15 +169,16 @@
 }
 
 .btn {
-	background-color: var(--button);
-	height: 2em;
-	width: 6em;
-	border-radius: 10px;
-	cursor: pointer;
-	border: none;
-	color: white;
-	font-size: 1em;
-	transition: all ease-in-out 200ms;
+  background-color: var(--button);
+  height: 2em;
+  width: 6em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1em;
+  transition: all ease-in-out 200ms;
+  margin: 0 .4em;
 }
 
 .btn:hover {
@@ -183,15 +186,15 @@
 }
 
 .deleteBtn {
-	background-color: var(--button-delete);
-	height: 2em;
-	width: 6em;
-	border-radius: 10px;
-	cursor: pointer;
-	border: none;
-	color: white;
-	font-size: 1em;
-	transition: background-color ease-in-out 200ms;
+  background-color: var(--button-delete);
+  height: 2em;
+  width: 6em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  /* font-size: 1em; */
+  transition: background-color ease-in-out 200ms;
 }
 
 .deleteBtn:hover {
@@ -212,4 +215,18 @@
 
 .editBtn:hover {
 	background-color: var(--button-edit-hover);
+}
+
+
+.detailsBtn {
+  background-color: var(--button);
+  height: 2em;
+  width: 6em;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-size: 1em;
+  transition: all ease-in-out 200ms;
+  margin-left: 12.5em;
 }

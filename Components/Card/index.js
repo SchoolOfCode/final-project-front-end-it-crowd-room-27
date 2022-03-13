@@ -79,6 +79,13 @@ function Card({
 
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+   let short_name = '';
+   if(full_name.length >= 14) {
+    let num = full_name.indexOf(" ");
+    short_name = full_name.slice(0, num);
+    
+  } 
+
 	return (
 		<div
 			className={`${styles.cardContainer} 
@@ -96,14 +103,14 @@ function Card({
 
 						{currentUser && is_reserved === false ? (
 							<Link href={`/users/${user_id}`} key={user_id}>
-								<h5 className={styles.profileLink}>{full_name}</h5>
+								<h5 className={styles.profileLink}>{short_name ? short_name : full_name}</h5>
 							</Link>
 						) : (
 							<h5
 								className={`${styles.profileLink} 
 		${is_reserved === true ? styles.reserved : ""}`}
 							>
-								{full_name}
+								{short_name ? short_name : full_name}
 							</h5>
 						)}
 
@@ -182,7 +189,7 @@ function Card({
 							<button
 								variant="primary"
 								onClick={() => setModalShow(true)}
-								className={styles.btn}
+								className={styles.detailsBtn}
 							>
 								Details
 							</button>

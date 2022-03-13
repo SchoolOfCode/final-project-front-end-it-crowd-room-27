@@ -78,7 +78,6 @@ function ListingsPage({
 			<div className={styles.container}>
 				{/* mapping over our filtered listings from search*/}
 				{/* it is just listings by default (if nothing is searched)*/}
-
 				{searchedListings.map((listing) => (
 					<div key={listing.item_id}>
 						<Card
@@ -279,7 +278,6 @@ function ListingsPage({
 					users={users}
 				/>
 			</div>
-
 			<div className={styles.iconContainer}>
 				{currentUser ? (
 					<FontAwesomeIcon
