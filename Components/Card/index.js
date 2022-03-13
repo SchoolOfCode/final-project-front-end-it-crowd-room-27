@@ -147,11 +147,11 @@ function Card({
 				<div className={styles.cardRightBottom}>
 					<div className={styles.cardRightBottomLeft}>
 						{user && currentUser?.email === user.email ? (
-							<>
+							<div>
 								<button
 									variant="primary"
 									onClick={() => setEditItemModalShow(true)}
-									className={styles.editBtn}
+									className={`${styles.editBtn} ${is_reserved === true ? styles.reservedEditBtn : ""}`}
 								>
 									Edit
 								</button>
@@ -184,7 +184,7 @@ function Card({
 									isShowAlert={isShowAlert}
 									setIsShowAlert={setIsShowAlert}
 								/>
-							</>
+							</div>
 						) : is_reserved === false && currentUser ? (
 							<button
 								variant="primary"
@@ -202,7 +202,7 @@ function Card({
 								}}
 								className={styles.btn}
 							>
-								Reserved
+								{isReserved ? `Release` : `Reserved` }
 							</button>
 						) : null}
 					</div>
