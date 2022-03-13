@@ -67,14 +67,15 @@ export function SectionTwo() {
 				>
 					How iGive Works!
 				</h3>
-				<iframe
+				<video
 					className={`${styles.video} ${isVisible ? styles.appear : ""}`}
-					src="https://www.youtube.com/embed/dnKFSafaJOo"
-					title="YouTube video player"
-					frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen
-				></iframe>
+					src="https://dl.dropboxusercontent.com/s/o05o98mpe43audn/Screen%20Recording%202022-03-06%20at%2014.35.29.mov?dl=0"
+					loop
+					muted
+					type="video/mp4"
+					onMouseEnter={(e) => e.currentTarget.play()}
+					onMouseOut={(e) => e.currentTarget.pause()}
+				></video>
 			</div>
 		</div>
 	);
