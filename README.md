@@ -1,4 +1,4 @@
-### Front End for iGive App
+# Front End for iGive App
 
 ## Project details:
 
